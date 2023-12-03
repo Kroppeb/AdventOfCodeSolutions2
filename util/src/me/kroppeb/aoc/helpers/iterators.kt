@@ -3,6 +3,7 @@ package me.kroppeb.aoc.helpers
 import me.kroppeb.aoc.helpers.collections.LazySet
 import me.kroppeb.aoc.helpers.collections.extensions.repeat
 import me.kroppeb.aoc.helpers.sint.*
+import java.util.Objects
 
 
 fun <T> Iterator<T>.getNext(): T {
@@ -47,9 +48,40 @@ inline fun <T, R> Iterable<T>.rleEncode(convert: (T, Int) -> R) = blockCountsI()
 operator fun <T> Set<T>.times(other: Set<T>): Set<T> = intersect(other)
 operator fun <T> Set<T>.plus(other: Set<T>): Set<T> = union(other)
 
+private class SetRef<T>(val iterable: Iterable<T>) {
+	override fun equals(other: Any?): Boolean {
+		if (other !is SetRef<*>) return false
+		if (other.iterable !== iterable) return false
+		return true
+	}
+
+	override fun hashCode(): Int {
+		return System.identityHashCode(iterable)
+	}
+}
+
+private val seenCollectionsInAsSet = mutableMapOf<SetRef<*>, Set<*>>()
+private var seenCollectionsInAsSetWarned = mutableSetOf<SetRef<*>>()
 fun <T> Iterable<T>.asSet(): Set<T> = when (this) {
 	is Set<T> -> this
-	else -> toSet()
+	else -> {
+		if (seenCollectionsInAsSetWarned.size < 5) {
+			val ref = SetRef(this)
+			val g = seenCollectionsInAsSet[ref]
+			if (g != null && ref !in seenCollectionsInAsSetWarned) {
+				if (this is Collection<T>) {
+					if (this.size == g.size) {
+						println("WARNING: A collection is being converted to a set multiple times, this might be slow")
+						println("WARNING: Collection: ${this.toString().take(200)}")
+						seenCollectionsInAsSetWarned += ref
+					}
+				}
+			}
+			toSet().also { seenCollectionsInAsSet[ref] = it }
+		} else {
+			toSet()
+		}
+	}
 }
 
 fun <K, A> Map<K, A>.intersect(other: Iterable<K>): Map<K, A> =
@@ -724,19 +756,19 @@ infix fun <T, R, V> Iterable<T>.and(other: Iterable<R>): Set<V> where V : T, V :
 
 // aka: does this intersect
 infix fun <T> Iterable<T>.anyIn(other: Iterable<T>): Boolean {
-	val o = if (other is Set<T>) other else other.toSet()
+	val o = other.asSet()
 	return any { it in o }
 }
 
 // aka: is this a subset of
 infix fun <T> Iterable<T>.allIn(other: Iterable<T>): Boolean {
-	val o = if (other is Set<T>) other else other.toSet()
+	val o = other.asSet()
 	return all { it in o }
 }
 
 // aka: are these fully distinct
 infix fun <T> Iterable<T>.noneIn(other: Iterable<T>): Boolean {
-	val o = if (other is Set<T>) other else other.toSet()
+	val o = other.asSet()
 	return none { it in o }
 }
 

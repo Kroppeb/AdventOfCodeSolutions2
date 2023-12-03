@@ -69,14 +69,13 @@ private val xxxxx = Clock(6, 3);
 private fun part1() {
 	var data = getLines(2023, 3).e().grid()
 
-	// Editor note: This was supposed to be a set. Because it wasn't, my solution takes 40 seconds, instead of 2.5 seconds.
-	var sym = data.filter { it.v != '.' && it.v !in '0'..'9' }
+	var sym = data.filter { it.v != '.' && it.v !in '0'..'9' }.toSet()
 
 	var seen = mutableSetOf<BoundedGridPoint<Char>>()
 
 	var res = 0.s
 
-	var gears = mutableMapOf<Point, List<Int>>()
+	var gears = mutableMapOf<Point, MutableList<Int>>()
 
 	for (i in data){
 		if(!i.v.isDigit() || i in seen) continue

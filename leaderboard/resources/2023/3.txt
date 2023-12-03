@@ -1,0 +1,203 @@
+First hundred users to get both stars on Day 3:
+  1) Dec 03  00:05:09  xiaowuc1
+  2) Dec 03  00:06:31  hyper-neutrino
+  3) Dec 03  00:06:47  Joseph Durie
+  4) Dec 03  00:07:02  ruuddotorg
+  5) Dec 03  00:07:11  Ian DeHaan
+  6) Dec 03  00:07:19  Ryan Hitchman (AoC++)
+  7) Dec 03  00:07:27  Robert Xiao
+  8) Dec 03  00:07:29  Zeyu Chen
+  9) Dec 03  00:07:31  (anonymous user #1759814)
+ 10) Dec 03  00:07:44  mwk48
+ 11) Dec 03  00:07:45  Jasper van Merle (AoC++)
+ 12) Dec 03  00:07:51  (anonymous user #1565212)
+ 13) Dec 03  00:07:52  Kevin Sheng
+ 14) Dec 03  00:07:53  masecla22
+ 15) Dec 03  00:07:55  Oliver Ni (AoC++)
+ 16) Dec 03  00:08:04  Nikitosh
+ 17) Dec 03  00:08:09  (anonymous user #1510407)
+ 18) Dec 03  00:08:14  D. Salgado
+ 19) Dec 03  00:08:15  bluepichu
+ 20) Dec 03  00:08:25  Yiming Li
+ 21) Dec 03  00:08:31  Martin Camacho
+ 22) Dec 03  00:08:37  @AlexSkidanov
+ 23) Dec 03  00:08:47  dan-simon
+ 24) Dec 03  00:08:48  nthistle (AoC++) (Sponsor)
+ 25) Dec 03  00:08:52  S. Teikn Smith
+ 26) Dec 03  00:08:53  Timothy Mou
+ 27) Dec 03  00:08:53  Andrew Von Stieglitz
+ 28) Dec 03  00:08:54  Carl Schildkraut
+ 29) Dec 03  00:08:57  Defelo (AoC++)
+ 30) Dec 03  00:09:02  Egor Kulikov (AoC++) (Sponsor)
+ 31) Dec 03  00:09:02  Craig Silverstein
+ 32) Dec 03  00:09:09  minitech
+ 33) Dec 03  00:09:12  Antonio Molina (Sponsor)
+ 34) Dec 03  00:09:12  Andrew X. (Sponsor)
+ 35) Dec 03  00:09:12  skanev (AoC++)
+ 36) Dec 03  00:09:16  ZED.Charley William Thairo
+ 37) Dec 03  00:09:17  Dylan Smith
+ 38) Dec 03  00:09:19  Proximity Trigger
+ 39) Dec 03  00:09:26  lucifer1004 (AoC++)
+ 40) Dec 03  00:09:27  5space
+ 41) Dec 03  00:09:27  Erik Amirell Eklöf (AoC++)
+ 42) Dec 03  00:09:29  John Kesler
+ 43) Dec 03  00:09:32  Liresol
+ 44) Dec 03  00:09:32  Alex Liang
+ 45) Dec 03  00:09:34  andriigrynenko
+ 46) Dec 03  00:09:35  noblematt
+ 47) Dec 03  00:09:37  Sreeram Ramachandran
+ 48) Dec 03  00:09:38  Jacob Wood
+ 49) Dec 03  00:09:43  boboquack
+ 50) Dec 03  00:09:47  Nathan Fenner (AoC++)
+ 51) Dec 03  00:09:49  Vince7778
+ 52) Dec 03  00:09:51  Nick Liu
+ 53) Dec 03  00:09:54  Liwei Cai
+ 54) Dec 03  00:09:55  sampersand
+ 55) Dec 03  00:10:00  leonard-weininger
+ 56) Dec 03  00:10:08  hltk (AoC++)
+ 57) Dec 03  00:10:08  Maks Verver
+ 58) Dec 03  00:10:14  Vitalii Nevidomyi
+ 59) Dec 03  00:10:18  Verulean
+ 60) Dec 03  00:10:20  willwam
+ 61) Dec 03  00:10:20  Oskar Haarklou Veileborg (AoC++)
+ 62) Dec 03  00:10:21  Thomas
+ 63) Dec 03  00:10:22  coolcomputery
+ 64) Dec 03  00:10:28  Balint R
+ 65) Dec 03  00:10:29  Craig Gidney
+ 66) Dec 03  00:10:29  (anonymous user #387166)
+ 67) Dec 03  00:10:36  Alexey Shmelev
+ 68) Dec 03  00:10:39  grhkm21
+ 69) Dec 03  00:10:42  Muhammad Rais Fathin Mudzakir
+ 70) Dec 03  00:10:42  Xavier Cooney
+ 71) Dec 03  00:10:43  Etienne Vouga
+ 72) Dec 03  00:10:43  RandomLB
+ 73) Dec 03  00:10:44  Lucas M.
+ 74) Dec 03  00:10:46  bradleysigma
+ 75) Dec 03  00:10:48  Thomas Feld
+ 76) Dec 03  00:10:51  HertzDevil
+ 77) Dec 03  00:10:59  milesman34
+ 78) Dec 03  00:11:01  Lawrence Kesteloot (AoC++)
+ 79) Dec 03  00:11:04  Springo (AoC++)
+ 80) Dec 03  00:11:05  Kami Leon
+ 81) Dec 03  00:11:06  MeepMoop
+ 82) Dec 03  00:11:07  Sobhan Mohammadpour
+ 83) Dec 03  00:11:07  Yik Chun Wong
+ 84) Dec 03  00:11:08  Pedro Osório
+ 85) Dec 03  00:11:08  Kuma-TachiRen
+ 86) Dec 03  00:11:09  Ivan Kazmenko
+ 87) Dec 03  00:11:10  (anonymous user #1132516)
+ 88) Dec 03  00:11:13  Md Abedin
+ 89) Dec 03  00:11:14  mrphlip (AoC++)
+ 90) Dec 03  00:11:17  Jeff Zhang
+ 91) Dec 03  00:11:17  Gabriel Kanegae
+ 92) Dec 03  00:11:18  Elijah-Huang
+ 93) Dec 03  00:11:19  LegionMammal978
+ 94) Dec 03  00:11:25  RundownRhino
+ 95) Dec 03  00:11:30  nick-hiebl
+ 96) Dec 03  00:11:31  orfest (AoC++)
+ 97) Dec 03  00:11:33  otisdog8
+ 98) Dec 03  00:11:36  Dmytro Kozhevin
+ 99) Dec 03  00:11:37  Roman Elizarov (Sponsor)
+100) Dec 03  00:11:37  Ryan Dewey
+
+First hundred users to get the first star on Day 3:
+  1) Dec 03  00:03:11  Nordine Lotfi
+  2) Dec 03  00:03:39  xiaowuc1
+  3) Dec 03  00:03:57  bluepichu
+  4) Dec 03  00:04:04  Nikitosh
+  5) Dec 03  00:04:09  Ian DeHaan
+  6) Dec 03  00:04:12  hyper-neutrino
+  7) Dec 03  00:04:14  mwk48
+  8) Dec 03  00:04:16  Springo (AoC++)
+  9) Dec 03  00:04:22  Oskar Haarklou Veileborg (AoC++)
+ 10) Dec 03  00:04:28  (anonymous user #1565212)
+ 11) Dec 03  00:04:37  Adrian Smith
+ 12) Dec 03  00:04:38  nthistle (AoC++) (Sponsor)
+ 13) Dec 03  00:04:51  (anonymous user #1759814)
+ 14) Dec 03  00:04:56  D. Salgado
+ 15) Dec 03  00:04:58  PoustouFlan
+ 16) Dec 03  00:04:58  Oliver Ni (AoC++)
+ 17) Dec 03  00:05:01  Robert Xiao
+ 18) Dec 03  00:05:08  Yik Chun Wong
+ 19) Dec 03  00:05:10  milesman34
+ 20) Dec 03  00:05:10  Zeyu Chen
+ 21) Dec 03  00:05:13  HertzDevil
+ 22) Dec 03  00:05:14  (anonymous user #1510407)
+ 23) Dec 03  00:05:18  Alexey Shmelev
+ 24) Dec 03  00:05:19  Manish Kundu
+ 25) Dec 03  00:05:19  Joseph Durie
+ 26) Dec 03  00:05:21  Jasper van Merle (AoC++)
+ 27) Dec 03  00:05:21  boboquack
+ 28) Dec 03  00:05:22  alexxyu
+ 29) Dec 03  00:05:23  ruuddotorg
+ 30) Dec 03  00:05:27  Egor Kulikov (AoC++) (Sponsor)
+ 31) Dec 03  00:05:31  S. Teikn Smith
+ 32) Dec 03  00:05:31  seligman99 (AoC++)
+ 33) Dec 03  00:05:32  ZED.Charley William Thairo
+ 34) Dec 03  00:05:35  Xavier Cooney
+ 35) Dec 03  00:05:36  Enterprize1 (AoC++)
+ 36) Dec 03  00:05:36  BelgianSalamander
+ 37) Dec 03  00:05:38  Carl Schildkraut
+ 38) Dec 03  00:05:40  Yiming Li
+ 39) Dec 03  00:05:41  Alex Liang
+ 40) Dec 03  00:05:44  leonard-weininger
+ 41) Dec 03  00:05:44  @AlexSkidanov
+ 42) Dec 03  00:05:45  Kuma-TachiRen
+ 43) Dec 03  00:05:46  sguest
+ 44) Dec 03  00:05:46  Defelo (AoC++)
+ 45) Dec 03  00:05:51  Jan Verbeek
+ 46) Dec 03  00:05:51  jebouin (AoC++)
+ 47) Dec 03  00:05:52  Md Abedin
+ 48) Dec 03  00:05:52  bruteforceboy
+ 49) Dec 03  00:05:53  Timothy Mou
+ 50) Dec 03  00:05:54  Balint R
+ 51) Dec 03  00:05:56  Kevin Sheng
+ 52) Dec 03  00:05:57  jvmusin (AoC++)
+ 53) Dec 03  00:05:57  Erik Amirell Eklöf (AoC++)
+ 54) Dec 03  00:06:03  coolcomputery
+ 55) Dec 03  00:06:05  dan-simon
+ 56) Dec 03  00:06:07  yuizumi
+ 57) Dec 03  00:06:07  Ryan Hitchman (AoC++)
+ 58) Dec 03  00:06:07  Muhammad Rais Fathin Mudzakir
+ 59) Dec 03  00:06:08  Martin Camacho
+ 60) Dec 03  00:06:09  mangoqwq
+ 61) Dec 03  00:06:09  Robert P
+ 62) Dec 03  00:06:10  Sreeram Ramachandran
+ 63) Dec 03  00:06:14  Maks Verver
+ 64) Dec 03  00:06:14  nkitsaini
+ 65) Dec 03  00:06:15  qpwoeirut
+ 66) Dec 03  00:06:18  Nick Liu
+ 67) Dec 03  00:06:18  Craig Gidney
+ 68) Dec 03  00:06:18  Etienne Vouga
+ 69) Dec 03  00:06:20  Proximity Trigger
+ 70) Dec 03  00:06:21  Kostero
+ 71) Dec 03  00:06:22  lucifer1004 (AoC++)
+ 72) Dec 03  00:06:22  Kami Leon
+ 73) Dec 03  00:06:24  masecla22
+ 74) Dec 03  00:06:24  mayoff (AoC++)
+ 75) Dec 03  00:06:25  Thomas Feld
+ 76) Dec 03  00:06:26  RootCubed (AoC++)
+ 77) Dec 03  00:06:28  DayDun
+ 78) Dec 03  00:06:30  noblematt
+ 79) Dec 03  00:06:33  Pedro Osório
+ 80) Dec 03  00:06:36  Andrew X. (Sponsor)
+ 81) Dec 03  00:06:37  andriigrynenko
+ 82) Dec 03  00:06:37  Liresol
+ 83) Dec 03  00:06:39  bcc32 (AoC++) (Sponsor)
+ 84) Dec 03  00:06:39  Kroppeb (AoC++)
+ 85) Dec 03  00:06:41  Chi Feng
+ 86) Dec 03  00:06:41  willwam
+ 87) Dec 03  00:06:41  Jerry Xu
+ 88) Dec 03  00:06:43  Paul McMullin
+ 89) Dec 03  00:06:50  NBonaparte
+ 90) Dec 03  00:06:56  radoslav11
+ 91) Dec 03  00:06:56  Vince7778
+ 92) Dec 03  00:06:56  Dragon-Hatcher
+ 93) Dec 03  00:06:56  Emil Kaczyński (AoC++)
+ 94) Dec 03  00:07:01  grhkm21
+ 95) Dec 03  00:07:01  Vitalii Nevidomyi
+ 96) Dec 03  00:07:04  Edward Lue
+ 97) Dec 03  00:07:06  Sam Le
+ 98) Dec 03  00:07:06  Verulean
+ 99) Dec 03  00:07:08  Jeff Zhang
+100) Dec 03  00:07:09  Antonio Molina (Sponsor)
