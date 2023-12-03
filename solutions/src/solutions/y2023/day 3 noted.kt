@@ -125,7 +125,7 @@ private fun part1() {
 		}
 	}
 
-	// Editor note: `x log y` will print x, if y is 1 or 2, and copy it to the clipboard during the contest
+	// Editor note: `x log y` will print x, and copy it to the clipboard during the contest IF y is 1 or 2
 	// Due to an error of mine yesterday, it only copied in the "solutions" module instead of the "today" module
 	res log 1
 	gears.values.filter { it.size == 2 }.sumOf { it.product() } log 2 // PART 2
