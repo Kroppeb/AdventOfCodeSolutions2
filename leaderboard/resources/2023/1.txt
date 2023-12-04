@@ -44,7 +44,7 @@ First hundred users to get both stars on Day 1:
  43) Dec 01  00:05:45  5space
  44) Dec 01  00:05:46  startrekdude
  45) Dec 01  00:05:47  RootCubed (AoC++)
- 46) Dec 01  00:05:48  DLu
+ 46) Dec 01  00:05:48  DLu (AoC++)
  47) Dec 01  00:05:50  D. Salgado
  48) Dec 01  00:05:51  OroArmor
  49) Dec 01  00:05:53  Cai Zhenzhi

@@ -15,5 +15,11 @@
 84/125; points: 17, 275th place
 * First points
 * My code was slow, cause I used a list instead of a set (I wanted to use a set, but messed up)
-* [ ] make code use `asSet` where applicable, and make that method warn 
+* [x] make code use `asSet` where applicable, and make that method warn 
       if a collection is passed multiple times, but isn't a set
+* Apparently the slowdown has from the fact that SimpleGrid had a hashcode and equals
+
+## Day 04
+201/103; points: 0, 324th place
+* I really should run my code on the test input first
+* I accidentally use python syntax instead of kotlin syntax

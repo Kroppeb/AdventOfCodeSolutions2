@@ -9,7 +9,9 @@ class DefaultMap<K, V> constructor(val default: (K) -> V, val map: MutableMap<K,
 
 fun <K, V> defaultMapOf(default: (K) -> V) = DefaultMap<K, V>(default, mutableMapOf())
 fun <K, V> Map<K, V>.default(default: (K) -> V) = DefaultMap(default, this.toMutableMap())
+@JvmName("defaultMapOfList")
 fun <K, V> Map<K, MutableList<V>>.default(): DefaultMap<K, MutableList<V>> = default { mutableListOf() }
+@JvmName("defaultMapOfSet")
 fun <K, V> Map<K, MutableSet<V>>.default(): DefaultMap<K, MutableSet<V>> = default { mutableSetOf() }
 fun <K> Map<K, Int>.default(value:Int = 0): DefaultMap<K, Int> = default { value }
 fun <K> Map<K, Long>.default(value:Long = 0L): DefaultMap<K, Long> = default { value }

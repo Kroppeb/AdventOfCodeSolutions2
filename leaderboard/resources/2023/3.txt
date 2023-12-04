@@ -30,7 +30,7 @@ First hundred users to get both stars on Day 3:
  29) Dec 03  00:08:57  Defelo (AoC++)
  30) Dec 03  00:09:02  Egor Kulikov (AoC++) (Sponsor)
  31) Dec 03  00:09:02  Craig Silverstein
- 32) Dec 03  00:09:09  minitech
+ 32) Dec 03  00:09:09  Ryan O’Hara
  33) Dec 03  00:09:12  Antonio Molina (Sponsor)
  34) Dec 03  00:09:12  Andrew X. (Sponsor)
  35) Dec 03  00:09:12  skanev (AoC++)
@@ -98,7 +98,7 @@ First hundred users to get both stars on Day 3:
  97) Dec 03  00:11:33  otisdog8
  98) Dec 03  00:11:36  Dmytro Kozhevin
  99) Dec 03  00:11:37  Roman Elizarov (Sponsor)
-100) Dec 03  00:11:37  Ryan Dewey
+100) Dec 03  00:11:37  Ryan Dewey (AoC++)
 
 First hundred users to get the first star on Day 3:
   1) Dec 03  00:03:11  Nordine Lotfi

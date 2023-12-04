@@ -61,8 +61,8 @@ class SimpleGrid<T>(val items: List<List<T>>) : StrictGrid<T>, Iterable<BoundedG
 		return items.joinToString("\n") { it.joinToString(" ") }
 	}
 
-	override fun equals(other: Any?): Boolean = other is SimpleGrid<*> && this.items == other.items
-	override fun hashCode(): Int = this.items.hashCode()
+//	override fun equals(other: Any?): Boolean = other is SimpleGrid<*> && this.items == other.items
+//	override fun hashCode(): Int = this.items.hashCode()
 	override fun iterator(): Iterator<BoundedGridPoint<T>> = boundsI.map { this.getBp(it) }.iterator()
 
 	fun getBpOrNull(point: PointI): BoundedGridPoint<T>? =

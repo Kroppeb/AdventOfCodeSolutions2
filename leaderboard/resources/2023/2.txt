@@ -97,7 +97,7 @@ First hundred users to get both stars on Day 2:
  96) Dec 02  00:06:13  scanhex
  97) Dec 02  00:06:14  Kevin Sheng
  98) Dec 02  00:06:14  ouwou
- 99) Dec 02  00:06:15  fish-and-bear
+ 99) Dec 02  00:06:15  Angelica Naguio
 100) Dec 02  00:06:15  Cameron Montag (AoC++)
 
 First hundred users to get the first star on Day 2:
@@ -173,7 +173,7 @@ First hundred users to get the first star on Day 2:
  70) Dec 02  00:03:50  sampersand
  71) Dec 02  00:03:50  Mercerenies
  72) Dec 02  00:03:50  (anonymous user #3322260)
- 73) Dec 02  00:03:50  fish-and-bear
+ 73) Dec 02  00:03:50  Angelica Naguio
  74) Dec 02  00:03:51  Talchas
  75) Dec 02  00:03:51  Davis Yoshida (AoC++)
  76) Dec 02  00:03:52  Gabriel Kanegae
