@@ -5,6 +5,8 @@ import me.kroppeb.aoc.helpers.*
 
 val Int.s: Sint get() = Sint(this.toLong())
 val Long.s: Sint get() = Sint(this)
+val String.s: Sint get() = this.toSint()
+fun String.toSint(): Sint = this.toLong().s
 
 @Deprecated("UwU")
 val Sint.s: Sint get() = this

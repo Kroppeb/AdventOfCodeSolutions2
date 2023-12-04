@@ -60,7 +60,7 @@ private class SetRef<T>(val iterable: Iterable<T>) {
 	}
 }
 
-private val seenCollectionsInAsSet = mutableMapOf<SetRef<*>, Set<*>>()
+private val seenCollectionsInAsSet = LinkedHashMap<SetRef<*>, Set<*>>()
 private var seenCollectionsInAsSetWarned = mutableSetOf<SetRef<*>>()
 fun <T> Iterable<T>.asSet(): Set<T> = when (this) {
 	is Set<T> -> this
@@ -77,7 +77,13 @@ fun <T> Iterable<T>.asSet(): Set<T> = when (this) {
 					}
 				}
 			}
-			toSet().also { seenCollectionsInAsSet[ref] = it }
+			if (seenCollectionsInAsSet.size >= 20) {
+				// avoid memory leaking too much
+				// pollFirst removes apparently
+				seenCollectionsInAsSet.pollFirstEntry()
+			}
+
+			toSet().also { seenCollectionsInAsSet.putLast(ref, it) }
 		} else {
 			toSet()
 		}
@@ -907,6 +913,7 @@ fun <K, V> Map<K, V>.tas() = mutableMapOf<K, V>()
 fun <T> listTT(example: T) = mutableListOf<T>()
 fun <T> setTT(example: T) = mutableSetOf<T>()
 fun <K, V> mapTT(example: Pair<K, V>) = mutableMapOf<K, V>()
+fun <K, V> mapTT(exampleKey: K, exampleValue: V) = mutableMapOf<K, V>()
 
 val IntRange.size get() = this.last - this.first + 1
 val LongRange.size get() = this.last - this.first + 1
