@@ -36,12 +36,28 @@ import kotlin.math.*
 
 
 
-import me.kroppeb.aoc.helpers.*
-import me.kroppeb.aoc.helpers.sint.*
 import log
+
+import me.kroppeb.aoc.helpers.*
+import me.kroppeb.aoc.helpers.collections.*
+import me.kroppeb.aoc.helpers.collections.list.*
+import me.kroppeb.aoc.helpers.collections.extensions.*
+import me.kroppeb.aoc.helpers.graph.*
+import me.kroppeb.aoc.helpers.grid.*
+import me.kroppeb.aoc.helpers.point.*
+import me.kroppeb.aoc.helpers.sint.*
+import itertools.*
+import java.util.Comparator
+import java.util.PriorityQueue
 import kotlin.*
+import kotlin.annotation.*
 import kotlin.collections.*
+import kotlin.comparisons.*
 import kotlin.io.*
+import kotlin.ranges.*
+import kotlin.sequences.*
+import kotlin.text.*
+import kotlin.math.*
 
 
 private val xxxxx = Clock(6, 3)
@@ -83,7 +99,7 @@ private fun part2() {
 
 	for (mp in conv) {
 		var res = lows.tas()
-			var rem = lows.tas()
+		var rem = lows.tas()
 
 		for ((a, b, l) in mp) {
 			rem = rem.tas()
@@ -97,16 +113,16 @@ private fun part2() {
 				val (s, e) = inter.first() to inter.last()
 				res.add((a - b + s)..(a - b + e))
 				if (s > r.first()) {
-					rem.add(r.first()..s)
+					rem.add(r.first() until s)
 				}
 				if (e < r.last()) {
-					rem.add(e..r.last())
+					rem.add((e + 1)..r.last())
 				}
 			}
 			lows = rem
 		}
 
-		lows = (res + rem).also{it.size log 0}
+		lows = (res + rem).also { it.size log 0 }
 	}
 
 	lows.map { it.first() }.min() log 2
