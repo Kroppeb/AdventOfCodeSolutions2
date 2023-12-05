@@ -23,3 +23,8 @@
 201/103; points: 0, 324th place
 * I really should run my code on the test input first
 * I accidentally use python syntax instead of kotlin syntax
+
+## Day 05
+41/2; points: 159, 
+* LET's FUCKING GO
+* [ ] Fix overload issue between stdlib and utils (min/max)
