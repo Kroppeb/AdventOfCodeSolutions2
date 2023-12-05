@@ -55,9 +55,10 @@ private fun part1() {
 
 	for (mp in conv) {
 		var res = mutableListOf<Sint>()
+		var rem = mutableListOf<Sint>()
 
 		for ((a, b, l) in mp) {
-			var rem = mutableListOf<Sint>()
+			rem = mutableListOf<Sint>()
 			for (i in lows) {
 				if (i in b until (b + l)) {
 					res.add(a + i - b)
@@ -67,7 +68,7 @@ private fun part1() {
 			}
 			lows = rem
 		}
-		lows = res
+		lows = res + rem
 	}
 
 	lows.min() log 1
@@ -83,11 +84,12 @@ private fun part2() {
 
 	for (mp in conv) {
 		var res = mutableListOf<List<Sint>>()
+			var rem = mutableListOf<List<Sint>>()
 
 		for ((a, b, l) in mp) {
-			var rem = mutableListOf<List<Sint>>()
+			rem = mutableListOf<List<Sint>>()
 			for ((iss, ie) in lows) {
-				val inter = (b until b + l).intersect(iss until ie)
+				val inter = (b until b + l).intersect(iss..ie)
 				if (inter.isEmpty()) {
 					rem.add(listOf(iss, ie))
 					continue
@@ -105,7 +107,7 @@ private fun part2() {
 			lows = rem
 		}
 
-		lows = res.also{it.size log 0}
+		lows = (res + rem).also{it.size log 0}
 	}
 
 	lows.map { it.first() }.min() log 2
