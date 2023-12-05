@@ -52,11 +52,11 @@ fun Iterable<Int>.lcm(): Int = reduce<Int, Int>(::lcm)
 @Suppress("RemoveExplicitTypeArguments")
 fun Iterable<Long>.lcm(): Long = reduce<Long, Long>(::lcm)
 
-fun <T : Comparable<T>> Iterable<T>.min(): T = minOrNull()!!
-fun <T : Comparable<T>> Iterable<T>.max(): T = maxOrNull()!!
+//fun <T : Comparable<T>> Iterable<T>.min(): T = minOrNull()!!
+//fun <T : Comparable<T>> Iterable<T>.max(): T = maxOrNull()!!
 
-fun <T : Comparable<T>> Array<T>.min(): T = minOrNull()!!
-fun <T : Comparable<T>> Array<T>.max(): T = maxOrNull()!!
+//fun <T : Comparable<T>> Array<T>.min(): T = minOrNull()!!
+//fun <T : Comparable<T>> Array<T>.max(): T = maxOrNull()!!
 
 fun IntArray.min(): Int = minOrNull()!!
 fun IntArray.max(): Int = maxOrNull()!!
