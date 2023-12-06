@@ -166,39 +166,41 @@ fun LongArray.minMax(): Pair<Long, Long> = min() to max()
 fun DoubleArray.minMax(): Pair<Double, Double> = min() to max()
 
 @JvmName("minMaxIRIntsVararg")
-fun minMaxIR(vararg e: Int): IntRange = e.min()..e.max()
+fun minMaxRange(vararg e: Int): IntRange = e.min()..e.max()
 
 @JvmName("minMaxIRInts")
-fun Iterable<Int>.minMaxIR(): IntRange = min()..max()
+fun Iterable<Int>.minMaxRange(): IntRange = min()..max()
 
 @JvmName("minMaxIRInts")
-fun Array<Int>.minMaxIR(): IntRange = min()..max()
+fun Array<Int>.minMaxRange(): IntRange = min()..max()
 
 @JvmName("minMaxIRInts")
-fun IntArray.minMaxIR(): IntRange = min()..max()
+fun IntArray.minMaxRange(): IntRange = min()..max()
 
 @JvmName("minMaxIRLongsVararg")
-fun minMaxIR(vararg e: Long): LongRange = e.min()..e.max()
+fun minMaxRange(vararg e: Long): LongRange = e.min()..e.max()
 
 @JvmName("minMaxIRLongs")
-fun Iterable<Long>.minMaxIR(): LongRange = min()..max()
+fun Iterable<Long>.minMaxRange(): LongRange = min()..max()
 
 @JvmName("minMaxIRLongs")
-fun Array<Long>.minMaxIR(): LongRange = min()..max()
+fun Array<Long>.minMaxRange(): LongRange = min()..max()
 
 @JvmName("minMaxIRLongs")
-fun LongArray.minMaxIR(): LongRange = min()..max()
+fun LongArray.minMaxRange(): LongRange = min()..max()
 
 
 @Suppress("FINAL_UPPER_BOUND")
 @JvmName("minMaxIRSintsVararg")
-fun <TSint : Sint> minMaxIR(vararg e: TSint): SintRange = e.min()..e.max()
+fun <TSint : Sint> minMaxRange(vararg e: TSint): SintRange = e.min()..e.max()
 
 @JvmName("minMaxIRSints")
-fun Iterable<Sint>.minMaxIR(): SintRange = min()..max()
+fun Iterable<Sint>.minMaxRange(): SintRange = min()..max()
 
 @JvmName("minMaxIRSints")
-fun Array<Sint>.minMaxIR(): SintRange = min()..max()
+fun Array<Sint>.minMaxRange(): SintRange = min()..max()
+
+inline fun <T> Iterable<T>.minMaxRangeOf(mapping: (T) -> Sint): SintRange = minOf(mapping)..maxOf(mapping)
 
 fun Int.pow(x: Int): Int = when {
 	x == 0 -> 1

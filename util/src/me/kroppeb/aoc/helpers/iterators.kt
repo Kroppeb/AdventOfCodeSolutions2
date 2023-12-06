@@ -3,7 +3,7 @@ package me.kroppeb.aoc.helpers
 import me.kroppeb.aoc.helpers.collections.LazySet
 import me.kroppeb.aoc.helpers.collections.extensions.repeat
 import me.kroppeb.aoc.helpers.sint.*
-import java.util.Objects
+import java.math.BigInteger
 
 
 fun <T> Iterator<T>.getNext(): T {
@@ -715,7 +715,7 @@ infix fun <T> Collection<T>.splitIn(n: Sint): List<List<T>> {
 infix fun String.splitIn(n: Sint): List<String> {
 	val length = this.length
 	require(length divBy n)
-	return e().chunked(length / n).map{it.join()}
+	return e().chunked(length / n).map { it.join() }
 }
 
 fun <T, R> Collection<T>.splitIn(n: Sint, transform: (List<T>) -> R): List<R> {
@@ -917,7 +917,9 @@ fun <K, V> mapTT(exampleKey: K, exampleValue: V) = mutableMapOf<K, V>()
 
 val IntRange.size get() = this.last - this.first + 1
 val LongRange.size get() = this.last - this.first + 1
-val SintRange.size get() = this.last - this.first + 1
+
+val LongRange.sizeB get() = this.last.toBigInteger() - this.first.toBigInteger() + BigInteger.ONE
+
 
 
 fun IntRange.sint() = this.first.s..this.last.s
@@ -940,9 +942,9 @@ fun LongRange.frac(n: Int): List<LongRange> = this.sint().frac(n).map { it.long(
 fun SintRange.frac(n: Sint): List<SintRange> = frac(n.i)
 
 fun SintRange.frac(n: Int): List<SintRange> {
-	if (this.size <= n) return this.map { it..it }
-	val step = this.size / n
-	val rem = this.size % n
+	if (this.sizeS <= n) return this.map { it..it }
+	val step = this.sizeS / n
+	val rem = this.sizeS % n
 
 	val ret = mutableListOf<SintRange>()
 	for (i in 0 until n) {
@@ -955,7 +957,6 @@ fun SintRange.frac(n: Int): List<SintRange> {
 
 val IntProgression.size get() = (this.last - this.first) / this.step + 1
 val LongProgression.size get() = ((this.last - this.first) / this.step + 1)
-val SintProgression.size get() = ((this.last - this.first) / this.step + 1)
 
 fun IntProgression.frac(n: Int): List<IntProgression> {
 	if (this.size <= n) return this.map { it..it step this.step }
@@ -988,9 +989,9 @@ fun LongProgression.frac(n: Int): List<LongProgression> {
 fun SintProgression.frac(n: Sint): List<SintProgression> = frac(n.i)
 
 fun SintProgression.frac(n: Int): List<SintProgression> {
-	if (this.size <= n) return this.map { it..it step this.step }
-	val step = this.size / n * this.step
-	val rem = this.size % n
+	if (this.sizeS <= n) return this.map { it..it step this.step }
+	val step = this.sizeS / n * this.step
+	val rem = this.sizeS % n
 
 	val ret = mutableListOf<SintProgression>()
 	for (i in 0 until n) {

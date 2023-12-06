@@ -8,8 +8,27 @@ val Long.s: Sint get() = Sint(this)
 val String.s: Sint get() = this.toSint()
 fun String.toSint(): Sint = this.toLong().s
 
+
+
+val Iterable<Int>.s: List<Sint>
+	@JvmName("IterableIntToSint")
+	get() = this.map { it.s }
+val Iterable<Long>.s: List<Sint>
+	@JvmName("IterableLongToSint")
+	get() = this.map { it.s }
+
+val Iterable<Iterable<Int>>.s: List<List<Sint>>
+	@JvmName("IterableIterableIntToSint")
+	get() = this.map { it.s }
+val Iterable<Iterable<Long>>.s: List<List<Sint>>
+	@JvmName("IterableIterableLongToSint")
+	get() = this.map { it.s }
+
 @Deprecated("UwU")
 val Sint.s: Sint get() = this
+
+
+fun Sint.toBigInteger() = this.l.toBigInteger()
 
 
 //region overloads for Sint opp Int or Long and vice versa
@@ -190,6 +209,19 @@ fun Sint.toDouble(): Double = this.l.toDouble()
 
 val IntRange.s: SintRange get() = SintRange(this.start.s, this.endInclusive.s)
 val LongRange.s: SintRange get() = SintRange(this.start.s, this.endInclusive.s)
+val Iterable<IntRange>.s: List<SintRange>
+	@JvmName("IterableIntRangeToSintRange")
+	get() = this.map { it.s }
+val Iterable<LongRange>.s: List<SintRange>
+	@JvmName("IterableLongRangeToSintRange")
+	get() = this.map { it.s }
+
+val Iterable<Iterable<IntRange>>.s: List<List<SintRange>>
+	@JvmName("IterableIterableIntRangeToSintRange")
+	get() = this.map { it.s }
+val Iterable<Iterable<LongRange>>.s: List<List<SintRange>>
+	@JvmName("IterableIterableLongRangeToSintRange")
+	get() = this.map { it.s }
 
 operator fun Sint.rem(range: SintRange) = range.first + (this - range.first mod range.last - range.first + 1)
 operator fun Sint.rem(range: IntRange) = this % range.s
