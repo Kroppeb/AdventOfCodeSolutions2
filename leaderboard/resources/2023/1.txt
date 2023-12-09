@@ -42,7 +42,7 @@ First hundred users to get both stars on Day 1:
  41) Dec 01  00:05:37  Tristan Lee
  42) Dec 01  00:05:39  Epiphane (AoC++)
  43) Dec 01  00:05:45  5space
- 44) Dec 01  00:05:46  startrekdude
+ 44) Dec 01  00:05:46  startrekdude (AoC++)
  45) Dec 01  00:05:47  RootCubed (AoC++)
  46) Dec 01  00:05:48  DLu (AoC++)
  47) Dec 01  00:05:50  D. Salgado
@@ -96,7 +96,7 @@ First hundred users to get both stars on Day 1:
  95) Dec 01  00:06:58  dan-simon
  96) Dec 01  00:06:59  Yoshiap
  97) Dec 01  00:07:00  periodically-makes-puns
- 98) Dec 01  00:07:01  Leo Uino
+ 98) Dec 01  00:07:01  Leo Uino (AoC++)
  99) Dec 01  00:07:03  Julian Baldus
 100) Dec 01  00:07:03  Joshua Broeksteeg (Sponsor)
 

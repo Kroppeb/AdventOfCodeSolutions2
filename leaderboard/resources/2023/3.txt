@@ -37,7 +37,7 @@ First hundred users to get both stars on Day 3:
  36) Dec 03  00:09:16  ZED.Charley William Thairo
  37) Dec 03  00:09:17  Dylan Smith
  38) Dec 03  00:09:19  Proximity Trigger
- 39) Dec 03  00:09:26  lucifer1004 (AoC++)
+ 39) Dec 03  00:09:26  Gabriel Wu (AoC++)
  40) Dec 03  00:09:27  5space
  41) Dec 03  00:09:27  Erik Amirell Eklöf (AoC++)
  42) Dec 03  00:09:29  John Kesler
@@ -171,7 +171,7 @@ First hundred users to get the first star on Day 3:
  68) Dec 03  00:06:18  Etienne Vouga
  69) Dec 03  00:06:20  Proximity Trigger
  70) Dec 03  00:06:21  Kostero
- 71) Dec 03  00:06:22  lucifer1004 (AoC++)
+ 71) Dec 03  00:06:22  Gabriel Wu (AoC++)
  72) Dec 03  00:06:22  Kami Leon
  73) Dec 03  00:06:24  masecla22
  74) Dec 03  00:06:24  mayoff (AoC++)

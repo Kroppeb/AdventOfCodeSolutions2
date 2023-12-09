@@ -1,6 +1,6 @@
 @file:Suppress("PackageDirectoryMismatch", "UnusedImport")
 
-package solutions.y2023.d08
+package solutions.y2023
 
 
 /*
@@ -67,72 +67,88 @@ private val xxxxx = Clock(6, 3)
 
 
 private fun part1() {
-	var data = getLines(2023, 8)
+	var data = getLines(7).map { line ->
+		val (hand, bd) = line.split2(" ")
+		val bid = bd.sint()
 
-	var cm = data.first().map{it == 'L'}
-	var nodes = data.drop(2).words().associate { (a,b,c) -> a to (b to c) } log 0
-
-	var current = "AAA"
-	var count = 0
-
-	while (current != "ZZZ") {
-		val (a, b) = nodes[current]!!
-		if (cm[count % cm.size]) {
-			current = a
-		} else {
-			current = b
-		}
-		count++
-	}
-
-	count log 1
-
-
-
-}
-
-
-private fun part2() {
-	var data = getLines(2023, 8)
-
-	var cm = data.first().map { it == 'L' }
-	var nodes = data.drop(2).words().associate { (a, b, c) -> a to (b to c) } log 0
-
-	var current = nodes.keys.filter { it.endsWith("A") } log 0
-	val pair = current.map{ff(it, nodes, cm)} log 0
-	pair.reduce{a, b -> a / gcd(a,b) * b} log 2
-
-
-
-}
-
-private fun ff(
-	current: String,
-	nodes: Map<String, Pair<String, String>>,
-	cm: List<Boolean>
-): Sint {
-	var current1 = current
-	var count = 0.s
-
-	while (!current1.endsWith("Z")) {
-		val (a, b) = nodes[current1]!!
-		val x =
-			if (cm[count % cm.size]) {
-				a
-			} else {
-				b
+		val h = hand.map {
+			when (it) {
+				'A' -> 14
+				'K' -> 13
+				'Q' -> 12
+				'J' -> 1
+				'T' -> 10
+				else -> it - '0'
 			}
+		}
 
-		current1 = x
-		count++
 
-	}
-	return count
+		val cc = ieee(h)
+		bid to h[4] + 15 * (h[3] + 15 * (h[2] + 15 * (h[1] + 15 * (h[0] + 15 * cc))))
+	}.sortedBy { it.second }
+
+	data.withIdx().map { (i, it) ->
+		i to it log 0
+		(i + 1) * it.first
+	}.sum() log 1
+
+
+
 }
+
+private fun ieee(
+	h: List<Int>,
+	x: Int = 0,
+): Int {
+	return if (x < 5) {
+		if (h[x] == 1) {
+			(2..14).map{
+				val xx = if (it == 11){
+					1
+				} else {
+					it
+				}
+
+				val h2 = h.toMutableList()
+				h2[x] = xx
+
+				ieee(h2, x + 1)
+			}.max()
+		} else {
+			ieee(h, x + 1)
+		}
+	} else {
+		i(h)
+	}
+}
+
+private fun i(
+	h: List<Int>
+): Int {
+
+	val hh = h.countEach()
+	val cc = if (h.distinct().count() == 1) {
+		6 // 5 of a kind
+	} else if (hh.size == 2 && hh.values.any { it == 4.s }) {
+		5 // 4 of a kind
+	} else if (hh.size == 2 && hh.values.any { it == 3.s } && hh.values.any { it == 2.s }) {
+		4 // full house
+	} else if (hh.values.any { it == 3.s }) {
+		3 // full house
+	} else if (hh.values.count { it == 2.s } == 2) {
+		2 // full house
+	} else if (hh.values.count { it == 2.s } == 1) {
+		1 // full house
+	} else {
+		0
+	}
+	return cc
+}
+
+
 
 
 fun main() {
-	println("Day 08: ")
+	println("Day 07: ")
 	part1()
-	part2()
 }

@@ -1,5 +1,5 @@
 val year = "2023"
-val user = "Kroppeb"
+val user = "NotEvenJoking"
 val target = 100
 
 // Output is like this: " XX: A / B (C / D)"

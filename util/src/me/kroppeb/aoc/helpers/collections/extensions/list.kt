@@ -133,3 +133,54 @@ operator fun <E> List<E>.component100(): E = this[99]
 // endregion
 
 //endregion
+
+inline fun <T, R> List<T>.on(block: (T) -> R): R {
+	require(size == 1) { "List must have exactly 1 element" }
+	return block(this[0])
+}
+
+inline fun <T, R> List<T>.on(block: (T, T) -> R): R {
+	require(size == 2) { "List must have exactly 2 elements" }
+	return block(this[0], this[1])
+}
+
+inline fun <T, R> List<T>.on(block: (T, T, T) -> R): R {
+	require(size == 3) { "List must have exactly 3 elements" }
+	return block(this[0], this[1], this[2])
+}
+
+inline fun <T, R> List<T>.on(block: (T, T, T, T) -> R): R {
+	require(size == 4) { "List must have exactly 4 elements" }
+	return block(this[0], this[1], this[2], this[3])
+}
+
+inline fun <T, R> List<T>.on(block: (T, T, T, T, T) -> R): R {
+	require(size == 5) { "List must have exactly 5 elements" }
+	return block(this[0], this[1], this[2], this[3], this[4])
+}
+
+inline fun <T, R> List<T>.on(block: (T, T, T, T, T, T) -> R): R {
+	require(size == 6) { "List must have exactly 6 elements" }
+	return block(this[0], this[1], this[2], this[3], this[4], this[5])
+}
+
+inline fun <T, R> List<T>.on(block: (T, T, T, T, T, T, T) -> R): R {
+	require(size == 7) { "List must have exactly 7 elements" }
+	return block(this[0], this[1], this[2], this[3], this[4], this[5], this[6])
+}
+
+inline fun <T, R> List<T>.on(block: (T, T, T, T, T, T, T, T) -> R): R {
+	require(size == 8) { "List must have exactly 8 elements" }
+	return block(this[0], this[1], this[2], this[3], this[4], this[5], this[6], this[7])
+}
+
+inline fun <T, R> List<T>.on(block: (T, T, T, T, T, T, T, T, T) -> R): R {
+	require(size == 9) { "List must have exactly 9 elements" }
+	return block(this[0], this[1], this[2], this[3], this[4], this[5], this[6], this[7], this[8])
+}
+
+inline fun <T, R> List<T>.on(block: (T, T, T, T, T, T, T, T, T, T) -> R): R {
+	require(size == 10) { "List must have exactly 10 elements" }
+	return block(this[0], this[1], this[2], this[3], this[4], this[5], this[6], this[7], this[8], this[9])
+}
+

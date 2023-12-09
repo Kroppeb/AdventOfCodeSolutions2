@@ -23,7 +23,7 @@ First hundred users to get both stars on Day 4:
  22) Dec 04  00:05:11  leijurv
  23) Dec 04  00:05:14  sr2echa
  24) Dec 04  00:05:14  Gorane7
- 25) Dec 04  00:05:19  0
+ 25) Dec 04  00:05:19  One
  26) Dec 04  00:05:20  coolcomputery
  27) Dec 04  00:05:20  xiaowuc1
  28) Dec 04  00:05:20  S. Teikn Smith
@@ -60,12 +60,12 @@ First hundred users to get both stars on Day 4:
  59) Dec 04  00:06:27  Lau Xin Wei
  60) Dec 04  00:06:27  Luckanio
  61) Dec 04  00:06:28  dan-simon
- 62) Dec 04  00:06:29  Patrick Hogg (Sponsor)
+ 62) Dec 04  00:06:29  Patrick Hogg (AoC++) (Sponsor)
  63) Dec 04  00:06:30  João Salavisa
  64) Dec 04  00:06:32  Mathis Hammel (AoC++)
  65) Dec 04  00:06:33  Antonio Molina (Sponsor)
  66) Dec 04  00:06:33  jdabtieu
- 67) Dec 04  00:06:35  lucifer1004 (AoC++)
+ 67) Dec 04  00:06:35  Gabriel Wu (AoC++)
  68) Dec 04  00:06:35  Alexandre Dewilde
  69) Dec 04  00:06:40  grhkm21
  70) Dec 04  00:06:41  Chi Feng
@@ -111,7 +111,7 @@ First hundred users to get the first star on Day 4:
   8) Dec 04  00:01:38  D. Salgado
   9) Dec 04  00:01:39  eniraa
  10) Dec 04  00:01:40  leijurv
- 11) Dec 04  00:01:42  0
+ 11) Dec 04  00:01:42  One
  12) Dec 04  00:01:46  zach1502
  13) Dec 04  00:01:46  Davis Yoshida (AoC++)
  14) Dec 04  00:01:50  Noble Mushtak

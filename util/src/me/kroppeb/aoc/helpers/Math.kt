@@ -5,12 +5,8 @@ import me.kroppeb.aoc.helpers.sint.*
 import java.lang.IllegalArgumentException
 
 
-@Deprecated("Use Sint and/or traits instead")
 fun gcd(a: Int, b: Int): Int = if (a == 0) b else gcd(b % a, a)
-
-@Deprecated("Use Sint and/or traits instead")
 fun gcd(a: Long, b: Long): Long = if (a == 0L) b else gcd(b % a, a)
-
 fun gcd(a: Sint, b: Sint): Sint = if (a.isZero()) b else gcd(b % a, a)
 
 fun egcd(a: Int, b: Int): Triple<Int, Int, Int> {
@@ -31,32 +27,37 @@ fun egcd(a: Sint, b: Sint): Triple<Sint, Sint, Sint> {
 	return Triple(g, y - (b.floorDiv(a)) * x, x)
 }
 
-@Suppress("RemoveExplicitTypeArguments")
-@Deprecated("Use Sint and/or traits instead")
-fun Iterable<Int>.gcd(): Int = reduce<Int, Int>(::gcd)
+@JvmName("intGcd")
+fun Iterable<Int>.gcd(): Int = reduce(::gcd)
 
 @JvmName("longGcd")
-@Suppress("RemoveExplicitTypeArguments")
-@Deprecated("Use Sint and/or traits instead")
-fun Iterable<Long>.gcd(): Long = reduce<Long, Long>(::gcd)
+fun Iterable<Long>.gcd(): Long = reduce(::gcd)
 
-//fun gcd(vararg e:Int)
+@JvmName("sintGcd")
+fun Iterable<Sint>.gcd(): Sint = reduce(::gcd)
+
+fun gcd(vararg e: Int) = e.toList().gcd()
+fun gcd(vararg e: Long) = e.toList().gcd()
+//fun gcd(vararg e:Sint) = e.toList().gcd()
 
 fun lcm(a: Int, b: Int): Int = a / gcd(a, b) * b
 fun lcm(a: Long, b: Long): Long = a / gcd(a, b) * b
+fun lcm(a: Sint, b: Sint): Sint = a / gcd(a, b) * b
 
-@Suppress("RemoveExplicitTypeArguments")
-fun Iterable<Int>.lcm(): Int = reduce<Int, Int>(::lcm)
+
+@JvmName("intLcm")
+fun Iterable<Int>.lcm(): Int = reduce(::lcm)
 
 @JvmName("longLcm")
-@Suppress("RemoveExplicitTypeArguments")
-fun Iterable<Long>.lcm(): Long = reduce<Long, Long>(::lcm)
+fun Iterable<Long>.lcm(): Long = reduce(::lcm)
 
-//fun <T : Comparable<T>> Iterable<T>.min(): T = minOrNull()!!
-//fun <T : Comparable<T>> Iterable<T>.max(): T = maxOrNull()!!
+@JvmName("sintLcm")
+fun Iterable<Sint>.lcm(): Sint = reduce(::lcm)
 
-//fun <T : Comparable<T>> Array<T>.min(): T = minOrNull()!!
-//fun <T : Comparable<T>> Array<T>.max(): T = maxOrNull()!!
+fun lcm(vararg e: Int) = e.toList().lcm()
+fun lcm(vararg e: Long) = e.toList().lcm()
+//fun lcm(vararg e:Sint) = e.toList().lcm()
+
 
 fun IntArray.min(): Int = minOrNull()!!
 fun IntArray.max(): Int = maxOrNull()!!
@@ -67,8 +68,6 @@ fun LongArray.max(): Long = maxOrNull()!!
 fun DoubleArray.min(): Double = minOrNull()!!
 fun DoubleArray.max(): Double = maxOrNull()!!
 
-//inline fun <C, T : Comparable<T>> Iterable<C>.minBy(b: (C) -> T): C = minByOrNull(b)!!
-//inline fun <C, T : Comparable<T>> Iterable<C>.maxBy(b: (C) -> T): C = maxByOrNull(b)!!
 
 inline fun <C, T : Comparable<T>> Iterable<C>.allMinBy(b: (C) -> T): List<C> {
 	if (isEmpty()) return emptyList()

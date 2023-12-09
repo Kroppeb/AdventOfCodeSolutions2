@@ -3,7 +3,7 @@ First hundred users to get both stars on Day 2:
   2) Dec 02  00:01:37  tung491
   3) Dec 02  00:02:52  xiaowuc1
   4) Dec 02  00:02:58  5space
-  5) Dec 02  00:02:59  Dominick Han
+  5) Dec 02  00:02:59  Dominick Han (AoC++)
   6) Dec 02  00:03:02  zach1502
   7) Dec 02  00:03:09  Shawn Hagler
   8) Dec 02  00:03:14  Ian DeHaan
@@ -73,7 +73,7 @@ First hundred users to get both stars on Day 2:
  72) Dec 02  00:05:51  bunceandbean (AoC++)
  73) Dec 02  00:05:51  horo
  74) Dec 02  00:05:51  qpwoeirut
- 75) Dec 02  00:05:53  lucifer1004 (AoC++)
+ 75) Dec 02  00:05:53  Gabriel Wu (AoC++)
  76) Dec 02  00:05:55  Carl Oscar Aaro (AoC++)
  77) Dec 02  00:05:56  Jimmy Ding
  78) Dec 02  00:05:56  tenth
@@ -101,7 +101,7 @@ First hundred users to get both stars on Day 2:
 100) Dec 02  00:06:15  Cameron Montag (AoC++)
 
 First hundred users to get the first star on Day 2:
-  1) Dec 02  00:00:37  Dominick Han
+  1) Dec 02  00:00:37  Dominick Han (AoC++)
   2) Dec 02  00:00:54  Corentin THOMASSET (AoC++)
   3) Dec 02  00:01:06  Carl Oscar Aaro (AoC++)
   4) Dec 02  00:01:06  tung491
@@ -194,7 +194,7 @@ First hundred users to get the first star on Day 2:
  91) Dec 02  00:04:04  periodically-makes-puns
  92) Dec 02  00:04:04  Kevin Sheng
  93) Dec 02  00:04:05  denilblecodeur
- 94) Dec 02  00:04:07  TriG
+ 94) Dec 02  00:04:07  trigtbh
  95) Dec 02  00:04:07  Thomas Neill
  96) Dec 02  00:04:07  Михаил Минков
  97) Dec 02  00:04:07  Lucas M.
