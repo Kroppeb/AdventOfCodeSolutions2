@@ -4,6 +4,7 @@ import me.kroppeb.aoc.helpers.collections.LazySet
 import me.kroppeb.aoc.helpers.collections.extensions.repeat
 import me.kroppeb.aoc.helpers.sint.*
 import java.math.BigInteger
+import java.util.*
 
 
 fun <T> Iterator<T>.getNext(): T {

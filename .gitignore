@@ -30,3 +30,9 @@ bin/
 /solutions/resources/
 /today/resources/
 /getInput.sh
+
+# Ignore Gradle project-specific cache directory
+.gradle
+
+# Ignore Gradle build output directory
+build
