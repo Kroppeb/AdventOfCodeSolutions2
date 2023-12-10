@@ -1,0 +1,12 @@
+[versions]
+kotlin = "2.0.0-Beta1"
+
+annotations = "24.1.0"
+coroutines = "1.8.0-RC"
+
+[libraries]
+annotations = { module = "org.jetbrains:annotations", version.ref = "annotations" }
+coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
+
+[plugins]
+kotlin = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }

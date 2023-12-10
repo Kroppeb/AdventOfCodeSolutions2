@@ -1,3 +1,5 @@
+@file:Suppress("DUPLICATE_PARAMETER_NAME_IN_FUNCTION_TYPE")
+
 package me.kroppeb.aoc.helpers.collections.list
 
 interface HetN
@@ -276,7 +278,7 @@ fun <A, B, C, D, E> Het5<Iterable<A>, Iterable<B>, Iterable<C>, Iterable<D>, Ite
 	take4().zipped().zip(e) { (a, b, c, d), e -> a toH b toH c toH d toH e }
 
 fun <A, B, C, D, E, F> Het6<Iterable<A>, Iterable<B>, Iterable<C>, Iterable<D>, Iterable<E>, Iterable<F>>.zipped() =
-	take5().zipped().zip(e) { (a, b, c, d, e), f -> a toH b toH c toH d toH e toH f }
+	take5().zipped().zip(f) { (a, b, c, d, e), f -> a toH b toH c toH d toH e toH f }
 
 fun <A, B, C, D, E, F, G> Het7<
 		Iterable<A>,
@@ -286,7 +288,7 @@ fun <A, B, C, D, E, F, G> Het7<
 		Iterable<E>,
 		Iterable<F>,
 		Iterable<G>>.zipped() =
-	take6().zipped().zip(e) { (a, b, c, d, e, f), h -> a toH b toH c toH d toH e toH f toH h }
+	take6().zipped().zip(g) { (a, b, c, d, e, f), h -> a toH b toH c toH d toH e toH f toH h }
 
 fun <A, B, C, D, E, F, G, H> Het8<
 		Iterable<A>,
@@ -297,7 +299,7 @@ fun <A, B, C, D, E, F, G, H> Het8<
 		Iterable<F>,
 		Iterable<G>,
 		Iterable<H>>.zipped() =
-	take7().zipped().zip(e) { (a, b, c, d, e, f, g), h -> a toH b toH c toH d toH e toH f toH g toH h }
+	take7().zipped().zip(h) { (a, b, c, d, e, f, g), h -> a toH b toH c toH d toH e toH f toH g toH h }
 
 fun <A, B, C, D, E, F, G, H, I> Het9<
 		Iterable<A>,
@@ -309,7 +311,7 @@ fun <A, B, C, D, E, F, G, H, I> Het9<
 		Iterable<G>,
 		Iterable<H>,
 		Iterable<I>>.zipped() =
-	take8().zipped().zip(e) { (a, b, c, d, e, f, g, h), i -> a toH b toH c toH d toH e toH f toH g toH h toH i }
+	take8().zipped().zip(i) { (a, b, c, d, e, f, g, h), i -> a toH b toH c toH d toH e toH f toH g toH h toH i }
 
 fun <A, B, C, D, E, F, G, H, I, J> Het10<
 		Iterable<A>,
@@ -322,7 +324,7 @@ fun <A, B, C, D, E, F, G, H, I, J> Het10<
 		Iterable<H>,
 		Iterable<I>,
 		Iterable<J>>.zipped() = take9().zipped()
-	.zip(e) { (a, b, c, d, e, f, g, h, i), j -> a toH b toH c toH d toH e toH f toH g toH h toH i toH j }
+	.zip(j) { (a, b, c, d, e, f, g, h, i), j -> a toH b toH c toH d toH e toH f toH g toH h toH i toH j }
 
 fun <A, B> Iterable<A>.zipH(b: Iterable<B>) = (this toH b).zipped()
 fun <A, B, C> Iterable<A>.zipH(b: Iterable<B>, c: Iterable<C>) = (this toH b toH c).zipped()

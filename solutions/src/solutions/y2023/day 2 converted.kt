@@ -74,7 +74,7 @@ private fun part1() {
 
 		for (p in i.split(';')) {
 			for (pp in p.split(',')) {
-				val pr = pp.strip()
+				val pr = pp.trim()
 
 				val a = pr.int()
 
@@ -108,7 +108,7 @@ private fun part2() {
 
 		for (p in i.split(';')) {
 			for (pp in p.split(',')) {
-				val pr = pp.strip()
+				val pr = pp.trim()
 
 				val a = pr.int()
 

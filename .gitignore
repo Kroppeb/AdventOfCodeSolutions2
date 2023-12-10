@@ -30,3 +30,8 @@ bin/
 /solutions/resources/
 /today/resources/
 /getInput.sh
+
+### Gradle ###
+.gradle/
+build/
+!**/src/main/**/build/
