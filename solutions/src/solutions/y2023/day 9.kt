@@ -1,5 +1,7 @@
 @file:Suppress("PackageDirectoryMismatch", "UnusedImport")
 
+package solutions.y2023.d09
+
 
 /*
 
@@ -47,6 +49,7 @@ import me.kroppeb.aoc.helpers.grid.*
 import me.kroppeb.aoc.helpers.point.*
 import me.kroppeb.aoc.helpers.sint.*
 import itertools.*
+import log
 import java.util.Comparator
 import java.util.PriorityQueue
 import kotlin.*
@@ -64,14 +67,46 @@ private val xxxxx = Clock(6, 3)
 
 
 private fun part1() {
-	var data = getLines(10) log 0
+	var data = getLines(9).sints()
+
+	data.map {
+		extrapolate(it) log 0
+	}.sum() log 1
+}
+
+fun extrapolate(ix: List<Sint>): Sint {
+	ix log 0
+	if (ix.distinct().size > 1) {
+		val xx = extrapolate(ix.zipWithNext { a, b -> b - a })
+		return ix.last() + xx log "a"
+	} else {
+		return ix.first()
+	}
+}
+
+
+
+private fun part2() {
+	var data = getLines(9).sints()
+
+	data.map {
+		extrapolate2(it) log 0
+	}.sum() log 1
+}
+
+fun extrapolate2(ix: List<Sint>): Sint {
+	ix log 0
+	if (ix.distinct().size > 1) {
+		val xx = extrapolate(ix.zipWithNext { a, b -> b - a })
+		return ix.first() - xx log "a"
+	} else {
+		return ix.first()
+	}
 }
 
 
 fun main() {
 	println("Day 09: ")
-	val x = crt(listOf(3 to 9, 4 to 16)) log 0
-	x mod 9 log 0
-	x mod 16 log 0
 	part1()
+	part2()
 }

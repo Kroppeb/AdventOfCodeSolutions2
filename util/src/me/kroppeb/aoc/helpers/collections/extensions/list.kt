@@ -184,3 +184,10 @@ inline fun <T, R> List<T>.on(block: (T, T, T, T, T, T, T, T, T, T) -> R): R {
 	return block(this[0], this[1], this[2], this[3], this[4], this[5], this[6], this[7], this[8], this[9])
 }
 
+fun <T> List<T>.copyWith(index: Int, value: T): List<T> {
+	val list = ArrayList(this)
+	list[index] = value
+	return list
+}
+
+fun <T> List<T>.copyWith(index: Sint, value: T): List<T> = copyWith(index.i, value)

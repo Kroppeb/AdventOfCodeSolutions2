@@ -1,6 +1,8 @@
 package me.kroppeb.aoc.helpers.collections.list
 
-interface HetN
+interface HetN {
+	fun toList(): List<Any?>
+}
 
 interface HetL1<out A> : HetN {
 	val a: A
@@ -88,11 +90,13 @@ typealias Het0 = Nothing?
 
 data class Het1<out A>(override val a: A) : HetL1<A>, HetR1<A> {
 	override val z: A get() = a
+	override fun toList() = listOf(a)
 }
 
 data class Het2<out A, out B>(override val a: A, override val b: B) : HetL2<A, B>, HetR2<A, B> {
 	override val y: A get() = a
 	override val z: B get() = b
+	override fun toList() = listOf(a, b)
 }
 
 data class Het3<out A, out B, out C>(override val a: A, override val b: B, override val c: C) : HetL3<A, B, C>,
@@ -100,6 +104,7 @@ data class Het3<out A, out B, out C>(override val a: A, override val b: B, overr
 	override val x: A get() = a
 	override val y: B get() = b
 	override val z: C get() = c
+	override fun toList() = listOf(a, b, c)
 }
 
 data class Het4<out A, out B, out C, out D>(
@@ -113,6 +118,7 @@ data class Het4<out A, out B, out C, out D>(
 	override val x: B get() = b
 	override val y: C get() = c
 	override val z: D get() = d
+	override fun toList() = listOf(a, b, c, d)
 }
 
 data class Het5<out A, out B, out C, out D, out E>(
@@ -127,6 +133,7 @@ data class Het5<out A, out B, out C, out D, out E>(
 	override val x: C get() = c
 	override val y: D get() = d
 	override val z: E get() = e
+	override fun toList() = listOf(a, b, c, d, e)
 }
 
 data class Het6<out A, out B, out C, out D, out E, out F>(
@@ -143,6 +150,7 @@ data class Het6<out A, out B, out C, out D, out E, out F>(
 	override val x: D get() = d
 	override val y: E get() = e
 	override val z: F get() = f
+	override fun toList() = listOf(a, b, c, d, f)
 }
 
 data class Het7<out A, out B, out C, out D, out E, out F, out G>(
@@ -161,6 +169,7 @@ data class Het7<out A, out B, out C, out D, out E, out F, out G>(
 	override val x: E get() = e
 	override val y: F get() = f
 	override val z: G get() = g
+	override fun toList() = listOf(a, b, c, d, f, g)
 }
 
 data class Het8<out A, out B, out C, out D, out E, out F, out G, out H>(
@@ -181,6 +190,7 @@ data class Het8<out A, out B, out C, out D, out E, out F, out G, out H>(
 	override val x: F get() = f
 	override val y: G get() = g
 	override val z: H get() = h
+	override fun toList() = listOf(a, b, c, d, f, g, h)
 }
 
 data class Het9<out A, out B, out C, out D, out E, out F, out G, out H, out I>(
@@ -203,6 +213,7 @@ data class Het9<out A, out B, out C, out D, out E, out F, out G, out H, out I>(
 	override val x: G get() = g
 	override val y: H get() = h
 	override val z: I get() = i
+	override fun toList() = listOf(a, b, c, d, f, g, h, i)
 }
 
 data class Het10<out A, out B, out C, out D, out E, out F, out G, out H, out I, out J>(
@@ -227,6 +238,7 @@ data class Het10<out A, out B, out C, out D, out E, out F, out G, out H, out I, 
 	override val x: H get() = h
 	override val y: I get() = i
 	override val z: J get() = j
+	override fun toList() = listOf(a, b, c, d, f, g, h, i, j)
 }
 
 fun <A> HetL1<A>.first() = a

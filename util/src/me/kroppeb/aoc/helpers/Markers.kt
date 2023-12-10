@@ -11,3 +11,5 @@ annotation class MarkedC // Style 3: aqua
 
 @DslMarker
 annotation class MarkedD // Style 4: green
+
+typealias MarkKeyword = MarkedA

@@ -81,6 +81,11 @@ inline fun <C, T : Comparable<T>> Iterable<C>.allMaxBy(b: (C) -> T): List<C> {
 	return filter { b(it) == b(max) }
 }
 
+fun <T : Comparable<T>> Iterable<T>.allMin(): List<T> = allMinBy { it }
+fun <T : Comparable<T>> Iterable<T>.allMax(): List<T> = allMaxBy { it }
+inline fun <C, T : Comparable<T>> Iterable<C>.allMinOf(b: (C) -> T): List<T> = map(b).allMin()
+inline fun <C, T : Comparable<T>> Iterable<C>.allMaxOf(b: (C) -> T): List<T> = map(b).allMax()
+
 inline fun <C, T : Comparable<T>> Array<C>.minBy(b: (C) -> T): C = minByOrNull(b)!!
 inline fun <C, T : Comparable<T>> Array<C>.maxBy(b: (C) -> T): C = maxByOrNull(b)!!
 
@@ -274,3 +279,33 @@ infix fun Long.divBy(other: Sint): Boolean = this.s divBy other
 infix fun Sint.divBy(other: Int): Boolean = this divBy other.s
 infix fun Sint.divBy(other: Long): Boolean = this divBy other.s
 infix fun Sint.divBy(other: Sint): Boolean = this.l divBy other.l
+
+
+private var crtWarning = false
+
+@JvmName("crtIntInt")
+fun crt(values: List<Pair<Int, Int>>): Sint = crt(values.map { it.first.s to it.second.s })
+@JvmName("crtSintInt")
+fun crt(values: List<Pair<Sint, Int>>): Sint = crt(values.map { it.first to it.second.s })
+@JvmName("crtIntSint")
+fun crt(values: List<Pair<Int, Sint>>): Sint = crt(values.map { it.first.s to it.second })
+fun crt(values: List<Pair<Sint, Sint>>): Sint {
+	if (!crtWarning) {
+		for ((a,b) in values) {
+			if (a !in 0 until b) {
+				println("CRT Warning: $a !in 0 until $b")
+				crtWarning = true
+				break
+			}
+		}
+	}
+
+	require(values.pairWise().all{gcd(it.first.second, it.second.second) == 1.s}){"Not pairwise coprime"}
+
+	val md = values.map { it.second }.product()
+	val mds = values.map { md / it.second }
+	val ys = mds.zip(values) { mul, value -> value.first * mul.modInv(value.second) * mul }
+	val sum = ys.sum()
+	return sum mod md
+
+}
