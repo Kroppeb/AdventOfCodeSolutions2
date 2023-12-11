@@ -37,7 +37,7 @@ value class Sint(private val inner: Long) : Comparable<Sint> {
 	}
 
 	operator fun rem(other: Sint): Sint {
-		if (has_warned_negative_rem && inner < 0 && inner % other.inner != 0L) {
+		if (!has_warned_negative_rem && inner < 0 && inner % other.inner != 0L) {
 			// warn
 			has_warned_negative_rem = true
 			System.err.println("Warning: negative remainder")

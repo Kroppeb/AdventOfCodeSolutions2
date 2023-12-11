@@ -1,5 +1,7 @@
 @file:Suppress("PackageDirectoryMismatch", "UnusedImport")
 
+package solutions.y2023.d10
+
 
 /*
 
@@ -47,6 +49,7 @@ import me.kroppeb.aoc.helpers.grid.*
 import me.kroppeb.aoc.helpers.point.*
 import me.kroppeb.aoc.helpers.sint.*
 import itertools.*
+import log
 import java.util.Comparator
 import java.util.Deque
 import java.util.PriorityQueue
@@ -68,8 +71,8 @@ val UP = listOf('|', 'J', 'L', 'S')
 val RIGHT = listOf('-', 'F', 'L', 'S')
 val DOWN = listOf('|', 'F', '7', 'S')
 
-private fun part1() {
-	var data = getLines(10).e().grid()
+private fun combined() {
+	var data = getLines(2023, 10).e().grid()
 
 	var start = data.find { it.v == 'S' }!!
 
@@ -103,7 +106,7 @@ private fun part1() {
 	var seeds = mutableSetOf<Point>()
 
 	var dir = Clock.down
-	for(i in seen){
+	for (i in seen) {
 		(i to dir) log 0
 		var v = i.v
 		if (v == 'S') v = '-'
@@ -111,9 +114,11 @@ private fun part1() {
 			v == '-' -> {
 				seeds.add(i.p + dir)
 			}
+
 			v == '|' -> {
 				seeds.add(i.p + dir)
 			}
+
 			v == '7' -> {
 				when (dir) {
 					Clock.down -> dir = Clock.left
@@ -123,6 +128,7 @@ private fun part1() {
 						seeds.add(i.p.right)
 						dir = Clock.right
 					}
+
 					Clock.right -> {
 						seeds.add(i.p.right)
 						seeds.add(i.p.up)
@@ -130,6 +136,7 @@ private fun part1() {
 					}
 				}
 			}
+
 			v == 'L' -> {
 				when (dir) {
 					Clock.up -> dir = Clock.right
@@ -139,6 +146,7 @@ private fun part1() {
 						seeds.add(i.p.down)
 						dir = Clock.down
 					}
+
 					Clock.down -> {
 						seeds.add(i.p.down)
 						seeds.add(i.p.left)
@@ -146,6 +154,7 @@ private fun part1() {
 					}
 				}
 			}
+
 			v == 'F' -> {
 				when (dir) {
 					Clock.down -> dir = Clock.right
@@ -155,6 +164,7 @@ private fun part1() {
 						seeds.add(i.p.left)
 						dir = Clock.left
 					}
+
 					Clock.left -> {
 						seeds.add(i.p.left)
 						seeds.add(i.p.up)
@@ -162,6 +172,7 @@ private fun part1() {
 					}
 				}
 			}
+
 			v == 'J' -> {
 				when (dir) {
 					Clock.left -> dir = Clock.up
@@ -171,6 +182,7 @@ private fun part1() {
 						seeds.add(i.p.right)
 						dir = Clock.right
 					}
+
 					Clock.right -> {
 						seeds.add(i.p.right)
 						seeds.add(i.p.down)
@@ -184,13 +196,13 @@ private fun part1() {
 	var inner = mutableSetOf<BoundedGridPoint<Char>>()
 	var queue = ArrayDeque<Point>()
 	queue.addAll(seeds)
-	print(seeds.filter{it in data.bounds && data.getBp(it) !in seen})
+	print(seeds.filter { it in data.bounds && data.getBp(it) !in seen })
 
-	while(queue.isNotEmpty()){
+	while (queue.isNotEmpty()) {
 		var p = queue.removeFirst()
-		if(p !in data.bounds) continue
+		if (p !in data.bounds) continue
 		var bp = data.getBp(p)
-		if(bp in seen) continue
+		if (bp in seen) continue
 		if (bp in inner) continue
 		inner.add(bp)
 		for (quadNeighbour in bp.getQuadNeighbours()) {
@@ -199,12 +211,12 @@ private fun part1() {
 
 	}
 
-	((0 toP 0) in inner.map{it.p}) log 0
+	((0 toP 0) in inner.map { it.p }) log 0
 	inner.size log 2
 }
 
 
 fun main() {
 	println("Day 10: ")
-	part1()
+	combined()
 }

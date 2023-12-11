@@ -58,7 +58,7 @@ First hundred users to get both stars on Day 4:
  57) Dec 04  00:06:25  Tea Leka
  58) Dec 04  00:06:26  Zack Lee
  59) Dec 04  00:06:27  Lau Xin Wei
- 60) Dec 04  00:06:27  Luckanio
+ 60) Dec 04  00:06:27  Lalsin Nilian
  61) Dec 04  00:06:28  dan-simon
  62) Dec 04  00:06:29  Patrick Hogg (AoC++) (Sponsor)
  63) Dec 04  00:06:30  João Salavisa
@@ -98,7 +98,7 @@ First hundred users to get both stars on Day 4:
  97) Dec 04  00:07:07  Mercerenies
  98) Dec 04  00:07:08  glguy (AoC++)
  99) Dec 04  00:07:08  Jeffrey Fan
-100) Dec 04  00:07:08  Parker Williams
+100) Dec 04  00:07:08  Parker Williams (AoC++)
 
 First hundred users to get the first star on Day 4:
   1) Dec 04  00:00:43  tung491
@@ -159,7 +159,7 @@ First hundred users to get the first star on Day 4:
  56) Dec 04  00:02:28  Robert Xiao
  57) Dec 04  00:02:28  Ethan C
  58) Dec 04  00:02:29  jonathanpaulson (AoC++)
- 59) Dec 04  00:02:30  jo3-l
+ 59) Dec 04  00:02:30  Joe L.
  60) Dec 04  00:02:31  Level 51
  61) Dec 04  00:02:32  chluebi
  62) Dec 04  00:02:33  petertseng

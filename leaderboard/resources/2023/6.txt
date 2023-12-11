@@ -127,7 +127,7 @@ First hundred users to get the first star on Day 6:
  24) Dec 06  00:02:22  (anonymous user #3487639)
  25) Dec 06  00:02:23  boboquack
  26) Dec 06  00:02:23  dan-simon
- 27) Dec 06  00:02:23  Parker Williams
+ 27) Dec 06  00:02:23  Parker Williams (AoC++)
  28) Dec 06  00:02:24  qwewqa
  29) Dec 06  00:02:25  Joseph Malagon
  30) Dec 06  00:02:25  Роман Курмаев

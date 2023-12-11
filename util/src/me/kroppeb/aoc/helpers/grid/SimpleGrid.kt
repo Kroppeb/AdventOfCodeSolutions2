@@ -110,7 +110,7 @@ fun <T> List<List<T>>.grid(): SimpleGrid<T> {
 
 fun <T> Iterable<List<List<T>>>.grids(): List<SimpleGrid<T>> = map { it.grid() }
 
-inline fun <T, R> SimpleGrid<T>.map(block: (T) -> R) = this.items.map2(block).grid()
+//inline fun <T, R> SimpleGrid<T>.map(block: (T) -> R) = this.items.map2(block).grid()
 
 @Deprecated("exists for historical reasons")
 inline fun <T, R> SimpleGrid<T>.mapIndexedOld(block: (PointI, T) -> R) = this.items.mapIndexed { i, a ->

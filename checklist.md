@@ -13,14 +13,14 @@
 * [x] Add imports
 * [x] Test download command
 * [x] Open obs
-* [ ] Ensure laptop is plugged in
+* [x] Ensure laptop is plugged in
  
 
 # Middle
-* [ ] Start the kotlin daemon (by running the empty day script)
-* [ ] Validate that shortcut runs the correct file 
-* [ ] Close unneeded files & programs
-* [ ] Make sure input is open on second screen
+* [x] Start the kotlin daemon (by running the empty day script)
+* [x] Validate that shortcut runs the correct file 
+* [x] Close unneeded files & programs
+* [x] Make sure input is open on second screen
 
 # Final
 * Verify imports again
