@@ -28,3 +28,10 @@
 41/2; points: 159, 
 * LET's FUCKING GO
 * [ ] Fix overload issue between stdlib and utils (min/max)
+
+
+## Day 09
+5/47; points: 150
+* Nice points: TOP 50
+* Didn't use GitHub copilot today,
+* [ ] Convert a list of BoundedGridPoints to Points easily
