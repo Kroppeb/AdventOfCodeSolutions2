@@ -922,7 +922,6 @@ val LongRange.size get() = this.last - this.first + 1
 val LongRange.sizeB get() = this.last.toBigInteger() - this.first.toBigInteger() + BigInteger.ONE
 
 
-
 fun IntRange.sint() = this.first.s..this.last.s
 fun LongRange.sint() = this.first.s..this.last.s
 fun SintRange.sint() = this.first..this.last
@@ -1005,3 +1004,13 @@ fun SintProgression.frac(n: Int): List<SintProgression> {
 
 
 fun Iterable<*>.isEmpty() = !this.iterator().hasNext()
+
+fun Iterable<*>.allEqual(): Boolean {
+	val iter = this.iterator()
+	if (!iter.hasNext()) return true // empty
+	val first = iter.next()
+	for (i in iter) {
+		if (i != first) return false
+	}
+	return true
+}

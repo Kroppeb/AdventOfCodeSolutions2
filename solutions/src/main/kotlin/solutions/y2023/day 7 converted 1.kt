@@ -1,6 +1,6 @@
 @file:Suppress("PackageDirectoryMismatch", "UnusedImport")
 
-package solutions.y2023.d07
+package solutions.y2023.d07c1
 
 
 /*
@@ -68,8 +68,8 @@ private val xxxxx = Clock(6, 3)
 private fun part1() {
 	var data = getLines(2023, 7).map { line ->
 		val (hand, bd) = line.split2(" ")
-		val bid = bd.sint()
-
+		hand to bd.sint()
+	}.sortedBy { (hand, bid) ->
 		val h = hand.map {
 			when (it) {
 				'A' -> 14
@@ -83,27 +83,20 @@ private fun part1() {
 
 		val hh = h.countEach()
 
-		val cc = if (h.distinct().count() == 1) {
-			6 // 5 of a kind
-		} else if (hh.size == 2 && hh.values.any { it == 4.s }) {
-			5 // 4 of a kind
-		} else if (hh.size == 2 && hh.values.any { it == 3.s } && hh.values.any { it == 2.s }) {
-			4 // full house
-		} else if (hh.values.any { it == 3.s }) {
-			3 // full house
-		} else if (hh.values.count { it == 2.s } == 2) {
-			2 // full house
-		} else if (hh.values.count { it == 2.s } == 1) {
-			1 // full house
-		} else {
-			0
+		val cc = when {
+			hh.values.any { it == 5.s } -> 6 // 5 of a kind
+			hh.values.any { it == 4.s } -> 5 // 4 of a kind
+			hh.values.any { it == 3.s } && hh.values.any { it == 2.s } -> 4 // full house
+			hh.values.any { it == 3.s } -> 3 // 3 of a kind
+			hh.values.count { it == 2.s } == 2 -> 2 // 2 pairs
+			hh.values.count { it == 2.s } == 1 -> 1 // 1 pair
+			else -> 0
 		}
-		bid to h[4] + 15 * (h[3] + 15 * (h[2] + 15 * (h[1] + 15 * (h[0] + 15 * cc))))
-	}.sortedBy { it.second }
+		sortKey(cc to h)
+	}
 
-	data.withIdx().map { (i, it) ->
-		i to it log 0
-		(i + 1) * it.first
+	data.map { it.second }.mapIndexed { index, it ->
+		(index + 1) * it
 	}.sum() log 1
 
 
@@ -112,8 +105,8 @@ private fun part1() {
 private fun part2() {
 	var data = getLines(2023, 7).map { line ->
 		val (hand, bd) = line.split2(" ")
-		val bid = bd.sint()
-
+		hand to bd.sint()
+	}.sortedBy { (hand, bid) ->
 		val h = hand.map {
 			when (it) {
 				'A' -> 14
@@ -126,65 +119,33 @@ private fun part2() {
 		}
 
 
-		val cc = ieee(h)
-		bid to h[4] + 15 * (h[3] + 15 * (h[2] + 15 * (h[1] + 15 * (h[0] + 15 * cc))))
-	}.sortedBy { it.second }
-
-	data.withIdx().map { (i, it) ->
-		i to it log 0
-		(i + 1) * it.first
-	}.sum() log 1
-
-
-}
-
-private fun ieee(
-	h: List<Int>,
-	x: Int = 0,
-): Int {
-	return if (x < 5) {
-		if (h[x] == 1) {
-			(2..14).map {
-				val xx = if (it == 11) {
-					1
-				} else {
-					it
+		val cc = yComb(h, 0) { hs, x ->
+			when {
+				x >= 5 -> {
+					val hh = hs.countEach()
+					when {
+						hh.values.any { it == 5.s } -> 6 // 5 of a kind
+						hh.values.any { it == 4.s } -> 5 // 4 of a kind
+						hh.values.any { it == 3.s } && hh.values.any { it == 2.s } -> 4 // full house
+						hh.values.any { it == 3.s } -> 3 // 3 of a kind
+						hh.values.count { it == 2.s } == 2 -> 2 // 2 pairs
+						hh.values.count { it == 2.s } == 1 -> 1 // 1 pair
+						else -> 0
+					}
 				}
 
-				val h2 = h.toMutableList()
-				h2[x] = xx
-
-				ieee(h2, x + 1)
-			}.max()
-		} else {
-			ieee(h, x + 1)
+				hs[x] > 1 -> call(hs, x + 1)
+				else -> (2..14).map {
+					hs.copyWith(x, if (it == 11) 1 else it)
+				}.maxOfC(x + 1)
+			}
 		}
-	} else {
-		i(h)
+		sortKey(cc to h)
 	}
-}
 
-private fun i(
-	h: List<Int>
-): Int {
-
-	val hh = h.countEach()
-	val cc = if (h.distinct().count() == 1) {
-		6 // 5 of a kind
-	} else if (hh.size == 2 && hh.values.any { it == 4.s }) {
-		5 // 4 of a kind
-	} else if (hh.size == 2 && hh.values.any { it == 3.s } && hh.values.any { it == 2.s }) {
-		4 // full house
-	} else if (hh.values.any { it == 3.s }) {
-		3 // full house
-	} else if (hh.values.count { it == 2.s } == 2) {
-		2 // full house
-	} else if (hh.values.count { it == 2.s } == 1) {
-		1 // full house
-	} else {
-		0
-	}
-	return cc
+	data.map { it.second }.mapIndexed { index, it ->
+		(index + 1) * it
+	}.sum() log 2
 }
 
 

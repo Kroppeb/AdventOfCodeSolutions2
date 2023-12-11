@@ -1,5 +1,7 @@
 @file:Suppress("PackageDirectoryMismatch", "UnusedImport")
 
+package solutions.y2023.d11
+
 
 /*
 
@@ -47,6 +49,7 @@ import me.kroppeb.aoc.helpers.grid.*
 import me.kroppeb.aoc.helpers.point.*
 import me.kroppeb.aoc.helpers.sint.*
 import itertools.*
+import log
 import java.util.Comparator
 import java.util.Deque
 import java.util.PriorityQueue
@@ -64,8 +67,25 @@ import kotlin.math.*
 private val xxxxx = Clock(6, 3)
 
 
+
+
 private fun part1() {
-	var input = getLines(11)
+	var input = getLines(2023, 11)
+	var data = input.e()
+
+	data = data.flatMap { if (it.all{it == '.'}) listOf(it, it)  else listOf(it)}.transpose()
+	data = data.flatMap { if (it.all{it == '.'}) listOf(it, it)  else listOf(it)}.transpose()
+
+	var d = data.grid()
+
+	d.filter{it.v == '#'}.pairWise().map{(a,b) -> a.p.manDistTo(b.p)}.sum() log 1
+
+
+}
+
+
+private fun part2() {
+	var input = getLines(2023, 11)
 	var data = input.e().grid()
 
 	var rows = data.bounds.xs.toSet().toMutableSet()
@@ -76,7 +96,8 @@ private fun part1() {
 		cols.remove(i.p.y)
 	}
 
-	data.filter{it.v == '#'}.pairWise().map{(a,b) -> a.p.manDistTo(b.p) +( (listOf(a.p.x, b.p.x).minMaxRange().count{it in rows})+ (listOf(a.p.y, b.p.y).minMaxRange().count{it in cols})) * (1000000 - 1)}.sum() log 1
+	data.filter{it.v == '#'}.pairWise().map{(a,b) -> a.p.manDistTo(b.p) +
+		( (listOf(a.p.x, b.p.x).minMaxRange().count{it in rows})+ (listOf(a.p.y, b.p.y).minMaxRange().count{it in cols})) * (1000000 - 1)}.sum() log 1
 
 
 }
@@ -85,4 +106,5 @@ private fun part1() {
 fun main() {
 	println("Day 11: ")
 	part1()
+	part2()
 }

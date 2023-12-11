@@ -1,5 +1,7 @@
 @file:Suppress("PackageDirectoryMismatch", "UnusedImport")
 
+package solutions.y2023.d09
+
 
 /*
 
@@ -47,8 +49,8 @@ import me.kroppeb.aoc.helpers.grid.*
 import me.kroppeb.aoc.helpers.point.*
 import me.kroppeb.aoc.helpers.sint.*
 import itertools.*
+import log
 import java.util.Comparator
-import java.util.Deque
 import java.util.PriorityQueue
 import kotlin.*
 import kotlin.annotation.*
@@ -65,24 +67,46 @@ private val xxxxx = Clock(6, 3)
 
 
 private fun part1() {
-	var input = getLines(11)
-	var data = input.e().grid()
+	var data = getLines(9).sints()
 
-	var rows = data.bounds.xs.toSet().toMutableSet()
-	var cols = data.bounds.ys.toSet().toMutableSet()
+	data.map {
+		extrapolate(it) log 0
+	}.sum() log 1
+}
 
-	for (i in data.filter{it.v == '#'}) {
-		rows.remove(i.p.x)
-		cols.remove(i.p.y)
+fun extrapolate(ix: List<Sint>): Sint {
+	ix log 0
+	if (ix.distinct().size > 1) {
+		val xx = extrapolate(ix.zipWithNext { a, b -> b - a })
+		return ix.last() + xx log "a"
+	} else {
+		return ix.first()
 	}
+}
 
-	data.filter{it.v == '#'}.pairWise().map{(a,b) -> a.p.manDistTo(b.p) +( (listOf(a.p.x, b.p.x).minMaxRange().count{it in rows})+ (listOf(a.p.y, b.p.y).minMaxRange().count{it in cols})) * (1000000 - 1)}.sum() log 1
 
 
+private fun part2() {
+	var data = getLines(9).sints()
+
+	data.map {
+		extrapolate2(it) log 0
+	}.sum() log 1
+}
+
+fun extrapolate2(ix: List<Sint>): Sint {
+	ix log 0
+	if (ix.distinct().size > 1) {
+		val xx = extrapolate(ix.zipWithNext { a, b -> b - a })
+		return ix.first() - xx log "a"
+	} else {
+		return ix.first()
+	}
 }
 
 
 fun main() {
-	println("Day 11: ")
+	println("Day 09: ")
 	part1()
+	part2()
 }

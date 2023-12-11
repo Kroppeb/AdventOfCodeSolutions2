@@ -1,5 +1,8 @@
 package me.kroppeb.aoc.helpers
 
+import me.kroppeb.aoc.helpers.collections.list.Het1
+import me.kroppeb.aoc.helpers.collections.list.Het2
+import me.kroppeb.aoc.helpers.collections.list.HetN
 import me.kroppeb.aoc.helpers.sint.*
 import kotlin.math.abs
 
@@ -371,7 +374,8 @@ inline fun <T> pureStateLoop(start: T, steps: Int, skipSteps: Int, f: (T) -> T):
 	return state
 }
 
-inline fun <T> pureStateLoopScore(start: T, steps: Sint, f: (T) -> Pair<T, Sint>): Sint = pureStateLoopScore(start, steps, 0.s, f)
+inline fun <T> pureStateLoopScore(start: T, steps: Sint, f: (T) -> Pair<T, Sint>): Sint =
+	pureStateLoopScore(start, steps, 0.s, f)
 
 inline fun <T> pureStateLoopScore(start: T, steps: Sint, skipSteps: Sint, f: (T) -> Pair<T, Sint>): Sint {
 	var id = 0.s
@@ -439,3 +443,46 @@ infix fun <T> T.toU(other: T) = UPair(this, other)
 
 operator fun Boolean.inc() = true
 operator fun Boolean.dec() = false
+
+
+class SortKey(val key: Any?) : Comparable<SortKey> {
+	private fun comp(a: Any?, b: Any?): Int {
+		return when {
+			a == b -> 0
+			a is Comparable<*> && b is Comparable<*> -> (a as Comparable<Any>).compareTo(b)
+			a is List<*> && b is List<*> -> {
+				val min = min(a.size, b.size)
+				for (i in 0..<min) {
+					val c = comp(a[i], b[i])
+					if (c != 0) return c
+				}
+				a.size.compareTo(b.size)
+			}
+
+			a is Pair<*, *> && b is Pair<*, *> -> {
+				val c = comp(a.first, b.first)
+				if (c != 0) return c
+				comp(a.second, b.second)
+			}
+
+			a is Triple<*, *, *> && b is Triple<*, *, *> -> {
+				val c = comp(a.first, b.first)
+				if (c != 0) return c
+				val d = comp(a.second, b.second)
+				if (d != 0) return d
+				comp(a.third, b.third)
+			}
+
+			a is HetN && b is HetN -> comp(a.toList(), b.toList())
+			a == null || b == null -> error("Can't compare because either a or b is null: $a, $b")
+			else -> error("Can't compare ${a::class.java} and ${b::class.java}")
+		}
+	}
+
+	override fun compareTo(other: SortKey): Int {
+		return comp(this.key, other.key)
+	}
+}
+
+fun sortKey(key: Any?) = SortKey(key)
+fun Any?.asSortKey() = SortKey(this)

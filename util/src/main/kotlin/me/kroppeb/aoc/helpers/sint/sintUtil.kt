@@ -203,6 +203,8 @@ fun Iterable<Sint>.cumSum(initial: Sint): List<Sint> = scan(initial) { a, b -> a
 fun <T> Iterable<T>.cumSumOf(initial: Sint, selector: (T) -> Sint): List<Sint> = map(selector).cumSum(initial)
 
 fun abs(a: Sint) = if (a.l < 0) -a else a
+@JvmName("absExt")
+fun Sint.abs() = abs(this)
 
 
 fun Sint.toDouble(): Double = this.l.toDouble()

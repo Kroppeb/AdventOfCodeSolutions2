@@ -12,7 +12,7 @@ First hundred users to get both stars on Day 3:
  11) Dec 03  00:07:45  Jasper van Merle (AoC++)
  12) Dec 03  00:07:51  (anonymous user #1565212)
  13) Dec 03  00:07:52  Kevin Sheng
- 14) Dec 03  00:07:53  masecla22
+ 14) Dec 03  00:07:53  masecla22 (AoC++)
  15) Dec 03  00:07:55  Oliver Ni (AoC++)
  16) Dec 03  00:08:04  Nikitosh
  17) Dec 03  00:08:09  (anonymous user #1510407)
@@ -173,7 +173,7 @@ First hundred users to get the first star on Day 3:
  70) Dec 03  00:06:21  Kostero
  71) Dec 03  00:06:22  Gabriel Wu (AoC++)
  72) Dec 03  00:06:22  Kami Leon
- 73) Dec 03  00:06:24  masecla22
+ 73) Dec 03  00:06:24  masecla22 (AoC++)
  74) Dec 03  00:06:24  mayoff (AoC++)
  75) Dec 03  00:06:25  Thomas Feld
  76) Dec 03  00:06:26  RootCubed (AoC++)

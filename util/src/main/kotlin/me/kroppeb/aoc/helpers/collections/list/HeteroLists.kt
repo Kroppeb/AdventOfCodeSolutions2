@@ -1,6 +1,8 @@
 package me.kroppeb.aoc.helpers.collections.list
 
-interface HetN
+interface HetN {
+	fun toList(): List<Any?>
+}
 
 interface HetL1<out A> : HetN {
 	val a: A
@@ -88,11 +90,13 @@ typealias Het0 = Nothing?
 
 data class Het1<out A>(override val a: A) : HetL1<A>, HetR1<A> {
 	override val z: A get() = a
+	override fun toList() = listOf(a)
 }
 
 data class Het2<out A, out B>(override val a: A, override val b: B) : HetL2<A, B>, HetR2<A, B> {
 	override val y: A get() = a
 	override val z: B get() = b
+	override fun toList() = listOf(a, b)
 }
 
 data class Het3<out A, out B, out C>(override val a: A, override val b: B, override val c: C) : HetL3<A, B, C>,
@@ -100,6 +104,7 @@ data class Het3<out A, out B, out C>(override val a: A, override val b: B, overr
 	override val x: A get() = a
 	override val y: B get() = b
 	override val z: C get() = c
+	override fun toList() = listOf(a, b, c)
 }
 
 data class Het4<out A, out B, out C, out D>(
@@ -113,6 +118,7 @@ data class Het4<out A, out B, out C, out D>(
 	override val x: B get() = b
 	override val y: C get() = c
 	override val z: D get() = d
+	override fun toList() = listOf(a, b, c, d)
 }
 
 data class Het5<out A, out B, out C, out D, out E>(
@@ -127,6 +133,7 @@ data class Het5<out A, out B, out C, out D, out E>(
 	override val x: C get() = c
 	override val y: D get() = d
 	override val z: E get() = e
+	override fun toList() = listOf(a, b, c, d, e)
 }
 
 data class Het6<out A, out B, out C, out D, out E, out F>(
@@ -143,6 +150,7 @@ data class Het6<out A, out B, out C, out D, out E, out F>(
 	override val x: D get() = d
 	override val y: E get() = e
 	override val z: F get() = f
+	override fun toList() = listOf(a, b, c, d, f)
 }
 
 data class Het7<out A, out B, out C, out D, out E, out F, out G>(
@@ -161,6 +169,7 @@ data class Het7<out A, out B, out C, out D, out E, out F, out G>(
 	override val x: E get() = e
 	override val y: F get() = f
 	override val z: G get() = g
+	override fun toList() = listOf(a, b, c, d, f, g)
 }
 
 data class Het8<out A, out B, out C, out D, out E, out F, out G, out H>(
@@ -181,6 +190,7 @@ data class Het8<out A, out B, out C, out D, out E, out F, out G, out H>(
 	override val x: F get() = f
 	override val y: G get() = g
 	override val z: H get() = h
+	override fun toList() = listOf(a, b, c, d, f, g, h)
 }
 
 data class Het9<out A, out B, out C, out D, out E, out F, out G, out H, out I>(
@@ -203,6 +213,7 @@ data class Het9<out A, out B, out C, out D, out E, out F, out G, out H, out I>(
 	override val x: G get() = g
 	override val y: H get() = h
 	override val z: I get() = i
+	override fun toList() = listOf(a, b, c, d, f, g, h, i)
 }
 
 data class Het10<out A, out B, out C, out D, out E, out F, out G, out H, out I, out J>(
@@ -227,6 +238,7 @@ data class Het10<out A, out B, out C, out D, out E, out F, out G, out H, out I, 
 	override val x: H get() = h
 	override val y: I get() = i
 	override val z: J get() = j
+	override fun toList() = listOf(a, b, c, d, f, g, h, i, j)
 }
 
 fun <A> HetL1<A>.first() = a
@@ -276,7 +288,7 @@ fun <A, B, C, D, E> Het5<Iterable<A>, Iterable<B>, Iterable<C>, Iterable<D>, Ite
 	take4().zipped().zip(e) { (a, b, c, d), e -> a toH b toH c toH d toH e }
 
 fun <A, B, C, D, E, F> Het6<Iterable<A>, Iterable<B>, Iterable<C>, Iterable<D>, Iterable<E>, Iterable<F>>.zipped() =
-	take5().zipped().zip(e) { (a, b, c, d, e), f -> a toH b toH c toH d toH e toH f }
+	take5().zipped().zip(f) { (a, b, c, d, e), f -> a toH b toH c toH d toH e toH f }
 
 fun <A, B, C, D, E, F, G> Het7<
 		Iterable<A>,
@@ -286,7 +298,7 @@ fun <A, B, C, D, E, F, G> Het7<
 		Iterable<E>,
 		Iterable<F>,
 		Iterable<G>>.zipped() =
-	take6().zipped().zip(e) { (a, b, c, d, e, f), h -> a toH b toH c toH d toH e toH f toH h }
+	take6().zipped().zip(g) { (a, b, c, d, e, f), h -> a toH b toH c toH d toH e toH f toH h }
 
 fun <A, B, C, D, E, F, G, H> Het8<
 		Iterable<A>,
@@ -297,7 +309,7 @@ fun <A, B, C, D, E, F, G, H> Het8<
 		Iterable<F>,
 		Iterable<G>,
 		Iterable<H>>.zipped() =
-	take7().zipped().zip(e) { (a, b, c, d, e, f, g), h -> a toH b toH c toH d toH e toH f toH g toH h }
+	take7().zipped().zip(h) { (a, b, c, d, e, f, g), h -> a toH b toH c toH d toH e toH f toH g toH h }
 
 fun <A, B, C, D, E, F, G, H, I> Het9<
 		Iterable<A>,
@@ -309,7 +321,7 @@ fun <A, B, C, D, E, F, G, H, I> Het9<
 		Iterable<G>,
 		Iterable<H>,
 		Iterable<I>>.zipped() =
-	take8().zipped().zip(e) { (a, b, c, d, e, f, g, h), i -> a toH b toH c toH d toH e toH f toH g toH h toH i }
+	take8().zipped().zip(i) { (a, b, c, d, e, f, g, h), i -> a toH b toH c toH d toH e toH f toH g toH h toH i }
 
 fun <A, B, C, D, E, F, G, H, I, J> Het10<
 		Iterable<A>,
@@ -322,7 +334,7 @@ fun <A, B, C, D, E, F, G, H, I, J> Het10<
 		Iterable<H>,
 		Iterable<I>,
 		Iterable<J>>.zipped() = take9().zipped()
-	.zip(e) { (a, b, c, d, e, f, g, h, i), j -> a toH b toH c toH d toH e toH f toH g toH h toH i toH j }
+	.zip(j) { (a, b, c, d, e, f, g, h, i), j -> a toH b toH c toH d toH e toH f toH g toH h toH i toH j }
 
 fun <A, B> Iterable<A>.zipH(b: Iterable<B>) = (this toH b).zipped()
 fun <A, B, C> Iterable<A>.zipH(b: Iterable<B>, c: Iterable<C>) = (this toH b toH c).zipped()
