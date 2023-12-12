@@ -486,3 +486,6 @@ class SortKey(val key: Any?) : Comparable<SortKey> {
 
 fun sortKey(key: Any?) = SortKey(key)
 fun Any?.asSortKey() = SortKey(this)
+
+fun no(): Nothing = error("no")
+fun <T>no(like: T): T = error("no")

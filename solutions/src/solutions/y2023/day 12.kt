@@ -1,6 +1,6 @@
 @file:Suppress("PackageDirectoryMismatch", "UnusedImport")
 
-package solutions.y2023
+package solutions.y2023.d05
 
 
 /*
@@ -82,7 +82,7 @@ private fun part2() {
 		val vals = v.sints()
 		val p = listOf(d).repeat(5).joinToString("?") log 0
 		sols(p.e(), vals.repeat(5)) log 0
-	}.sum() log 1
+	}.sum() log 2
 }
 
 fun sols(
