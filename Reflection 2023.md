@@ -30,7 +30,7 @@
 * [ ] Fix overload issue between stdlib and utils (min/max)
 
 
-## Day 09
+## Day 11
 5/47; points: 150
 * Nice points: TOP 50
 * Didn't use GitHub copilot today,
