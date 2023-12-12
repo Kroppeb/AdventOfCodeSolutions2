@@ -3,8 +3,8 @@ package me.kroppeb.aoc.helpers.sint
 import kotlin.jvm.JvmInline
 import kotlin.math.sign
 
-private val SAFE_INT_MAX = (1 shl 32) - 1
-private val SAFE_INT_MIN = -SAFE_INT_MAX
+private const val SAFE_INT_MAX = (1L shl 52) - 1
+private const val SAFE_INT_MIN = -SAFE_INT_MAX
 private var has_warned_negative_division_round = false
 private var has_warned_negative_rem = false
 

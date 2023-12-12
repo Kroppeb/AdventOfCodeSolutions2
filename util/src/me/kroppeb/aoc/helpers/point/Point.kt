@@ -130,6 +130,7 @@ data class Point(val x: Sint, val y: Sint) : PointNS<Point> {
 	override fun max(other: Point): Point = max(this.x, other.x) toP max(this.y, other.y)
 
 	override fun dot(other: Point) = this.x * other.x + this.y * other.y
+	fun cross(other: Point): Sint = this.x * other.y - this.y * other.x
 
 	fun isLeftOf(other: Point) = Clock.left.dot(this) > Clock.left.dot(other)
 	fun isRightOf(other: Point) = Clock.right.dot(this) > Clock.right.dot(other)
