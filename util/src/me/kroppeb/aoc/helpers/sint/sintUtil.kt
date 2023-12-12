@@ -172,6 +172,8 @@ operator fun <T> Array<T>.set(index: Sint, item: T) = this.set(index.i, item)
 fun Array<*>.idx() = 0.s until this.size.s
 
 
+operator fun String.get(index: Sint): Char = this[index.i]
+fun String.getOrNull(index: Sint): Char? = this.getOrNull(index.i)
 
 
 

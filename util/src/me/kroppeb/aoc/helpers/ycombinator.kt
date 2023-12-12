@@ -4,6 +4,14 @@ import me.kroppeb.aoc.helpers.sint.Sint
 import me.kroppeb.aoc.helpers.sint.s
 import me.kroppeb.aoc.helpers.sint.sumOf
 
+object YCombSettings {
+	internal var useMemoization = false
+
+	fun useMemoization(use: Boolean) {
+		useMemoization = use
+	}
+}
+
 class RetException(val value: Any?, val target: Any) : Exception()
 
 abstract class YCombinatorBase<R> {
@@ -22,46 +30,126 @@ abstract class YCombinatorBase<R> {
 		}
 	}
 
+	@MarkedC
+	fun uret(value: () -> Any?): R {
+		return handle { value() as R }
+	}
 }
 
 
-class YCombinatorX1<T1, R>(val f: YCombX1<T1, R>) : YCombinatorBase<R>() {
+class YCombinatorX1<T1, R>(f: YCombX1<T1, R>) : YCombinatorBase<R>() {
+	val f: YCombX1<T1, R>
+
+	init {
+		if (!YCombSettings.useMemoization) {
+			this.f = f
+		} else {
+			val mem = memoize { t1: T1 -> f(t1) }
+			this.f = { t1 -> mem(t1) }
+		}
+	}
+
+
 	operator fun invoke(value: T1): R {
 		return handle { f(this, value) }
 	}
 
 	@MarkedC
 	fun call(value: T1): R = this(value)
+
+	@MarkedC
+	fun retCall(value: T1): Nothing = ret(this(value))
 }
 
-class YCombinatorX2<T1, T2, R>(val f: YCombX2<T1, T2, R>) : YCombinatorBase<R>() {
+class YCombinatorX2<T1, T2, R>(f: YCombX2<T1, T2, R>) : YCombinatorBase<R>() {
+	val f: YCombX2<T1, T2, R>
+
+	init {
+		if (!YCombSettings.useMemoization) {
+			this.f = f
+		} else {
+			val mem = memoize { t1: T1, t2: T2 ->
+				f(t1, t2)
+			}
+			this.f = { t1, t2 -> mem(t1, t2) }
+		}
+	}
+
 	operator fun invoke(value1: T1, value2: T2): R {
 		return handle { f(this, value1, value2) }
 	}
 
 	@MarkedC
 	fun call(value1: T1, value2: T2): R = this(value1, value2)
+
+	@MarkedC
+	fun retCall(value1: T1, value2: T2): Nothing = ret(this(value1, value2))
 }
 
-class YCombinatorX3<T1, T2, T3, R>(val f: YCombX3<T1, T2, T3, R>) : YCombinatorBase<R>() {
+class YCombinatorX3<T1, T2, T3, R>(f: YCombX3<T1, T2, T3, R>) : YCombinatorBase<R>() {
+	val f: YCombX3<T1, T2, T3, R>
+
+	init {
+		if (!YCombSettings.useMemoization) {
+			this.f = f
+		} else {
+			val mem = memoize { t1: T1, t2: T2, t3: T3 ->
+				f(t1, t2, t3)
+			}
+			this.f = { t1, t2, t3 -> mem(t1, t2, t3) }
+		}
+	}
+
 	operator fun invoke(value1: T1, value2: T2, value3: T3): R {
 		return handle { f(this, value1, value2, value3) }
 	}
 
 	@MarkedC
 	fun call(value1: T1, value2: T2, value3: T3): R = this(value1, value2, value3)
+
+	@MarkedC
+	fun retCall(value1: T1, value2: T2, value3: T3): Nothing = ret(this(value1, value2, value3))
 }
 
-class YCombinatorX4<T1, T2, T3, T4, R>(val f: YCombX4<T1, T2, T3, T4, R>) : YCombinatorBase<R>() {
+class YCombinatorX4<T1, T2, T3, T4, R>(f: YCombX4<T1, T2, T3, T4, R>) : YCombinatorBase<R>() {
+	val f: YCombX4<T1, T2, T3, T4, R>
+
+	init {
+		if (!YCombSettings.useMemoization) {
+			this.f = f
+		} else {
+			val mem = memoize { t1: T1, t2: T2, t3: T3, t4: T4 ->
+				f(t1, t2, t3, t4)
+			}
+			this.f = { t1, t2, t3, t4 -> mem(t1, t2, t3, t4) }
+		}
+	}
+
 	operator fun invoke(value1: T1, value2: T2, value3: T3, value4: T4): R {
 		return handle { f(this, value1, value2, value3, value4) }
 	}
 
 	@MarkedC
 	fun call(value1: T1, value2: T2, value3: T3, value4: T4): R = this(value1, value2, value3, value4)
+
+	@MarkedC
+	fun retCall(value1: T1, value2: T2, value3: T3, value4: T4): Nothing = ret(this(value1, value2, value3, value4))
 }
 
-class YCombinatorX5<T1, T2, T3, T4, T5, R>(val f: YCombX5<T1, T2, T3, T4, T5, R>) : YCombinatorBase<R>() {
+class YCombinatorX5<T1, T2, T3, T4, T5, R>(f: YCombX5<T1, T2, T3, T4, T5, R>) : YCombinatorBase<R>() {
+	val f: YCombX5<T1, T2, T3, T4, T5, R>
+
+	init {
+		if (!YCombSettings.useMemoization) {
+			this.f = f
+		} else {
+			val mem = memoize { t1: T1, t2: T2, t3: T3, t4: T4, t5: T5 ->
+				f(t1, t2, t3, t4, t5)
+			}
+			this.f = { t1, t2, t3, t4, t5 -> mem(t1, t2, t3, t4, t5) }
+		}
+	}
+
 	operator fun invoke(value1: T1, value2: T2, value3: T3, value4: T4, value5: T5): R {
 		return handle { f(this, value1, value2, value3, value4, value5) }
 	}
@@ -69,6 +157,10 @@ class YCombinatorX5<T1, T2, T3, T4, T5, R>(val f: YCombX5<T1, T2, T3, T4, T5, R>
 	@MarkedC
 	fun call(value1: T1, value2: T2, value3: T3, value4: T4, value5: T5): R =
 		this(value1, value2, value3, value4, value5)
+
+	@MarkedC
+	fun retCall(value1: T1, value2: T2, value3: T3, value4: T4, value5: T5): Nothing =
+		ret(this(value1, value2, value3, value4, value5))
 }
 
 
