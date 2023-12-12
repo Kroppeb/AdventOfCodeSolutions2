@@ -10,4 +10,10 @@
   <component name="KotlinJpsPluginSettings">
     <option name="version" value="2.0.0-Beta1" />
   </component>
+  <component name="KotlinCompilerSettings">
+    <option name="additionalArguments" value="-Xcontext-receivers" />
+  </component>
+  <component name="KotlinJpsPluginSettings">
+    <option name="version" value="1.9.10" />
+  </component>
 </project>
