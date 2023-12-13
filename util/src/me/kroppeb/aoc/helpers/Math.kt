@@ -285,13 +285,17 @@ private var crtWarning = false
 
 @JvmName("crtIntInt")
 fun crt(values: List<Pair<Int, Int>>): Sint = crt(values.map { it.first.s to it.second.s })
+
 @JvmName("crtSintInt")
 fun crt(values: List<Pair<Sint, Int>>): Sint = crt(values.map { it.first to it.second.s })
+
 @JvmName("crtIntSint")
 fun crt(values: List<Pair<Int, Sint>>): Sint = crt(values.map { it.first.s to it.second })
-fun crt(values: List<Pair<Sint, Sint>>): Sint {
+fun crt(values: List<Pair<Sint, Sint>>): Sint = crtE(values).first
+
+fun crtE(values: List<Pair<Sint, Sint>>): Pair<Sint, Sint> {
 	if (!crtWarning) {
-		for ((a,b) in values) {
+		for ((a, b) in values) {
 			if (a !in 0 until b) {
 				println("CRT Warning: $a !in 0 until $b")
 				crtWarning = true
@@ -300,12 +304,41 @@ fun crt(values: List<Pair<Sint, Sint>>): Sint {
 		}
 	}
 
-	require(values.pairWise().all{gcd(it.first.second, it.second.second) == 1.s}){"Not pairwise coprime"}
+//	require(values.pairWise().all { gcd(it.first.second, it.second.second) == 1.s }) { "Not pairwise coprime" }
+	val simplified_values = simplifyCrt(values) ?: throw IllegalArgumentException("Not solvable coprime")
 
-	val md = values.map { it.second }.product()
-	val mds = values.map { md / it.second }
-	val ys = mds.zip(values) { mul, value -> value.first * mul.modInv(value.second) * mul }
+	val md = simplified_values.map { it.second }.product()
+	val mds = simplified_values.map { md / it.second }
+	val ys = mds.zip(simplified_values) { mul, value -> value.first * mul.modInv(value.second) * mul }
 	val sum = ys.sum()
-	return sum mod md
+	return sum mod md to md
+}
 
+fun simplifyCrt(values: List<Pair<Sint, Sint>>): List<Pair<Sint, Sint>>? {
+	// split into coprime divisors. if that is impossible (eg 2 mod 4 and 3 mod 6) return null
+	val res = mutableListOf<Pair<Sint, Sint>>()
+
+	val queue = ArrayDeque(values)
+
+	while(queue.isNotEmpty()) {
+		var (a, b) = queue.removeFirst()
+
+		for (i in res.indices) {
+			var (c, d) = res[i]
+			if (d == 1.s) continue
+			val gcd = gcd(b, d)
+			if (gcd == 1.s) continue
+			if (a % gcd != c % gcd) return null // no solution
+			b /= gcd
+			d /= gcd
+			res[i] = c to d
+			queue.add(a to b)
+		}
+
+		if (b != 1.s) {
+			res.add(a to b)
+		}
+	}
+
+	return res.filter{it.second != 1.s}.map{(a,b) -> a % b to b}
 }

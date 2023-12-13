@@ -1,6 +1,9 @@
+@file:OptIn(ExperimentalTypeInference::class)
+
 package me.kroppeb.aoc.helpers.sint
 
 import me.kroppeb.aoc.helpers.*
+import kotlin.experimental.ExperimentalTypeInference
 
 
 val Int.s: Sint get() = Sint(this.toLong())
@@ -195,6 +198,7 @@ infix fun Long.mod(base: Sint) = this.s mod base
 
 fun Iterable<Sint>.sum(): Sint = fold(0.s) { a, b -> a + b }
 
+//@OverloadResolutionByLambdaReturnType
 fun <T> Iterable<T>.sumOf(selector: (T) -> Sint): Sint = map(selector).sum()
 fun Iterable<Sint>.cumSum(): List<Sint> = scan { a, b -> a + b }
 

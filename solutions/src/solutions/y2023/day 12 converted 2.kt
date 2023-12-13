@@ -1,6 +1,6 @@
 @file:Suppress("PackageDirectoryMismatch", "UnusedImport")
 
-package solutions.y2023.d05c1
+package solutions.y2023.d05c2
 
 
 /*

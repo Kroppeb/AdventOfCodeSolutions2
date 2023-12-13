@@ -24,10 +24,10 @@ fun <E> List<E>.repeat(length: Sint): List<E> {
 
 //region list operators
 operator fun <T> List<T>.get(indexes: IntRange): List<T> = subList(indexes.first, indexes.last + 1)
-operator fun <T> List<T>.get(indexes: SintRange): List<T> = subList(indexes.first.i, (indexes.last + 1).i)
+//operator fun <T> List<T>.get(indexes: SintRange): List<T> = subList(indexes.first.i, (indexes.last + 1).i)
 
 operator fun <T> List<T>.get(indexes: IntProgression): List<T> = indexes.map { this[it] }
-operator fun <T> List<T>.get(indexes: SintProgression): List<T> = indexes.map { this[it] }
+//operator fun <T> List<T>.get(indexes: SintProgression): List<T> = indexes.map { this[it] }
 
 
 operator fun <E> List<E>.times(count: Int) = repeat(count)

@@ -489,3 +489,11 @@ fun Any?.asSortKey() = SortKey(this)
 
 fun no(): Nothing = error("no")
 fun <T>no(like: T): T = error("no")
+
+inline fun <reified T> Any?.asEx(_example: T): T = this as? T ?: error("Can't cast $this to ${T::class.java}")
+
+fun <T> List<T>.b(): List<T> = drop(1) // Behead
+fun <T> T.g(): List<T> = listOf(this) // Group
+fun <T> List<T>.h(): T = first() // Head
+fun <T> List<T>.k(): List<T> = dropLast(1) // Knife
+fun <T> List<T>.t(): T = last() // Tail

@@ -1,6 +1,6 @@
 @file:Suppress("PackageDirectoryMismatch", "UnusedImport")
 
-package solutions.y2023.d05c1
+package solutions.y2023.d05c4
 
 
 /*
@@ -37,32 +37,13 @@ import kotlin.math.*
 
 
 import LoggerSettings
-import java.awt.Toolkit
-import java.awt.datatransfer.Clipboard
-import java.awt.datatransfer.StringSelection
 
 import me.kroppeb.aoc.helpers.*
-import me.kroppeb.aoc.helpers.collections.*
-import me.kroppeb.aoc.helpers.collections.list.*
-import me.kroppeb.aoc.helpers.collections.extensions.*
-import me.kroppeb.aoc.helpers.graph.*
-import me.kroppeb.aoc.helpers.grid.*
-import me.kroppeb.aoc.helpers.point.*
 import me.kroppeb.aoc.helpers.sint.*
-import itertools.*
 import log
-import java.util.Comparator
-import java.util.Deque
-import java.util.PriorityQueue
 import kotlin.*
-import kotlin.annotation.*
 import kotlin.collections.*
-import kotlin.comparisons.*
 import kotlin.io.*
-import kotlin.ranges.*
-import kotlin.sequences.*
-import kotlin.text.*
-import kotlin.math.*
 
 
 private val xxxxx = Clock(6, 3)
@@ -71,30 +52,31 @@ private val xxxxz = LoggerSettings.logNonAnswers(false)
 
 
 private fun part1() {
-	var inp = getLines(2023, 12).map { line ->
+	getLines(2023, 12).sumOf { line ->
 		val (d, v) = line.split2(" ")
 
+//		yComb(listOf(d).repeat(5).joinToString("?").e(), v.sints().repeat(5)) { cs, ix ->
 		yComb(d.e(), v.sints()) { cs, ix ->
 			when (cs.firstOrNull()) {
 				null -> if (ix.isEmpty()) 1.s else 0.s
-				'?' -> call(cs.drop(1), ix) as Sint + call(listOf('#') + cs.drop(1), ix)
+				'?' -> call(cs.drop(1), ix) as Sint + call("#".e() + cs.drop(1), ix)
 				'.' -> call(cs.drop(1), ix)
 				'#' -> {
 					val x = ix.getOrNull(0) ?: ret(0.s)
 					if (cs.size < x) ret(0.s)
-					if ((0 until x).any { cs[it] == '.' }) ret(0.s)
+					if ('.' in cs[0 until x]) ret(0.s)
 					when (cs.getOrNull(x)) {
 						null -> if (ix.size == 1) 1.s else 0.s
 						'#' -> 0.s
 						else -> call(cs.drop(x + 1), ix.drop(1))
 					}
 				}
+
 				else -> no()
 			}
 		} log 0
-	}.sum() log 1
+	} log 1
 }
-
 
 
 fun main() {
