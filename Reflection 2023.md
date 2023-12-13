@@ -35,3 +35,19 @@
 * Nice points: TOP 50
 * Didn't use GitHub copilot today,
 * [ ] Convert a list of BoundedGridPoints to Points easily
+
+## Day 12
+
+* Nice
+* People used more bruteforce for day one to go faster but that cost
+    them for part 2
+* Could have used yComb
+* [x] Add memoize functions
+* [x] Allow yComb to be memoized easily
+
+# Day 13
+53/81
+* A bit slow I think? 
+  * Didn't sleep that well
+  * I didn't do my finger stretched today, idk if that's related
+* I don't think using a grid here helped me
