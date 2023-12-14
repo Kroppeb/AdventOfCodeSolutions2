@@ -488,12 +488,32 @@ fun sortKey(key: Any?) = SortKey(key)
 fun Any?.asSortKey() = SortKey(this)
 
 fun no(): Nothing = error("no")
-fun <T>no(like: T): T = error("no")
+fun <T> no(like: T): T = error("no")
 
 inline fun <reified T> Any?.asEx(_example: T): T = this as? T ?: error("Can't cast $this to ${T::class.java}")
 
-fun <T> List<T>.b(): List<T> = drop(1) // Behead
+fun <T> Iterable<T>.b(): List<T> = drop(1) // Behead
 fun <T> T.g(): List<T> = listOf(this) // Group
-fun <T> List<T>.h(): T = first() // Head
-fun <T> List<T>.k(): List<T> = dropLast(1) // Knife
-fun <T> List<T>.t(): T = last() // Tail
+fun <T> Iterable<T>.h(): T = first() // Head
+fun <T> Iterable<T>.k(): List<T> = dropLast(1) // Knife
+fun <T> Iterable<T>.t(): T = last() // Tail
+
+
+fun <T> Iterable<T>.dropLast(n: Int): List<T> {
+	val l = toList()
+	require(n >= 0) { "Requested element count $n is less than zero." }
+	return l.take((l.size - n).coerceAtLeast(0))
+}
+
+public inline fun <T> Iterable<T>.dropLastWhile(predicate: (T) -> Boolean): List<T> {
+	val l = toList()
+	if (!l.isEmpty()) {
+		val iterator = l.listIterator(l.size)
+		while (iterator.hasPrevious()) {
+			if (!predicate(iterator.previous())) {
+				return l.take(iterator.nextIndex() + 1)
+			}
+		}
+	}
+	return emptyList()
+}
