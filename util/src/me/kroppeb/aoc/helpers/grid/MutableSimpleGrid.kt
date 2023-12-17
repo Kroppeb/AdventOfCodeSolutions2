@@ -1,57 +1,67 @@
+@file:Suppress("MemberVisibilityCanBePrivate")
+
 package me.kroppeb.aoc.helpers.grid
 
 import me.kroppeb.aoc.helpers.*
-import me.kroppeb.aoc.helpers.point.BoundsI
-import me.kroppeb.aoc.helpers.point.PointI
-import me.kroppeb.aoc.helpers.point.toBI
-import me.kroppeb.aoc.helpers.point.toPI
+import me.kroppeb.aoc.helpers.point.*
 
-class MutableSimpleGrid<T>(val items: MutableList<MutableList<T>>) : StrictGrid<T>, MutableGrid<T> {
-	override val boundsI: BoundsI
+public class MutableSimpleGrid<T>(public val items: MutableList<MutableList<T>>) : StrictGrid<T>, MutableGrid<T> {
+	override val bounds: Bounds
+
 
 	init {
-		if (Clock.nX != 0) {
-			// x is first index
-			boundsI = (0 toPI 0) toBI (items.lastIndex toPI items[0].lastIndex)
-		} else {
-			// y is first index
-			boundsI = (0 toPI 0) toBI (items[0].lastIndex toPI items.lastIndex)
+		require(items.isEmpty() || items.all { it.size == items.first().size }) { "non consistent length" }
+		val maxValue =
+			if (Clock.nX != 0) items.lastIndex toP items[0].lastIndex // x is first index
+			else items[0].lastIndex toP items.lastIndex// y is first index
+
+		bounds = 0 toP 0 toB maxValue
+	}
+
+
+	override fun set(index: Point, item: T) {
+		when (Clock.mode) {
+			Clock.Mode.SE -> items[index.x.i][index.y.i] = item
+			Clock.Mode.SW -> items[index.x.i].also { it[it.lastIndex - index.y.i] = item}
+			Clock.Mode.NE -> items[items.lastIndex - index.x.i][index.y.i] = item
+			Clock.Mode.NW -> items[items.lastIndex - index.x.i].also { it[it.lastIndex - index.y.i] = item}
+			Clock.Mode.ES -> items[index.y.i][index.x.i] = item
+			Clock.Mode.EN -> items[index.y.i].also { it[it.lastIndex - index.x.i] = item}
+			Clock.Mode.WS -> items[items.lastIndex - index.y.i][index.x.i] = item
+			Clock.Mode.WN -> items[items.lastIndex - index.y.i].also { it[it.lastIndex - index.x.i] = item}
 		}
 	}
 
-	override fun set(index: PointI, item: T) {
-		when {
-			Clock.nX < 0 -> items[index.x][index.y] = item
-			Clock.nX > 0 -> items[items.size - 1 - index.x][index.y] = item
-			Clock.nY < 0 -> items[index.y][index.x] = item
-			else -> items[items.size - 1 - index.y][index.x] = item
+	override fun get(index: Point): T {
+		return when (Clock.mode) {
+			Clock.Mode.SE -> items[index.x.i][index.y.i]
+			Clock.Mode.SW -> items[index.x.i].let { it[it.lastIndex - index.y.i] }
+			Clock.Mode.NE -> items[items.lastIndex - index.x.i][index.y.i]
+			Clock.Mode.NW -> items[items.lastIndex - index.x.i].let { it[it.lastIndex - index.y.i] }
+			Clock.Mode.ES -> items[index.y.i][index.x.i]
+			Clock.Mode.EN -> items[index.y.i].let { it[it.lastIndex - index.x.i] }
+			Clock.Mode.WS -> items[items.lastIndex - index.y.i][index.x.i]
+			Clock.Mode.WN -> items[items.lastIndex - index.y.i].let { it[it.lastIndex - index.x.i] }
 		}
 	}
 
-	override fun get(index: PointI): T {
-		return when {
-			Clock.nX < 0 -> items[index.x][index.y]
-			Clock.nX > 0 -> items[items.size - 1 - index.x][index.y]
-			Clock.nY < 0 -> items[index.y][index.x]
-			else -> items[items.size - 1 - index.y][index.x]
-		}
-	}
-
-	fun rows(): Iterable<List<T>> = items
-	fun cols(): Iterable<List<T>> = items.transpose()
-	fun rowsCols(): Iterable<List<T>> = items + items.transpose()
-	fun diag1(): List<T> {
-		assert(boundsI.isSquare)
+	public fun rows(): Iterable<List<T>> = items
+	public fun cols(): Iterable<List<T>> = items.transpose()
+	public fun rowsCols(): Iterable<List<T>> = items + items.transpose()
+	public fun diag1(): List<T> {
+		assert(bounds.isSquare)
 		return items.mapIndexed { i, row -> row[i] }
 	}
-	fun diag2(): List<T> {
-		assert(boundsI.isSquare)
+
+	public fun diag2(): List<T> {
+		assert(bounds.isSquare)
 		return items.mapIndexed { i, row -> row[items.size - 1 - i] }
 	}
-	fun diagonals(): Iterable<List<T>> = listOf(diag1(), diag2())
-	fun rowsColsDiagonals(): Iterable<List<T>> = rowsCols() + diagonals()
 
-	fun allItems(): Iterable<T> = items.flatten()
+	public fun diagonals(): Iterable<List<T>> = listOf(diag1(), diag2())
+	public fun rowsColsDiagonals(): Iterable<List<T>> = rowsCols() + diagonals()
+
+	public fun allItems(): Iterable<T> = items.flatten()
 
 	override fun toString(): String {
 		return items.joinToString("\n") { it.joinToString(" ") }
@@ -62,35 +72,23 @@ class MutableSimpleGrid<T>(val items: MutableList<MutableList<T>>) : StrictGrid<
 }
 
 
-fun <T> List<List<T>>.mutableGrid(): MutableSimpleGrid<T> {
-	if(isEmpty() || first().isEmpty())
+public fun <T> List<List<T>>.mutableGrid(): MutableSimpleGrid<T> {
+	if (isEmpty() || first().isEmpty())
 		error("empty grid")
 	val l = this[0].size
-	if(subList(0,size - 1).any{it.size != l})
+	if (subList(0, size - 1).any { it.size != l })
 		error("non consistent length")
-	if(last().isEmpty())
+	if (last().isEmpty())
 		return MutableSimpleGrid(subList(0, size - 1).mut2())
-	if(last().size != l)
+	if (last().size != l)
 		error("non consistent length")
 	return MutableSimpleGrid(this.mut2())
 }
 
-fun <T> Iterable<List<List<T>>>.mutableGrids(): List<MutableSimpleGrid<T>> = map{it.mutableGrid()}
+public fun <T> Iterable<List<List<T>>>.mutableGrids(): List<MutableSimpleGrid<T>> = map { it.mutableGrid() }
 
-inline fun <T, R> MutableSimpleGrid<T>.map(block: (T) -> R) = this.items.map2(block).grid()
-inline fun <T, R> MutableSimpleGrid<T>.mapIndexed(block: (PointI, T) -> R) = this.items.mapIndexed { i, a ->
-	a.mapIndexed{ j,b ->
-		val p = if (Clock.nX != 0) {
-			// x is first index
-			i toPI j
-		} else {
-			// y is first index
-			j toPI i
-		}
-		block(p, b)
-	}
-}.grid()
+public inline fun <T, R> MutableSimpleGrid<T>.mapGrid(block: (T) -> R): SimpleGrid<R> = this.items.map2(block).grid()
 
-inline fun <T, R> MutableSimpleGrid<T>.forEachIndexed(block: (PointI, T) -> R) = this.boundsI.forEach { block(it, get(it)) }
-
-fun <T> SimpleGrid<T>.mutable() = this.items.mutableGrid()
+public fun <T> SimpleGrid<T>.mutable(): MutableSimpleGrid<T> = this.items.mutableGrid()
+public fun <T> MutableSimpleGrid<T>.copy(): MutableSimpleGrid<T> = this.items.mutableGrid()
+public fun <T> MutableSimpleGrid<T>.immutable(): SimpleGrid<T> = this.items.grid()

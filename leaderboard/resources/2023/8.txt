@@ -48,11 +48,11 @@ First hundred users to get both stars on Day 8:
  47) Dec 08  00:08:33  tluo5458
  48) Dec 08  00:08:34  Kroppeb (AoC++)
  49) Dec 08  00:08:35  Yan Kang Lee
- 50) Dec 08  00:08:36  Antonio Molina (Sponsor)
+ 50) Dec 08  00:08:36  Antonio Molina (AoC++) (Sponsor)
  51) Dec 08  00:08:37  Epiphane (AoC++)
  52) Dec 08  00:08:39  (anonymous user #2001399)
  53) Dec 08  00:08:40  Zeyu Chen
- 54) Dec 08  00:08:42  connorjayr
+ 54) Dec 08  00:08:42  connorjayr (AoC++)
  55) Dec 08  00:08:45  Sam Harrison
  56) Dec 08  00:08:47  Elmer Le
  57) Dec 08  00:08:48  nandhagk
@@ -64,7 +64,7 @@ First hundred users to get both stars on Day 8:
  63) Dec 08  00:09:00  Lukas Gelbmann
  64) Dec 08  00:09:00  Ryan Dewey (AoC++)
  65) Dec 08  00:09:01  Nathan Ye
- 66) Dec 08  00:09:01  Olivier Le Floch
+ 66) Dec 08  00:09:01  Olivier Le Floch (AoC++)
  67) Dec 08  00:09:02  Paul Zagieboylo (AoC++)
  68) Dec 08  00:09:05  Thomas Feld
  69) Dec 08  00:09:06  Muhammad Rais Fathin Mudzakir
@@ -121,7 +121,7 @@ First hundred users to get the first star on Day 8:
  18) Dec 08  00:02:33  Gorane7
  19) Dec 08  00:02:35  LegionMammal978
  20) Dec 08  00:02:36  artheadsweden
- 21) Dec 08  00:02:36  Antonio Molina (Sponsor)
+ 21) Dec 08  00:02:36  Antonio Molina (AoC++) (Sponsor)
  22) Dec 08  00:02:37  Tomas Rokicki
  23) Dec 08  00:02:42  rak1507
  24) Dec 08  00:02:42  dan-simon
@@ -130,7 +130,7 @@ First hundred users to get the first star on Day 8:
  27) Dec 08  00:02:44  Thomas
  28) Dec 08  00:02:44  Robert Xiao
  29) Dec 08  00:02:48  (anonymous user #637942)
- 30) Dec 08  00:02:48  connorjayr
+ 30) Dec 08  00:02:48  connorjayr (AoC++)
  31) Dec 08  00:02:49  cefqrn
  32) Dec 08  00:02:50  mrkeldon
  33) Dec 08  00:02:50  David Sharick
@@ -167,7 +167,7 @@ First hundred users to get the first star on Day 8:
  64) Dec 08  00:03:09  jonathanpaulson (AoC++)
  65) Dec 08  00:03:10  Justin Yokota
  66) Dec 08  00:03:10  Cameron Wu (AoC++)
- 67) Dec 08  00:03:11  nim-ka
+ 67) Dec 08  00:03:11  nim-ka (AoC++)
  68) Dec 08  00:03:12  matthewd
  69) Dec 08  00:03:12  Matt Gruskin (AoC++)
  70) Dec 08  00:03:12  Sneed's Feeduck and Seeduck

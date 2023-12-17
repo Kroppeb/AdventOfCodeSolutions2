@@ -12,7 +12,7 @@ First hundred users to get both stars on Day 5:
  11) Dec 05  00:15:52  jonathanpaulson (AoC++)
  12) Dec 05  00:16:02  PoustouFlan
  13) Dec 05  00:16:41  Giacomo Stevanato
- 14) Dec 05  00:16:46  Antonio Molina (Sponsor)
+ 14) Dec 05  00:16:46  Antonio Molina (AoC++) (Sponsor)
  15) Dec 05  00:16:54  Thomas Neill
  16) Dec 05  00:17:05  Erik Amirell Eklöf (AoC++)
  17) Dec 05  00:17:19  Kami Leon
@@ -120,7 +120,7 @@ First hundred users to get the first star on Day 5:
  17) Dec 05  00:04:37  Mihhail Novik
  18) Dec 05  00:04:39  ruuddotorg
  19) Dec 05  00:04:46  (anonymous user #1510407)
- 20) Dec 05  00:05:08  nim-ka
+ 20) Dec 05  00:05:08  nim-ka (AoC++)
  21) Dec 05  00:05:11  Роман Курмаев
  22) Dec 05  00:05:23  (anonymous user #203730)
  23) Dec 05  00:05:32  Robert Xiao
@@ -142,7 +142,7 @@ First hundred users to get the first star on Day 5:
  39) Dec 05  00:06:08  bcc32 (AoC++) (Sponsor)
  40) Dec 05  00:06:10  (anonymous user #44119)
  41) Dec 05  00:06:10  Kroppeb (AoC++)
- 42) Dec 05  00:06:17  sndyx
+ 42) Dec 05  00:06:17  sndyx (AoC++)
  43) Dec 05  00:06:17  Ryan Hitchman (AoC++)
  44) Dec 05  00:06:18  mserrano
  45) Dec 05  00:06:18  teidesu
@@ -162,7 +162,7 @@ First hundred users to get the first star on Day 5:
  59) Dec 05  00:06:42  Lewin Gan
  60) Dec 05  00:06:43  (anonymous user #3187566)
  61) Dec 05  00:06:45  Robin Allen
- 62) Dec 05  00:06:46  connorjayr
+ 62) Dec 05  00:06:46  connorjayr (AoC++)
  63) Dec 05  00:06:48  Daniel Gu
  64) Dec 05  00:06:49  jonathanpaulson (AoC++)
  65) Dec 05  00:06:50  nthistle (AoC++) (Sponsor)

@@ -11,7 +11,7 @@ First hundred users to get both stars on Day 4:
  10) Dec 04  00:04:07  (anonymous user #3487639)
  11) Dec 04  00:04:08  Anish Singhani (AoC++)
  12) Dec 04  00:04:15  qpwoeirut
- 13) Dec 04  00:04:19  nim-ka
+ 13) Dec 04  00:04:19  nim-ka (AoC++)
  14) Dec 04  00:04:33  Joseph Durie
  15) Dec 04  00:04:41  Noble Mushtak
  16) Dec 04  00:04:41  Lewin Gan
@@ -23,7 +23,7 @@ First hundred users to get both stars on Day 4:
  22) Dec 04  00:05:11  leijurv
  23) Dec 04  00:05:14  sr2echa
  24) Dec 04  00:05:14  Gorane7
- 25) Dec 04  00:05:19  One
+ 25) Dec 04  00:05:19  Also looking 4 an internship!
  26) Dec 04  00:05:20  coolcomputery
  27) Dec 04  00:05:20  xiaowuc1
  28) Dec 04  00:05:20  S. Teikn Smith
@@ -63,7 +63,7 @@ First hundred users to get both stars on Day 4:
  62) Dec 04  00:06:29  Patrick Hogg (AoC++) (Sponsor)
  63) Dec 04  00:06:30  João Salavisa
  64) Dec 04  00:06:32  Mathis Hammel (AoC++)
- 65) Dec 04  00:06:33  Antonio Molina (Sponsor)
+ 65) Dec 04  00:06:33  Antonio Molina (AoC++) (Sponsor)
  66) Dec 04  00:06:33  jdabtieu
  67) Dec 04  00:06:35  Gabriel Wu (AoC++)
  68) Dec 04  00:06:35  Alexandre Dewilde
@@ -111,13 +111,13 @@ First hundred users to get the first star on Day 4:
   8) Dec 04  00:01:38  D. Salgado
   9) Dec 04  00:01:39  eniraa
  10) Dec 04  00:01:40  leijurv
- 11) Dec 04  00:01:42  One
+ 11) Dec 04  00:01:42  Also looking 4 an internship!
  12) Dec 04  00:01:46  zach1502
  13) Dec 04  00:01:46  Davis Yoshida (AoC++)
  14) Dec 04  00:01:50  Noble Mushtak
  15) Dec 04  00:01:52  Rem Zhang
  16) Dec 04  00:01:52  John Kesler
- 17) Dec 04  00:01:55  nim-ka
+ 17) Dec 04  00:01:55  nim-ka (AoC++)
  18) Dec 04  00:01:58  Neal Wu
  19) Dec 04  00:01:59  Shawn Hagler
  20) Dec 04  00:01:59  ekimekim
@@ -143,7 +143,7 @@ First hundred users to get the first star on Day 4:
  40) Dec 04  00:02:21  dan-simon
  41) Dec 04  00:02:21  Calvin Godfrey
  42) Dec 04  00:02:22  Elmer Le
- 43) Dec 04  00:02:22  connorjayr
+ 43) Dec 04  00:02:22  connorjayr (AoC++)
  44) Dec 04  00:02:23  penteract
  45) Dec 04  00:02:23  hyper-neutrino
  46) Dec 04  00:02:23  (anonymous user #2330367)

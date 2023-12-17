@@ -1,60 +1,73 @@
+@file:Suppress("MemberVisibilityCanBePrivate")
+
 package me.kroppeb.aoc.helpers
 
 
 import me.kroppeb.aoc.helpers.point.Point
-import me.kroppeb.aoc.helpers.point.PointI
 import me.kroppeb.aoc.helpers.point.toP
-import me.kroppeb.aoc.helpers.point.toPI
-
-object Clock {
-	lateinit var left: Point
-		private set;
-	lateinit var right: Point
-		private set;
-	lateinit var up: Point
-		private set;
-	lateinit var down: Point
-		private set;
-
-	val north get() = up
-	val east get() = right
-	val south get() = down
-	val west get() = left
+import me.kroppeb.aoc.helpers.sint.*
 
 
-	val leftI get() = left.int
-	val rightI get() = right.int
-	val upI get() = up.int
-	val downI get() = down.int
+public object Clock {
+	public enum class Mode(
+		public val nX: Int,
+		public val eX: Int,
+		public val nY: Int,
+		public val eY: Int,
+	) { // X+, Y+
+		NE(1, 0, 0, 1),
+		NW(1, 0, 0, -1),
+		SE(-1, 0, 0, 1),
+		SW(-1, 0, 0, -1),
+		EN(0, 1, 1, 0),
+		ES(0, 1, -1, 0),
+		WN(0, -1, 1, 0),
+		WS(0, -1, -1, 0);
+
+		init {
+			assert(nX == 0 || eX == 0)
+			assert(nY == 0 || eY == 0)
+		}
+	}
+
+	public lateinit var left: Point
+		private set;
+	public lateinit var right: Point
+		private set;
+	public lateinit var up: Point
+		private set;
+	public lateinit var down: Point
+		private set;
+
+	public val north: Point get() = up
+	public val east: Point get() = right
+	public val south: Point get() = down
+	public val west: Point get() = left
+
 
 	// bounds calculation
-	var nX: Int = 0
-		private set;
-	var eX: Int = 0
-		private set;
-	var nY: Int = 0
-		private set;
-	var eY: Int = 0
-		private set;
+	public val nX: Int get() = mode.nX
+	public val eX: Int get() = mode.eX
+	public val nY: Int get() = mode.nY
+	public val eY: Int get() = mode.eY
+
+	public lateinit var mode: Mode
+		private set
 
 
-	operator fun invoke(x: Int, y: Int) {
-		if (x + y mod 6 != 3)
-			error("invalid clock")
-		when (x) {
-			3 -> eX = 1
-			6 -> nX = -1
-			9 -> eX = -1
-			12 -> nX = 1
-			else -> error("invalid clock x")
+	public operator fun invoke(x: Int, y: Int) {
+		mode = when (x to y) {
+			3 to 6 -> Mode.ES
+			3 to 12 -> Mode.EN
+			6 to 3 -> Mode.SE
+			6 to 9 -> Mode.SW
+			9 to 6 -> Mode.WS
+			9 to 12 -> Mode.WN
+			12 to 3 -> Mode.NE
+			12 to 9 -> Mode.NW
+			else -> error("invalid clock")
 		}
-		when (y) {
-			3 -> eY = 1
-			6 -> nY = -1
-			9 -> eY = -1
-			12 -> nY = 1
-			else -> error("invalid clock y")
-		}
+
 		up = nX toP nY
 		right = eX toP eY
 		left = -right
@@ -63,7 +76,7 @@ object Clock {
 		this.print()
 	}
 
-	fun print() {
+	public fun print() {
 		// eg 6,3: (nX = -1, eY = 1
 		//      -----
 		//     /     \
@@ -109,23 +122,15 @@ object Clock {
 		println("    -----    ")
 	}
 
-	fun firstRange(size: Int): IntProgression {
-		return if (downI.x + downI.y > 0) {
-			0 until size
-		} else {
-			size - 1 downTo 0
-		}
-	}
+	public fun firstRange(size: Sint): SintProgression =
+		if (down.x + down.y > Sint.ZERO) 0.s until size
+		else size - 1 downTo 0.s
 
-	fun secondRange(size: Int): IntProgression {
-		return if (rightI.x + rightI.y > 0) {
-			0 until size
-		} else {
-			size - 1 downTo 0
-		}
-	}
+	public fun secondRange(size: Sint): SintProgression =
+		if (right.x + right.y > Sint.ZERO) 0.s until size
+		else size - 1 downTo 0.s
 
-	fun fromIndices(first: Int, second: Int): PointI {
-		return downI * first + rightI * second
+	public fun fromIndices(first: Sint, second: Sint): Point {
+		return down * first + right * second
 	}
 }

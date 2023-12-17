@@ -31,7 +31,7 @@ First hundred users to get both stars on Day 3:
  30) Dec 03  00:09:02  Egor Kulikov (AoC++) (Sponsor)
  31) Dec 03  00:09:02  Craig Silverstein
  32) Dec 03  00:09:09  Ryan O’Hara
- 33) Dec 03  00:09:12  Antonio Molina (Sponsor)
+ 33) Dec 03  00:09:12  Antonio Molina (AoC++) (Sponsor)
  34) Dec 03  00:09:12  Andrew X. (Sponsor)
  35) Dec 03  00:09:12  skanev (AoC++)
  36) Dec 03  00:09:16  ZED.Charley William Thairo
@@ -200,4 +200,4 @@ First hundred users to get the first star on Day 3:
  97) Dec 03  00:07:06  Sam Le
  98) Dec 03  00:07:06  Verulean
  99) Dec 03  00:07:08  Jeff Zhang
-100) Dec 03  00:07:09  Antonio Molina (Sponsor)
+100) Dec 03  00:07:09  Antonio Molina (AoC++) (Sponsor)

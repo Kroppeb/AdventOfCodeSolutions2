@@ -25,19 +25,33 @@
 * I accidentally use python syntax instead of kotlin syntax
 
 ## Day 05
-41/2; points: 159, 
+41/2; points: 159, 86th place
 * LET's FUCKING GO
 * [ ] Fix overload issue between stdlib and utils (min/max)
 
+## Day 06
+221/127; points: 0, 104th place
+
+## Day 07
+218/141; points: 0, 121st place
+
+## Day 08
+45/48; points: 109, 75th place
+
+## Day 09
+164/107; points: 0, 88th place
+
+## Day 10
+33/168; points: 68, 71st place
 
 ## Day 11
-5/47; points: 150
+5/47; points: 150, 47th place
 * Nice points: TOP 50
 * Didn't use GitHub copilot today,
 * [ ] Convert a list of BoundedGridPoints to Points easily
 
 ## Day 12
-
+197/20; points: 81, 41st place
 * Nice
 * People used more bruteforce for day one to go faster but that cost
     them for part 2
@@ -45,9 +59,28 @@
 * [x] Add memoize functions
 * [x] Allow yComb to be memoized easily
 
-# Day 13
-53/81
+## Day 13
+53/81; points: 78, 39th place
 * A bit slow I think? 
   * Didn't sleep that well
   * I didn't do my finger stretched today, idk if that's related
 * I don't think using a grid here helped me
+* `find` **IS** `firstOfNull`, that's why there is no `findOrNull`
+
+## Day 14
+267/167; points: 0, 43rd place
+* Didn't sleep well
+
+## Day 15
+232/172; points: 0, 50th place
+* Slept better, but I don't think I was fully awake. 
+    I really need to use a full hour to wake up and 
+    not just lie in my bed
+
+## Day 16
+14/24; points: 164, 36th place
+* Still didn't sleep well, but better morning routine might have helped
+* Grids again??
+* leftEdge and friends were broken
+  * [x] lines of length 0 raise errors where they kinda shouldn't (maybe do add a warning?)
+  * [x] bounds' top left and familiy were wrong

@@ -1,3 +1,5 @@
+@file:Suppress("MemberVisibilityCanBePrivate")
+
 package me.kroppeb.aoc.helpers.point
 
 import me.kroppeb.aoc.helpers.Clock
@@ -6,103 +8,112 @@ import me.kroppeb.aoc.helpers.sint.*
 import kotlin.math.atan2
 import kotlin.math.sqrt
 
-data class Point(val x: Sint, val y: Sint) : PointNS<Point> {
+public data class Point(val x: Sint, val y: Sint) : PointN<Point> {
 	// TODO: evaluate whether having these as lazy actually helps or hurts
-	val right by lazy { this + Clock.right }
-	val down by lazy { this + Clock.down }
-	val left by lazy { this + Clock.left }
-	val up by lazy { this + Clock.up }
+	val right: Point by lazy { this + Clock.right }
+	val down: Point by lazy { this + Clock.down }
+	val left: Point by lazy { this + Clock.left }
+	val up: Point by lazy { this + Clock.up }
 
-	val north get() = up
-	val east get() = right
-	val south get() = down
-	val west get() = left
+	val north: Point get() = up
+	val east: Point get() = right
+	val south: Point get() = down
+	val west: Point get() = left
 
-	val downRight get() = down.right
-	val downLeft get() = down.left
-	val upRight get() = up.right
-	val upLeft get() = up.left
-	val rightDown get() = right.down
-	val rightUp get() = right.up
-	val leftDown get() = left.down
-	val leftUp get() = left.up
+	val downRight: Point get() = down.right
+	val downLeft: Point get() = down.left
+	val upRight: Point get() = up.right
+	val upLeft: Point get() = up.left
+	val rightDown: Point get() = right.down
+	val rightUp: Point get() = right.up
+	val leftDown: Point get() = left.down
+	val leftUp: Point get() = left.up
 
-	val northEast get() = north.east
-	val southEast get() = south.east
-	val southWest get() = south.west
-	val northWest get() = north.west
-
-	// useful for hex grids
-	val downDown get() = down.down
-	val rightRight get() = right.right
-	val upUp get() = up.up
-	val leftLeft get() = left.left
-
-	val northNorth get() = north.north
-	val eastEast get() = east.east
-	val southSouth get() = south.south
-	val westWest get() = west.west
-
-
-	val r get() = right
-	val d get() = down
-	val l get() = left
-	val u get() = up
-
-	val n get() = north
-	val e get() = east
-	val s get() = south
-	val w get() = west
-
-	val dr get() = down.right
-	val dl get() = down.left
-	val ur get() = up.right
-	val ul get() = up.left
-	val rd get() = right.down
-	val ru get() = right.up
-	val ld get() = left.down
-	val lu get() = left.up
-
-	val ne get() = north.east
-	val se get() = south.east
-	val sw get() = south.west
-	val nw get() = north.west
+	val northEast: Point get() = north.east
+	val southEast: Point get() = south.east
+	val southWest: Point get() = south.west
+	val northWest: Point get() = north.west
 
 	// useful for hex grids
-	val dd get() = down.down
-	val rr get() = right.right
-	val uu get() = up.up
-	val ll get() = left.left
+	val downDown: Point get() = down.down
+	val rightRight: Point get() = right.right
+	val upUp: Point get() = up.up
+	val leftLeft: Point get() = left.left
 
-	val nn get() = north.north
-	val ee get() = east.east
-	val ss get() = south.south
-	val ww get() = west.west
-
-
+	val northNorth: Point get() = north.north
+	val eastEast: Point get() = east.east
+	val southSouth: Point get() = south.south
+	val westWest: Point get() = west.west
 
 
-	fun rotateClock(): Point = Clock.right * Clock.up.dot(this) + Clock.up * Clock.left.dot(this)
-	fun rotateAntiClock(): Point = -rotateClock()
+	val r: Point get() = right
+	val d: Point get() = down
+	val l: Point get() = left
+	val u: Point get() = up
 
-	fun getQuadNeighbours() = listOf(right, down, left, up)
-	fun getDiagonalNeighbours() = listOf(right.down, left.down, left.up, right.up)
-	fun getOctNeighbours() = listOf(right, right.down, down, left.down, left, left.up, up, right.up)
+	val n: Point get() = north
+	val e: Point get() = east
+	val s: Point get() = south
+	val w: Point get() = west
 
-	fun getQuadNeighbourHood() = listOf(this, right, down, left, up)
-	fun getDiagonalNeighbourHood() = listOf(this, right.down, left.down, left.up, right.up)
-	fun getOctNeighbourHood() = listOf(this, right, right.down, down, left.down, left, left.up, up, right.up)
+	val dr: Point get() = down.right
+	val dl: Point get() = down.left
+	val ur: Point get() = up.right
+	val ul: Point get() = up.left
+	val rd: Point get() = right.down
+	val ru: Point get() = right.up
+	val ld: Point get() = left.down
+	val lu: Point get() = left.up
 
-	override fun getMooreNeighbours() = getOctNeighbours()
-	override fun getVonNeumannNeighbours() = getQuadNeighbours()
+	val ne: Point get() = north.east
+	val se: Point get() = south.east
+	val sw: Point get() = south.west
+	val nw: Point get() = north.west
+
+	// useful for hex grids
+	val dd: Point get() = down.down
+	val rr: Point get() = right.right
+	val uu: Point get() = up.up
+	val ll: Point get() = left.left
+
+	val nn: Point get() = north.north
+	val ee: Point get() = east.east
+	val ss: Point get() = south.south
+	val ww: Point get() = west.west
+
+
+	public fun rotateClock(): Point = Clock.right * Clock.up.dot(this) + Clock.up * Clock.left.dot(this)
+	public fun rotateAntiClock(): Point = -rotateClock()
+
+	public fun getQuadNeighbours(): List<Point> = listOf(up, right, down, left)
+	public fun getDiagonalNeighbours(): List<Point> = listOf(right.down, left.down, left.up, right.up)
+	public fun getOctNeighbours(): List<Point> = listOf(
+		up.left, up, up.right,
+		left, /* this, */ right,
+		down.left, down, down.right
+	)
+
+	public fun getQuadNeighbourHood(): List<Point> = listOf(this, right, down, left, up)
+	public fun getDiagonalNeighbourHood(): List<Point> = listOf(this, right.down, left.down, left.up, right.up)
+	public fun getOctNeighbourHood(): List<Point> = listOf(
+		up.left, up, up.right,
+		left, this, right,
+		down.left, down, down.right
+	)
+
+
+	public override fun getMooreNeighbours(): List<Point> = getOctNeighbours()
+	public override fun getVonNeumannNeighbours(): List<Point> = getQuadNeighbours()
+	public override fun getMooreNeighbourHood(): List<Point> = getOctNeighbourHood()
+	public override fun getVonNeumannNeighbourHood(): List<Point> = getQuadNeighbourHood()
 
 	override operator fun unaryMinus(): Point = -x toP -y
 
 	override operator fun minus(other: Point): Point = x - other.x toP y - other.y
 	override operator fun plus(other: Point): Point = x + other.x toP y + other.y
 
-	operator fun minus(other: Char): Point = this - other.toPoint()
-	operator fun plus(other: Char): Point = this + other.toPoint()
+	public operator fun minus(other: Char): Point = this - other.toPoint()
+	public operator fun plus(other: Char): Point = this + other.toPoint()
 
 
 	override operator fun times(other: Point): Point = x * other.x toP y * other.y
@@ -113,14 +124,14 @@ data class Point(val x: Sint, val y: Sint) : PointNS<Point> {
 	override operator fun div(other: Sint): Point = x / other toP y / other
 	override operator fun rem(other: Sint): Point = x % other toP y % other
 
-	override fun abs() = abs(x) toP abs(y)
+	override fun abs(): Point = abs(x) toP abs(y)
 
 	override fun sqrDist(): Sint = x * x + y * y
 	override fun dist(): Double = sqrt(sqrDist().l.toDouble())
 	override fun manDist(): Sint = abs(x) + abs(y)
 	override fun chebyshevDist(): Sint = max(abs(x), abs(y))
 
-	fun angle(): Double {
+	public fun angle(): Double {
 		return atan2(y.toDouble(), x.toDouble())
 	}
 
@@ -129,35 +140,41 @@ data class Point(val x: Sint, val y: Sint) : PointNS<Point> {
 	override fun min(other: Point): Point = min(this.x, other.x) toP min(this.y, other.y)
 	override fun max(other: Point): Point = max(this.x, other.x) toP max(this.y, other.y)
 
-	override fun dot(other: Point) = this.x * other.x + this.y * other.y
-	fun cross(other: Point): Sint = this.x * other.y - this.y * other.x
+	override fun dot(other: Point): Sint = this.x * other.x + this.y * other.y
+	public fun cross(other: Point): Sint = this.x * other.y - this.y * other.x
 
-	fun isLeftOf(other: Point) = Clock.left.dot(this) > Clock.left.dot(other)
-	fun isRightOf(other: Point) = Clock.right.dot(this) > Clock.right.dot(other)
-	fun isAbove(other: Point) = Clock.up.dot(this) > Clock.up.dot(other)
-	fun isBelow(other: Point) = Clock.down.dot(this) > Clock.down.dot(other)
-	fun sameLeftRight(other: Point) = Clock.left.dot(this) == Clock.left.dot(other)
-	fun sameUpDown(other: Point) = Clock.up.dot(this) == Clock.up.dot(other)
+	public fun isLeftOf(other: Point): Boolean = Clock.left.dot(this) > Clock.left.dot(other)
+	public fun isRightOf(other: Point): Boolean = Clock.right.dot(this) > Clock.right.dot(other)
+	public fun isAbove(other: Point): Boolean = Clock.up.dot(this) > Clock.up.dot(other)
+	public fun isBelow(other: Point): Boolean = Clock.down.dot(this) > Clock.down.dot(other)
+	public fun sameLeftRight(other: Point): Boolean = Clock.left.dot(this) == Clock.left.dot(other)
+	public fun sameUpDown(other: Point): Boolean = Clock.up.dot(this) == Clock.up.dot(other)
 
-	companion object {
-		val ZERO = 0 toP 0
-		val DIRS get() = ZERO.getQuadNeighbours()
-	}
 
-	fun northsInc() = this.sequence(Clock.up)
-	fun southsInc() = this.sequence(Clock.down)
-	fun eastsInc() = this.sequence(Clock.right)
-	fun westsInc() = this.sequence(Clock.left)
+	public fun northsInc(): Sequence<Point> = this.sequence(Clock.up)
+	public fun southsInc(): Sequence<Point> = this.sequence(Clock.down)
+	public fun eastsInc(): Sequence<Point> = this.sequence(Clock.right)
+	public fun westsInc(): Sequence<Point> = this.sequence(Clock.left)
 
-	fun norths() = this.northsInc().drop(1)
-	fun souths() = this.southsInc().drop(1)
-	fun easts() = this.eastsInc().drop(1)
-	fun wests() = this.westsInc().drop(1)
+	public fun norths(): Sequence<Point> = this.northsInc().drop(1)
+	public fun souths(): Sequence<Point> = this.southsInc().drop(1)
+	public fun easts(): Sequence<Point> = this.eastsInc().drop(1)
+	public fun wests(): Sequence<Point> = this.westsInc().drop(1)
 
 	override fun sign(): Point = x.sign() toP y.sign()
+	override fun isZero(): Boolean = x.isZero() && y.isZero()
+	override fun isAxisAligned(): Boolean = x.isZero() || y.isZero()
 
-	fun toPair() = x to y
+	public fun toPair(): Pair<Sint, Sint> = x to y
 
-	val int get() = x.i toPI y.i
-	val long get() = x.l toPL y.l
+	public fun isOnXAxis(): Boolean = y.isZero()
+	public fun isOnYAxis(): Boolean = x.isZero()
+
+	public fun isHorizontal(): Boolean = this.dot(Clock.up) == 0.s
+	public fun isVertical(): Boolean = this.dot(Clock.right) == 0.s
+
+	public companion object {
+		public val ZERO: Point = 0 toP 0
+		public val DIRS: List<Point> get() = ZERO.getQuadNeighbours() // has to be lazy cause directions can change
+	}
 }

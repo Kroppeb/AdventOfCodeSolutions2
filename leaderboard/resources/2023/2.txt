@@ -23,7 +23,7 @@ First hundred users to get both stars on Day 2:
  22) Dec 02  00:04:33  (anonymous user #60233) (AoC++)
  23) Dec 02  00:04:37  (anonymous user #1556836)
  24) Dec 02  00:04:37  Jan Verbeek
- 25) Dec 02  00:04:44  Antonio Molina (Sponsor)
+ 25) Dec 02  00:04:44  Antonio Molina (AoC++) (Sponsor)
  26) Dec 02  00:04:45  Kevin Yap (AoC++)
  27) Dec 02  00:04:45  PoustouFlan
  28) Dec 02  00:04:46  the-chenergy
@@ -78,7 +78,7 @@ First hundred users to get both stars on Day 2:
  77) Dec 02  00:05:56  Jimmy Ding
  78) Dec 02  00:05:56  tenth
  79) Dec 02  00:05:57  petertseng
- 80) Dec 02  00:06:02  connorjayr
+ 80) Dec 02  00:06:02  connorjayr (AoC++)
  81) Dec 02  00:06:02  Ben Zydney
  82) Dec 02  00:06:03  (anonymous user #1565212)
  83) Dec 02  00:06:05  Cameron Wu (AoC++)
@@ -146,7 +146,7 @@ First hundred users to get the first star on Day 2:
  43) Dec 02  00:03:23  Xavier Cooney
  44) Dec 02  00:03:24  Ben
  45) Dec 02  00:03:25  PDDG Glaser
- 46) Dec 02  00:03:28  Antonio Molina (Sponsor)
+ 46) Dec 02  00:03:28  Antonio Molina (AoC++) (Sponsor)
  47) Dec 02  00:03:28  Cameron Wu (AoC++)
  48) Dec 02  00:03:29  (anonymous user #2724128)
  49) Dec 02  00:03:29  S. Teikn Smith

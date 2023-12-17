@@ -1,6 +1,6 @@
 val year = "2023"
 val user = "Kroppeb"
-val target = 100
+val target = 32
 
 // Output is like this: " XX: A / B (C / D)"
 // XX: Day number

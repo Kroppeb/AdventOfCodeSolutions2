@@ -19,7 +19,7 @@ First hundred users to get both stars on Day 9:
  18) Dec 09  00:03:35  Craig Gidney
  19) Dec 09  00:03:37  tckmn
  20) Dec 09  00:03:41  (anonymous user #1508761)
- 21) Dec 09  00:03:41  nim-ka
+ 21) Dec 09  00:03:41  nim-ka (AoC++)
  22) Dec 09  00:03:41  mdlu (AoC++)
  23) Dec 09  00:03:42  Samuel Chen
  24) Dec 09  00:03:48  david-why
@@ -113,7 +113,7 @@ First hundred users to get the first star on Day 9:
  10) Dec 09  00:02:08  Zack Lee
  11) Dec 09  00:02:09  jonathanpaulson (AoC++)
  12) Dec 09  00:02:11  Ross Dempsey
- 13) Dec 09  00:02:11  One
+ 13) Dec 09  00:02:11  Also looking 4 an internship!
  14) Dec 09  00:02:15  phenomist
  15) Dec 09  00:02:16  Mercerenies
  16) Dec 09  00:02:22  Joseph Malagon
@@ -121,7 +121,7 @@ First hundred users to get the first star on Day 9:
  18) Dec 09  00:02:24  Ian DeHaan
  19) Dec 09  00:02:25  int-e
  20) Dec 09  00:02:25  David K. Zhang
- 21) Dec 09  00:02:26  nim-ka
+ 21) Dec 09  00:02:26  nim-ka (AoC++)
  22) Dec 09  00:02:33  mserrano
  23) Dec 09  00:02:34  Noble Mushtak
  24) Dec 09  00:02:37  Brian Liu
@@ -133,7 +133,7 @@ First hundred users to get the first star on Day 9:
  30) Dec 09  00:02:50  tirefire
  31) Dec 09  00:02:52  zacharybarbanell
  32) Dec 09  00:02:52  periodically-makes-puns
- 33) Dec 09  00:02:54  Antonio Molina (Sponsor)
+ 33) Dec 09  00:02:54  Antonio Molina (AoC++) (Sponsor)
  34) Dec 09  00:02:56  Samuel Chen
  35) Dec 09  00:02:57  nthistle (AoC++) (Sponsor)
  36) Dec 09  00:02:59  bcc32 (AoC++) (Sponsor)

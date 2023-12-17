@@ -1,25 +1,32 @@
 package me.kroppeb.aoc.helpers.point
 
-interface BoundsN<B : BoundsN<B, P, C>, P : PointN<P, C>, C : Comparable<C>> : Collection<P> {
-	val lower: P
-	val higher: P
-	fun intersect(other: B): B
-	fun size(): P
-	fun weight(): C
+import me.kroppeb.aoc.helpers.sint.Sint
+import java.math.BigInteger
 
-	fun doesIntersect(other: B): Boolean {
+public interface BoundsN<B : BoundsN<B, P>, P : PointN<P>> : Collection<P> {
+	public val lowerCoords: P
+	public val higherCoords: P
+	public fun intersect(other: B): B
+	public val sizes: P
+	public fun weight(): Sint
+	public fun weightB(): BigInteger
+
+	public fun doesIntersect(other: B): Boolean {
 		return !intersect(other).isEmpty()
 	}
 
-	fun merge(other: B): B
+	public fun merge(other: B): B
 
-	operator fun contains(other: B): Boolean {
-		return other.isEmpty() || (other.lower in this && other.higher in this)
+	public operator fun contains(other: B): Boolean {
+		return other.isEmpty() || intersect(other) == other
 	}
 
 	/**
 	 * Fractures the bounds into a set of bounds that are not overlapping and each bound is either fully contained
 	 * in these bounds or fully outside of these bounds. The fractures together cover the same area as these bounds.
 	 */
-	fun fracture(other: B): Collection<B>
+	public fun fracture(other: B): Collection<B>
+
+	public override fun equals(other: Any?): Boolean
+	public override fun hashCode(): Int
 }

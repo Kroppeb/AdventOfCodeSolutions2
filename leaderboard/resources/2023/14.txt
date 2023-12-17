@@ -1,0 +1,203 @@
+First hundred users to get both stars on Day 14:
+  1) Dec 14  00:05:46  xiaowuc1
+  2) Dec 14  00:07:55  jebouin (AoC++)
+  3) Dec 14  00:08:41  Carl Schildkraut
+  4) Dec 14  00:09:06  Kirby703
+  5) Dec 14  00:09:28  Pi-Hsun Shih
+  6) Dec 14  00:09:37  Looking for an internship! (AoC++)
+  7) Dec 14  00:09:51  Nathan Fenner (AoC++)
+  8) Dec 14  00:10:00  Martin “Cifko” Štefček (AoC++)
+  9) Dec 14  00:10:10  D. Salgado
+ 10) Dec 14  00:10:20  (anonymous user #637942)
+ 11) Dec 14  00:10:27  Benjamin Chen
+ 12) Dec 14  00:10:28  N_z_
+ 13) Dec 14  00:10:36  Ian DeHaan
+ 14) Dec 14  00:10:44  DayDun
+ 15) Dec 14  00:10:59  zhangjunyan2580
+ 16) Dec 14  00:11:00  (anonymous user #1508761)
+ 17) Dec 14  00:11:11  Nick Gavalas (AoC++)
+ 18) Dec 14  00:11:14  Mark Sturtevant
+ 19) Dec 14  00:11:22  Thomas Neill
+ 20) Dec 14  00:11:22  Lewin Gan
+ 21) Dec 14  00:11:33  jonathanpaulson (AoC++)
+ 22) Dec 14  00:11:34  mrphlip (AoC++)
+ 23) Dec 14  00:11:40  rotcar
+ 24) Dec 14  00:11:50  tckmn
+ 25) Dec 14  00:12:31  Draco18s
+ 26) Dec 14  00:12:31  Oskar Haarklou Veileborg (AoC++)
+ 27) Dec 14  00:12:38  Timothy Mou
+ 28) Dec 14  00:12:50  Vladislav Isenbaev
+ 29) Dec 14  00:12:52  Julian Bruyat
+ 30) Dec 14  00:13:07  Antonio Molina (AoC++) (Sponsor)
+ 31) Dec 14  00:13:14  Emil Kaczyński (AoC++)
+ 32) Dec 14  00:13:30  Anango Prabhat
+ 33) Dec 14  00:13:33  Patrick Hogg (AoC++) (Sponsor)
+ 34) Dec 14  00:13:34  Михаил Минков
+ 35) Dec 14  00:13:35  TINA WANG - STUDENT
+ 36) Dec 14  00:13:37  Maarten Sijm (AoC++)
+ 37) Dec 14  00:13:40  glguy (AoC++)
+ 38) Dec 14  00:13:45  Jan Verbeek
+ 39) Dec 14  00:13:45  Maks Verver
+ 40) Dec 14  00:13:45  Robert Nies
+ 41) Dec 14  00:13:56  bradleysigma
+ 42) Dec 14  00:14:04  grhkm21
+ 43) Dec 14  00:14:07  Cameron Aavik
+ 44) Dec 14  00:14:09  eagely (AoC++)
+ 45) Dec 14  00:14:15  Also looking 4 an internship!
+ 46) Dec 14  00:14:22  0e4ef622
+ 47) Dec 14  00:14:24  coolcomputery
+ 48) Dec 14  00:14:26  bluepichu
+ 49) Dec 14  00:14:27  Jimmy Mårdell (AoC++) (Sponsor)
+ 50) Dec 14  00:14:29  Matthew Reeder
+ 51) Dec 14  00:14:30  Davis Yoshida (AoC++)
+ 52) Dec 14  00:14:31  Tomas Rokicki
+ 53) Dec 14  00:14:32  Jimmy Ding
+ 54) Dec 14  00:14:33  leonard-weininger
+ 55) Dec 14  00:14:39  mangoqwq
+ 56) Dec 14  00:14:42  Gabriel Wu (AoC++)
+ 57) Dec 14  00:14:43  MeepMoop
+ 58) Dec 14  00:14:50  Zeyu Chen
+ 59) Dec 14  00:14:51  Leo Uino (AoC++)
+ 60) Dec 14  00:14:51  LegionMammal978
+ 61) Dec 14  00:15:03  Kye W. Shi
+ 62) Dec 14  00:15:08  mrkeldon
+ 63) Dec 14  00:15:10  Joseph Durie
+ 64) Dec 14  00:15:11  Graham White (Sponsor)
+ 65) Dec 14  00:15:23  Joshua Wise
+ 66) Dec 14  00:15:26  Dragon-Hatcher
+ 67) Dec 14  00:15:35  jorendorff (AoC++)
+ 68) Dec 14  00:15:35  mdlu (AoC++)
+ 69) Dec 14  00:15:38  Anthony Li
+ 70) Dec 14  00:15:41  5space
+ 71) Dec 14  00:15:41  Robert Usher
+ 72) Dec 14  00:15:43  Roman Elizarov (Sponsor)
+ 73) Dec 14  00:15:43  cadybaltz (AoC++)
+ 74) Dec 14  00:15:44  tonghuikang
+ 75) Dec 14  00:16:14  Adavya Goyal
+ 76) Dec 14  00:16:14  Luke Moran
+ 77) Dec 14  00:16:18  nim-ka (AoC++)
+ 78) Dec 14  00:16:28  Gregor Kikelj
+ 79) Dec 14  00:16:34  Waffle
+ 80) Dec 14  00:16:34  jlallas384
+ 81) Dec 14  00:16:36  Noble Mushtak
+ 82) Dec 14  00:16:40  NotEvenJoking (AoC++)
+ 83) Dec 14  00:16:41  Mathis Hammel (AoC++)
+ 84) Dec 14  00:16:44  Ahmed Siadomar
+ 85) Dec 14  00:16:46  XHRogerCao
+ 86) Dec 14  00:16:47  Justin Yokota
+ 87) Dec 14  00:16:47  TXort
+ 88) Dec 14  00:16:48  thuustalu
+ 89) Dec 14  00:16:50  William Lin (tmwilliamlin168)
+ 90) Dec 14  00:16:52  Aaron (AoC++)
+ 91) Dec 14  00:16:53  Rishi Vijay
+ 92) Dec 14  00:16:53  Gustav Gans
+ 93) Dec 14  00:17:00  Egor Kulikov (AoC++) (Sponsor)
+ 94) Dec 14  00:17:03  Robert Xiao
+ 95) Dec 14  00:17:07  Omkar Bhalerao
+ 96) Dec 14  00:17:09  Tim Black
+ 97) Dec 14  00:17:10  Defelo (AoC++)
+ 98) Dec 14  00:17:12  Robert P
+ 99) Dec 14  00:17:13  LyricLy
+100) Dec 14  00:17:15  Epiphane (AoC++)
+
+First hundred users to get the first star on Day 14:
+  1) Dec 14  00:01:28  xiaowuc1
+  2) Dec 14  00:01:54  Carl Schildkraut
+  3) Dec 14  00:01:58  Ian DeHaan
+  4) Dec 14  00:02:13  Laurentiu Ionele (Sponsor)
+  5) Dec 14  00:02:23  tckmn
+  6) Dec 14  00:02:26  Robert Xiao
+  7) Dec 14  00:02:26  bluepichu
+  8) Dec 14  00:02:28  eagely (AoC++)
+  9) Dec 14  00:02:31  5space
+ 10) Dec 14  00:02:43  Gabriel Wu (AoC++)
+ 11) Dec 14  00:02:49  Kirby703
+ 12) Dec 14  00:02:51  Zack Lee
+ 13) Dec 14  00:02:52  Pi-Hsun Shih
+ 14) Dec 14  00:02:53  Dylan Smith
+ 15) Dec 14  00:02:53  jebouin (AoC++)
+ 16) Dec 14  00:02:54  Joseph Durie
+ 17) Dec 14  00:02:57  Antonio Molina (AoC++) (Sponsor)
+ 18) Dec 14  00:02:58  nthistle (AoC++) (Sponsor)
+ 19) Dec 14  00:03:00  (anonymous user #1508761)
+ 20) Dec 14  00:03:00  AK1089
+ 21) Dec 14  00:03:04  Nathan Fenner (AoC++)
+ 22) Dec 14  00:03:05  mlucy
+ 23) Dec 14  00:03:05  Ross Dempsey
+ 24) Dec 14  00:03:05  Oliver Ni (AoC++)
+ 25) Dec 14  00:03:09  Justin Yokota
+ 26) Dec 14  00:03:10  Venkat Rao
+ 27) Dec 14  00:03:11  Noble Mushtak
+ 28) Dec 14  00:03:12  Jasper van Merle (AoC++)
+ 29) Dec 14  00:03:15  most90
+ 30) Dec 14  00:03:17  Proximity Trigger
+ 31) Dec 14  00:03:17  Egor Kulikov (AoC++) (Sponsor)
+ 32) Dec 14  00:03:18  Christian Cederquist (AoC++)
+ 33) Dec 14  00:03:19  Looking for an internship! (AoC++)
+ 34) Dec 14  00:03:21  Thomas Neill
+ 35) Dec 14  00:03:21  jonathanpaulson (AoC++)
+ 36) Dec 14  00:03:21  Ian O'Donnell
+ 37) Dec 14  00:03:22  D. Salgado
+ 38) Dec 14  00:03:23  Balint R
+ 39) Dec 14  00:03:23  NovaSagittarii
+ 40) Dec 14  00:03:23  Robert Nies
+ 41) Dec 14  00:03:25  LyricLy
+ 42) Dec 14  00:03:25  Anthony Li
+ 43) Dec 14  00:03:25  Brandon Young
+ 44) Dec 14  00:03:25  Mr Thimoté
+ 45) Dec 14  00:03:26  vstrimaitis
+ 46) Dec 14  00:03:27  abailey2020
+ 47) Dec 14  00:03:28  zacharybarbanell
+ 48) Dec 14  00:03:29  Jan Verbeek
+ 49) Dec 14  00:03:31  Mercerenies
+ 50) Dec 14  00:03:32  Ryan Hitchman (AoC++)
+ 51) Dec 14  00:03:32  penteract
+ 52) Dec 14  00:03:34  Springo (AoC++)
+ 53) Dec 14  00:03:34  scanhex
+ 54) Dec 14  00:03:35  Lewin Gan
+ 55) Dec 14  00:03:35  Samo Kralj
+ 56) Dec 14  00:03:37  Mathis Hammel (AoC++)
+ 57) Dec 14  00:03:37  Rishi Vijay
+ 58) Dec 14  00:03:38  icicl
+ 59) Dec 14  00:03:38  Golovanov399
+ 60) Dec 14  00:03:38  Lovemathboy H
+ 61) Dec 14  00:03:39  Alex Wice
+ 62) Dec 14  00:03:39  Sese Müller
+ 63) Dec 14  00:03:41  (anonymous user #614991)
+ 64) Dec 14  00:03:43  kcaze
+ 65) Dec 14  00:03:44  Alexey Shmelev
+ 66) Dec 14  00:03:45  Vladislav Isenbaev
+ 67) Dec 14  00:03:46  qwewqa
+ 68) Dec 14  00:03:48  TimHuisman1703 (AoC++)
+ 69) Dec 14  00:03:49  Robin Allen
+ 70) Dec 14  00:03:51  Epiphane (AoC++)
+ 71) Dec 14  00:03:51  Eldar Bogdanov
+ 72) Dec 14  00:03:52  Chao Zhang
+ 73) Dec 14  00:03:53  Brian Zhou (AoC++)
+ 74) Dec 14  00:03:53  Adsalor
+ 75) Dec 14  00:03:55  Daniel Anker Hermansen
+ 76) Dec 14  00:03:55  mangoqwq
+ 77) Dec 14  00:03:56  Also looking 4 an internship!
+ 78) Dec 14  00:03:58  Gregor Kikelj
+ 79) Dec 14  00:03:58  William Y. Feng
+ 80) Dec 14  00:03:58  Martin “Cifko” Štefček (AoC++)
+ 81) Dec 14  00:03:59  Aaron (AoC++)
+ 82) Dec 14  00:03:59  (anonymous user #1640821)
+ 83) Dec 14  00:04:00  sguest
+ 84) Dec 14  00:04:00  TINA WANG - STUDENT
+ 85) Dec 14  00:04:00  teekaytai
+ 86) Dec 14  00:04:01  CaptainSora
+ 87) Dec 14  00:04:02  chunkybanana
+ 88) Dec 14  00:04:02  Ghurfa
+ 89) Dec 14  00:04:03  coolcomputery
+ 90) Dec 14  00:04:03  rotcar
+ 91) Dec 14  00:04:04  Timothy Mou
+ 92) Dec 14  00:04:05  Max Tsishkouski
+ 93) Dec 14  00:04:06  mdlu (AoC++)
+ 94) Dec 14  00:04:07  Thomas Feld
+ 95) Dec 14  00:04:08  Shik Chen
+ 96) Dec 14  00:04:09  Ivan Kazmenko
+ 97) Dec 14  00:04:09  0e4ef622
+ 98) Dec 14  00:04:10  rak1507
+ 99) Dec 14  00:04:10  HoLLy (AoC++)
+100) Dec 14  00:04:10  Waffle

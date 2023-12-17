@@ -1,6 +1,9 @@
 package me.kroppeb.aoc.helpers.graph
 
 import me.kroppeb.aoc.helpers.Loggable
+import me.kroppeb.aoc.helpers.collections.extensions.Yr
+import me.kroppeb.aoc.helpers.collections.extensions.withFIFO
+import me.kroppeb.aoc.helpers.collections.extensions.withFIFOList
 import me.kroppeb.aoc.helpers.sint.Sint
 import me.kroppeb.aoc.helpers.sint.s
 import java.util.*
@@ -897,6 +900,31 @@ inline fun <State> floodFilll(starts: List<State>, next: (State) -> Iterable<Sta
 			continue
 		}
 		stack += next(current)
+	}
+
+	return visited
+}
+
+
+public inline fun <State> floodFillY(start: State, next: Yr<State>): Set<State> {
+	val visited = mutableSetOf<State>()
+
+	withFIFO(start) { current ->
+		if (current in visited) return@withFIFO
+		visited += current
+		next(current)
+	}
+
+	return visited
+}
+
+public inline fun <State> floodFillYl(starts: List<State>, next: Yr<State>): Set<State> {
+	val visited = mutableSetOf<State>()
+
+	withFIFOList(starts) { current ->
+		if (current in visited) return@withFIFOList
+		visited += current
+		next(current)
 	}
 
 	return visited

@@ -1,13 +1,9 @@
-
-
-Per Day: 1 2 3 4 5 6 7 8 9 10 11
-
 First hundred users to get both stars on Day 11:
   1) Dec 11  00:03:37  xiaowuc1
   2) Dec 11  00:04:06  Kevin Wang (AoC++)
   3) Dec 11  00:04:14  Oliver Ni (AoC++)
   4) Dec 11  00:04:16  bluepichu
-  5) Dec 11  00:04:18  Antonio Molina (Sponsor)
+  5) Dec 11  00:04:18  Antonio Molina (AoC++) (Sponsor)
   6) Dec 11  00:04:35  Lewin Gan
   7) Dec 11  00:04:41  (anonymous user #1510407)
   8) Dec 11  00:04:52  tckmn
@@ -21,7 +17,7 @@ First hundred users to get both stars on Day 11:
  16) Dec 11  00:05:44  Patrick Gu
  17) Dec 11  00:05:58  Joseph Durie
  18) Dec 11  00:05:59  0e4ef622
- 19) Dec 11  00:05:59  nim-ka
+ 19) Dec 11  00:05:59  nim-ka (AoC++)
  20) Dec 11  00:06:01  Thomas Neill
  21) Dec 11  00:06:03  mangoqwq
  22) Dec 11  00:06:07  David Sharick
@@ -114,7 +110,7 @@ First hundred users to get the first star on Day 11:
   7) Dec 11  00:02:41  xiaowuc1
   8) Dec 11  00:03:13  (anonymous user #1508761)
   9) Dec 11  00:03:18  Lewin Gan
- 10) Dec 11  00:03:31  Antonio Molina (Sponsor)
+ 10) Dec 11  00:03:31  Antonio Molina (AoC++) (Sponsor)
  11) Dec 11  00:03:31  Oliver Ni (AoC++)
  12) Dec 11  00:03:35  rak1507
  13) Dec 11  00:03:42  Lovemathboy H
@@ -140,10 +136,10 @@ First hundred users to get the first star on Day 11:
  33) Dec 11  00:04:44  Liresol
  34) Dec 11  00:04:45  Patrick Gu
  35) Dec 11  00:04:49  Balint R
- 36) Dec 11  00:04:54  Andrew Badr
+ 36) Dec 11  00:04:54  Andrew Badr (AoC++)
  37) Dec 11  00:04:56  Level 51
  38) Dec 11  00:04:57  Pi-Hsun Shih
- 39) Dec 11  00:04:58  nim-ka
+ 39) Dec 11  00:04:58  nim-ka (AoC++)
  40) Dec 11  00:04:58  mangoqwq
  41) Dec 11  00:04:58  (anonymous user #44119)
  42) Dec 11  00:04:59  hyper-neutrino

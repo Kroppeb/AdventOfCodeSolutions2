@@ -5,8 +5,8 @@
 * read reflections 
 
 ## Early
-* [x] Reflection of previous day
-* [x] Git commit previous day
+* [ ] Reflection of previous day
+* [ ] Git commit previous day
 * [x] Validate that any changes in utils do not cause the building to fail
 * [x] Make sure we have a file to work in
 * [x] Make sure the `Clock` is set right
@@ -14,13 +14,13 @@
 * [x] Test download command
 * [x] Open obs
 * [x] Ensure laptop is plugged in
+* [x] Make sure the correct input is open on second screen
  
 
 # Middle
-* [x] Start the kotlin daemon (by running the empty day script)
-* [x] Validate that shortcut runs the correct file 
-* [x] Close unneeded files & programs
-* [x] Make sure input is open on second screen
+* [ ] Start the kotlin daemon (by running the empty day script)
+* [ ] Validate that shortcut runs the correct file 
+* [ ] Close unneeded files & programs
 
 # Final
 * Verify imports again

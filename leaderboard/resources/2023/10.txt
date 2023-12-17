@@ -25,7 +25,7 @@ First hundred users to get both stars on Day 10:
  24) Dec 10  00:24:00  Nathan Shirley
  25) Dec 10  00:24:09  Egor Kulikov (AoC++) (Sponsor)
  26) Dec 10  00:24:32  penteract
- 27) Dec 10  00:24:36  Antonio Molina (Sponsor)
+ 27) Dec 10  00:24:36  Antonio Molina (AoC++) (Sponsor)
  28) Dec 10  00:24:50  E-M-Bailey
  29) Dec 10  00:24:57  ttalvitie
  30) Dec 10  00:25:13  Nicky Skybytskyi
@@ -106,8 +106,8 @@ First hundred users to get the first star on Day 10:
   3) Dec 10  00:04:56  tckmn
   4) Dec 10  00:05:20  bluepichu
   5) Dec 10  00:05:37  hyper-neutrino
-  6) Dec 10  00:05:37  nim-ka
-  7) Dec 10  00:06:05  connorjayr
+  6) Dec 10  00:05:37  nim-ka (AoC++)
+  7) Dec 10  00:06:05  connorjayr (AoC++)
   8) Dec 10  00:06:11  Epiphane (AoC++)
   9) Dec 10  00:06:17  Anthony Li
  10) Dec 10  00:06:30  ruuddotorg
@@ -123,7 +123,7 @@ First hundred users to get the first star on Day 10:
  20) Dec 10  00:07:43  Thomas Kaldahl
  21) Dec 10  00:07:43  Vladislav Isenbaev
  22) Dec 10  00:07:43  Nicky Skybytskyi
- 23) Dec 10  00:07:46  One
+ 23) Dec 10  00:07:46  Also looking 4 an internship!
  24) Dec 10  00:07:48  mserrano
  25) Dec 10  00:08:00  Dylan Smith
  26) Dec 10  00:08:00  skanev (AoC++)
@@ -178,7 +178,7 @@ First hundred users to get the first star on Day 10:
  75) Dec 10  00:10:32  CodingAP (AoC++)
  76) Dec 10  00:10:34  leijurv
  77) Dec 10  00:10:39  LegionMammal978
- 78) Dec 10  00:10:40  Antonio Molina (Sponsor)
+ 78) Dec 10  00:10:40  Antonio Molina (AoC++) (Sponsor)
  79) Dec 10  00:10:42  Bradley Louie
  80) Dec 10  00:10:47  D. Salgado
  81) Dec 10  00:10:47  bcdean

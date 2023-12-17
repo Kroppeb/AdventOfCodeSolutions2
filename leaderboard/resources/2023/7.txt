@@ -21,7 +21,7 @@ First hundred users to get both stars on Day 7:
  20) Dec 07  00:11:13  Michael Fogleman
  21) Dec 07  00:11:15  Egor Kulikov (AoC++) (Sponsor)
  22) Dec 07  00:11:30  mrphlip (AoC++)
- 23) Dec 07  00:11:33  Antonio Molina (Sponsor)
+ 23) Dec 07  00:11:33  Antonio Molina (AoC++) (Sponsor)
  24) Dec 07  00:11:36  periodically-makes-puns
  25) Dec 07  00:11:54  a5a7
  26) Dec 07  00:11:56  nife
@@ -120,7 +120,7 @@ First hundred users to get the first star on Day 7:
  17) Dec 07  00:07:04  Zeyu Chen
  18) Dec 07  00:07:05  Daniel Yang
  19) Dec 07  00:07:05  Gabriel Wu (AoC++)
- 20) Dec 07  00:07:10  Antonio Molina (Sponsor)
+ 20) Dec 07  00:07:10  Antonio Molina (AoC++) (Sponsor)
  21) Dec 07  00:07:13  bluepichu
  22) Dec 07  00:07:25  Nikitosh
  23) Dec 07  00:07:25  LegionMammal978
@@ -199,5 +199,5 @@ First hundred users to get the first star on Day 7:
  96) Dec 07  00:09:50  Greg Zborovsky
  97) Dec 07  00:09:51  ilg
  98) Dec 07  00:09:53  Mathijs Vogelzang
- 99) Dec 07  00:09:53  Bradon Zhang
+ 99) Dec 07  00:09:53  Bradon Zhang (AoC++)
 100) Dec 07  00:09:57  zhangjunyan2580
