@@ -30,8 +30,8 @@ public class SintRange(start: Sint, endInclusive: Sint) : SintProgression(start,
 	fun first() = first
 	fun last() = last
 
-	override val sizeS get() = this.last - this.first + 1
-	override val sizeB get() = this.last.toBigInteger() - this.first.toBigInteger() + BigInteger.ONE
+	override val sizeS get() = if(this.isEmpty()) Sint.ZERO	 else this.last - this.first + 1
+	override val sizeB get() = if(this.isEmpty()) BigInteger.ZERO else this.last.toBigInteger() - this.first.toBigInteger() + BigInteger.ONE
 
 	@Suppress("ConvertTwoComparisonsToRangeCheck") // that would literally recurse
 	override fun contains(value: Sint): Boolean = first <= value && value <= last

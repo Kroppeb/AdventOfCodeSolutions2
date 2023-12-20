@@ -191,3 +191,16 @@ fun <T> List<T>.copyWith(index: Int, value: T): List<T> {
 }
 
 fun <T> List<T>.copyWith(index: Sint, value: T): List<T> = copyWith(index.i, value)
+
+//FIXME move
+fun <K, V> Map<K, V>.copyWith(index: K, value: V): Map<K, V> {
+	val map = this.toMutableMap()
+	map[index] = value
+	return map
+}
+
+public inline fun <K, V> Map<K, V>.copyWith(index: K, value: (V?)->V): Map<K, V> {
+	val map = this.toMutableMap()
+	map[index] = value(map[index])
+	return map
+}

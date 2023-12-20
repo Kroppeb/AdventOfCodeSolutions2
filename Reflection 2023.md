@@ -84,3 +84,20 @@
 * leftEdge and friends were broken
   * [x] lines of length 0 raise errors where they kinda shouldn't (maybe do add a warning?)
   * [x] bounds' top left and familiy were wrong
+
+## Day 17
+17/17; points: 168, 30th place
+* 17, 17, 17, 17, 17, 17, 17, 17, 17, 17,
+* [ ] Dijkstra result has start and end switched.
+
+## Day 18
+4/48; Points 150, 28th place
+* I forgot about pick's smh, also messed up my shoelace :[
+* I think using the floodfill for p1 was still the 
+    better call, based on the assumption I'd need to use the wall colors
+
+## Day 19
+341/41; Points 60, 27th place
+* using a map instead of a list would have avoided problems, or 
+    just converting the char to an index in 1 location would have been great
+* [ ] expand yComb
