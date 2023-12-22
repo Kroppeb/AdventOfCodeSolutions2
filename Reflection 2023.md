@@ -83,7 +83,7 @@
 * Grids again??
 * leftEdge and friends were broken
   * [x] lines of length 0 raise errors where they kinda shouldn't (maybe do add a warning?)
-  * [x] bounds' top left and familiy were wrong
+  * [x] bounds' top left and family were wrong
 
 ## Day 17
 17/17; points: 168, 30th place
@@ -101,3 +101,16 @@
 * using a map instead of a list would have avoided problems, or 
     just converting the char to an index in 1 location would have been great
 * [ ] expand yComb
+
+## Day 20
+40/52; Points 150, 23rd place
+
+## Day 21
+662/9; Points 90, 24th place
+* Didn't sleep well, probably why I made so many mistakes in p1
+* Accidentally counted the evens in p2 instead of the odds
+
+## Day 22
+67/72; Points 63, 23rd place
+* Didn't sleep well, probably why I made so many mistakes in p1 and p2
+* 
