@@ -113,4 +113,11 @@
 ## Day 22
 67/72; Points 63, 23rd place
 * Didn't sleep well, probably why I made so many mistakes in p1 and p2
-* 
+
+## Day 23
+125/53; Points 48,
+* Didn't sleep well
+* [ ] yComb can have stack overflow, using coroutines would be better
+* [ ] roi should be poi
+* [ ] roi/poi is slow. at least make a special case for removing nodes with 2 neighbours
+* [ ] longest no backtrack path? idk
