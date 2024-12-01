@@ -1,5 +1,7 @@
 @file:Suppress("PackageDirectoryMismatch", "UnusedImport")
 
+package solutions.y2022.d03
+
 
 /*
 
@@ -37,6 +39,7 @@ import me.kroppeb.aoc.helpers.grid.*
 import me.kroppeb.aoc.helpers.point.*
 import me.kroppeb.aoc.helpers.sint.*
 import itertools.*
+import log
 import java.util.Comparator
 import java.util.ArrayDeque
 import java.util.PriorityQueue
@@ -57,10 +60,29 @@ private val xxxxx = Clock(6, 3)
 
 
 private fun part1() {
-	var inp = getLines(1)
+	var inp = getLines(2022, 3).sumOf{ line ->
+		val (a,b) = line.splitIn2()
+		val r = a.e().intersect(b.e())
+		val rr = r.single()
+
+		val p  = if (rr >= 'a') rr - 'a' + 1 else rr - 'A' + 27
+		p.s log 0
+	} log 1
+
+}
+
+private fun part2() {
+	var inp = getLines(2022, 3).chunked(3).sumOf{ line ->
+
+		val rr = line.map{it.e()}.intersect().single()
+
+		val p  = if (rr >= 'a') rr - 'a' + 1 else rr - 'A' + 27
+		p.s log 0
+	} log 2
+
 }
 
 fun main() {
-	println("Day 1: ")
+	println("Day 3: ")
 	part1()
 }

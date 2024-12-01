@@ -725,7 +725,7 @@ fun <T, R> Collection<T>.splitIn(n: Sint, transform: (List<T>) -> R): List<R> {
 }
 
 fun <T> Collection<T>.splitIn2(): Pair<List<T>, List<T>> = splitIn(2).let { (a, b) -> a to b }
-fun <T> String.splitIn2(): Pair<String, String> = splitIn(2).let { (a, b) -> a to b }
+fun String.splitIn2(): Pair<String, String> = splitIn(2).let { (a, b) -> a to b }
 infix fun <T, R> Collection<T>.splitIn2(transform: (List<T>) -> R): Pair<R, R> =
 	splitIn(2, transform).let { (a, b) -> a to b }
 
