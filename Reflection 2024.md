@@ -11,4 +11,10 @@
 131/172; points: 0, --th place
 * I'm guessing this day is gonna gets it's points cancelled
 * I can't believe I didn't read the input fully again
-* Steal nim's `pre` test case grabbing stuff
+* [ ] Steal nim's `pre` test case grabbing stuff
+
+## Day 3
+841/470; points: 0, --th place
+* Seems like regexing on the fly is not my thing
+* [ ] FINISH THE `PRE` STUFF
+* [ ] Find a way to retrigger `pre` and `keywords` 
