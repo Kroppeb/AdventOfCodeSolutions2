@@ -57,7 +57,8 @@ public interface PointN<T : PointN<T>> {
 	 * includes self
 	 */
 	@Suppress("UNCHECKED_CAST")
-	public fun sequence(step: T): Sequence<T> = generateSequence(this as T) { it + step }
+	public fun sequenceInc(step: T): Sequence<T> = generateSequence(this as T) { it + step }
+	public fun sequence(step: T): Sequence<T> = sequenceInc(step).drop(1)
 	public fun sign(): T
 	public fun isZero(): Boolean
 	public fun isAxisAligned(): Boolean

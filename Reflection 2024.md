@@ -17,4 +17,13 @@
 841/470; points: 0, --th place
 * Seems like regexing on the fly is not my thing
 * [ ] FINISH THE `PRE` STUFF
-* [ ] Find a way to retrigger `pre` and `keywords` 
+* [ ] Find a way to retrigger `pre` and `keywords`
+* [ ] Add a bunch of the custom methods on iterables to sequences too
+
+## Day 4
+1380/566; points: 0, --th place
+* Bit demotivating
+* Lost a lot of time doing diagonals on a non grid
+* Using point sequences on  
+* [ ] Finish the `pre` stuff...
+* [x] add sequences (and other missing stuff from point) to bgp

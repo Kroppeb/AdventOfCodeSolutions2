@@ -151,15 +151,15 @@ public data class Point(val x: Sint, val y: Sint) : PointN<Point> {
 	public fun sameUpDown(other: Point): Boolean = Clock.up.dot(this) == Clock.up.dot(other)
 
 
-	public fun northsInc(): Sequence<Point> = this.sequence(Clock.up)
-	public fun southsInc(): Sequence<Point> = this.sequence(Clock.down)
-	public fun eastsInc(): Sequence<Point> = this.sequence(Clock.right)
-	public fun westsInc(): Sequence<Point> = this.sequence(Clock.left)
+	public fun northsInc(): Sequence<Point> = this.sequenceInc(Clock.up)
+	public fun southsInc(): Sequence<Point> = this.sequenceInc(Clock.down)
+	public fun eastsInc(): Sequence<Point> = this.sequenceInc(Clock.right)
+	public fun westsInc(): Sequence<Point> = this.sequenceInc(Clock.left)
 
-	public fun norths(): Sequence<Point> = this.northsInc().drop(1)
-	public fun souths(): Sequence<Point> = this.southsInc().drop(1)
-	public fun easts(): Sequence<Point> = this.eastsInc().drop(1)
-	public fun wests(): Sequence<Point> = this.westsInc().drop(1)
+	public fun norths(): Sequence<Point> = this.sequence(Clock.up)
+	public fun souths(): Sequence<Point> = this.sequence(Clock.down)
+	public fun easts(): Sequence<Point> = this.sequence(Clock.right)
+	public fun wests(): Sequence<Point> = this.sequence(Clock.left)
 
 	override fun sign(): Point = x.sign() toP y.sign()
 	override fun isZero(): Boolean = x.isZero() && y.isZero()

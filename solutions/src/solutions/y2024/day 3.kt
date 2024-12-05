@@ -1,6 +1,6 @@
 @file:Suppress("PackageDirectoryMismatch", "UnusedImport")
 
-package solutions.y2024
+package solutions.y2024.d03
 
 
 /*
@@ -60,7 +60,7 @@ private val xxxxx = Clock(6, 3)
 
 
 private fun part1() {
-	var inp = getLines(3).joinToString(separator = "\n")
+	var inp = getLines(2024, 3).joinToString(separator = "\n")
 
 	var on = false
 	Regex("mul\\((\\d+),(\\d+)\\)").findAll(inp).map{
@@ -69,7 +69,7 @@ private fun part1() {
 }
 
 private fun part2() {
-	var inp = getLines(3).joinToString(separator = "\n")
+	var inp = getLines(2024 , 3).joinToString(separator = "\n")
 
 	var on = true
 	Regex("mul\\((\\d+),(\\d+)\\)|do\\(\\)|don't\\(\\)").findAll(inp).map{

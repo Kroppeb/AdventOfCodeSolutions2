@@ -1,6 +1,6 @@
-val year = "2023"
-val user = "Kroppeb"
-val target = 32
+val year = "2024"
+val user = "röb"
+val target = 50
 
 // Output is like this: " XX: A / B (C / D)"
 // XX: Day number

@@ -2,6 +2,7 @@
 
 package me.kroppeb.aoc.helpers.grid
 
+import me.kroppeb.aoc.helpers.Clock
 import me.kroppeb.aoc.helpers.point.Bounds
 import me.kroppeb.aoc.helpers.point.Point
 import me.kroppeb.aoc.helpers.point.toP
@@ -24,6 +25,32 @@ public data class BoundedGridPoint<T>(val p: Point, val v: T, val g: SimpleGrid<
 	val south: BGP<T>? get() = down
 	val west: BGP<T>? get() = left
 
+
+	val downRight: BGP<T>? get() = down?.right
+	val downLeft: BGP<T>? get() = down?.left
+	val upRight: BGP<T>? get() = up?.right
+	val upLeft: BGP<T>? get() = up?.left
+	val rightDown: BGP<T>? get() = right?.down
+	val rightUp: BGP<T>? get() = right?.up
+	val leftDown: BGP<T>? get() = left?.down
+	val leftUp: BGP<T>? get() = left?.up
+
+	val northEast: BGP<T>? get() = north?.east
+	val southEast: BGP<T>? get() = south?.east
+	val southWest: BGP<T>? get() = south?.west
+	val northWest: BGP<T>? get() = north?.west
+
+	// useful for hex grids, not sure how useful here
+	val downDown: BGP<T>? get() = down?.down
+	val rightRight: BGP<T>? get() = right?.right
+	val upUp: BGP<T>? get() = up?.up
+	val leftLeft: BGP<T>? get() = left?.left
+
+	val northNorth: BGP<T>? get() = north?.north
+	val eastEast: BGP<T>? get() = east?.east
+	val southSouth: BGP<T>? get() = south?.south
+	val westWest: BGP<T>? get() = west?.west
+
 	private fun Iterable<Point>.fix() = mapNotNull { g.getBpOrNull(it) }
 
 	public fun getQuadNeighbours(): List<BGP<T>> = p.getQuadNeighbours().fix()
@@ -37,11 +64,15 @@ public data class BoundedGridPoint<T>(val p: Point, val v: T, val g: SimpleGrid<
 	public fun getMooreNeighbours(): List<BGP<T>> = getOctNeighbours()
 	public fun getVonNeumannNeighbours(): List<BGP<T>> = getQuadNeighbours()
 
-	public operator fun minus(other: Point): BGP<T> = g.getBp(p.x - other.x toP p.y - other.y)
-	public operator fun plus(other: Point): BGP<T> = g.getBp(p.x + other.x toP p.y + other.y)
+	public operator fun minus(other: Point): BGP<T> = g.getBp(p - other)
+	public operator fun plus(other: Point): BGP<T> = g.getBp(p + other)
+	public fun offsetOrNull(other: Point): BGP<T>? = g.getBpOrNull(p + other)
 
 	public operator fun minus(other: Char): BGP<T> = this - other.toPoint()
 	public operator fun plus(other: Char): BGP<T> = this + other.toPoint()
+	public fun offsetOrNull(other: Char): BGP<T>? = g.getBpOrNull(p + other)
+
+	public operator fun minus(other: BGP<T>): Point = p - other.p
 
 	public fun sqrDistTo(other: Point): Sint = (this.p - other).sqrDist()
 	public fun distTo(other: Point): Double = (this.p - other).dist()
@@ -66,15 +97,33 @@ public data class BoundedGridPoint<T>(val p: Point, val v: T, val g: SimpleGrid<
 	public fun sameLeftRight(other: BoundedGridPoint<*>): Boolean = sameLeftRight(other.p)
 	public fun sameUpDown(other: BoundedGridPoint<*>): Boolean = sameUpDown(other.p)
 
-	public fun northsInc(): List<BGP<T>> = p.northsInc().takeWhile { it in b }.map { g.getBp(it) }.toList()
-	public fun southsInc(): List<BGP<T>> = p.southsInc().takeWhile { it in b }.map { g.getBp(it) }.toList()
-	public fun eastsInc(): List<BGP<T>> = p.eastsInc().takeWhile { it in b }.map { g.getBp(it) }.toList()
-	public fun westsInc(): List<BGP<T>> = p.westsInc().takeWhile { it in b }.map { g.getBp(it) }.toList()
+	public fun sequenceIncSeq(step: Point): Sequence<BGP<T>> =
+		p.sequenceInc(step).takeWhile { it in b }.map { g.getBp(it) }
 
-	public fun norths(): List<BGP<T>> = p.norths().takeWhile { it in b }.map { g.getBp(it) }.toList()
-	public fun souths(): List<BGP<T>> = p.souths().takeWhile { it in b }.map { g.getBp(it) }.toList()
-	public fun easts(): List<BGP<T>> = p.easts().takeWhile { it in b }.map { g.getBp(it) }.toList()
-	public fun wests(): List<BGP<T>> = p.wests().takeWhile { it in b }.map { g.getBp(it) }.toList()
+	public fun sequenceSeq(step: Point): Sequence<BGP<T>> = p.sequence(step).takeWhile { it in b }.map { g.getBp(it) }
+
+	public fun sequenceInc(step: Point): List<BGP<T>> = sequenceIncSeq(step).toList()
+	public fun sequence(step: Point): List<BGP<T>> = sequenceSeq(step).toList()
+
+	public fun northsInc(): List<BGP<T>> = sequenceInc(Clock.up)
+	public fun southsInc(): List<BGP<T>> = sequenceInc(Clock.down)
+	public fun eastsInc(): List<BGP<T>> = sequenceInc(Clock.right)
+	public fun westsInc(): List<BGP<T>> = sequenceInc(Clock.left)
+
+	public fun norths(): List<BGP<T>> = sequence(Clock.up)
+	public fun souths(): List<BGP<T>> = sequence(Clock.down)
+	public fun easts(): List<BGP<T>> = sequence(Clock.right)
+	public fun wests(): List<BGP<T>> = sequence(Clock.left)
+
+	public fun northsIncSeq(): Sequence<BGP<T>> = sequenceIncSeq(Clock.up)
+	public fun southsIncSeq(): Sequence<BGP<T>> = sequenceIncSeq(Clock.down)
+	public fun eastsIncSeq(): Sequence<BGP<T>> = sequenceIncSeq(Clock.right)
+	public fun westsIncSeq(): Sequence<BGP<T>> = sequenceIncSeq(Clock.left)
+
+	public fun northsSeq(): Sequence<BGP<T>> = sequenceSeq(Clock.up)
+	public fun southsSeq(): Sequence<BGP<T>> = sequenceSeq(Clock.down)
+	public fun eastsSeq(): Sequence<BGP<T>> = sequenceSeq(Clock.right)
+	public fun westsSeq(): Sequence<BGP<T>> = sequenceSeq(Clock.left)
 
 	override fun toString(): String {
 		return "BGP(p=$p, v=$v)"
