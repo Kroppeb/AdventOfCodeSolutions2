@@ -59,7 +59,8 @@ public class SimpleGrid<T>(public val items: List<List<T>>) : StrictGrid<T>, Ite
 		if (point in bounds) BoundedGridPoint(point, this[point], this) else null
 
 
-	public fun getBp(point: Point): BoundedGridPoint<T> = getBpOrNull(point) ?: throw IndexOutOfBoundsException(point.toString())
+	public fun getBp(point: Point): BoundedGridPoint<T> =
+		getBpOrNull(point) ?: throw IndexOutOfBoundsException(point.toString())
 
 	public fun asQuadGraph(): CGraph<BoundedGridPoint<T>> = asQuadGraphWeight { _, _ -> 1.s }
 
@@ -80,6 +81,18 @@ public class SimpleGrid<T>(public val items: List<List<T>>) : StrictGrid<T>, Ite
 
 	public fun asOctGraph(connected: (BoundedGridPoint<T>, BoundedGridPoint<T>) -> Boolean): CGraph<BoundedGridPoint<T>> =
 		asOctGraphWeight { a, b -> if (connected(a, b)) 1.s else null }
+
+	public fun copyWith(point: BoundedGridPoint<T>, item: T): SimpleGrid<T> {
+		require(point.g === this)
+		return copyWith(point.p, item)
+	}
+
+	public fun copyWith(point: Point, item: T): SimpleGrid<T> {
+		// TODO: this could be optimized, not all lines need to be copied
+		val m = this.mutable()
+		m[point] = item
+		return m.immutable()
+	}
 }
 
 
