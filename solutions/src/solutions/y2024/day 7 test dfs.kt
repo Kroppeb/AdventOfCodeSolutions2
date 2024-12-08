@@ -1,6 +1,6 @@
 @file:Suppress("PackageDirectoryMismatch", "UnusedImport")
 
-package solutions.y2024.d07.t
+package solutions.y2024.d07.tdfs
 
 
 /*
@@ -67,17 +67,11 @@ private fun part1() {
 		val target = ll[0]
 		val rest = ll.drop(1)
 
-		0.s in rest.reversed().fold(setOf(target)) { l, a ->
-			l.flatMap {
-				buildList {
-					if (it >= a) {
-						add(it - a)
-					}
-					if (it % a == 0.s) {
-						add(it / a)
-					}
-				}
-			}.toSet()
+		yComb(target, rest.size - 1) { curr, ind ->
+			if (ind < 0) return@yComb (curr == 0.s)
+			val a = rest[ind]
+
+			curr >= a && call(curr - a, ind - 1) || curr % a == 0.s && call(curr / a, ind - 1)
 		}
 	}.sumOf { it[0] } log 1
 }
@@ -98,21 +92,14 @@ private fun part2() {
 		val target = ll[0]
 		val rest = ll.drop(1)
 
-		0.s in rest.reversed().fold(setOf(target)) { l, a ->
-			l.flatMap {
-				buildList {
-					if (it >= a) {
-						add(it - a)
-					}
-					if (it % a == 0.s) {
-						add(it / a)
-					}
-					val p = smallestPowerOf10GreaterThan(a)
-					if (it % p == a) {
-						add(it / p)
-					}
-				}
-			}.toSet()
+		yComb(target, rest.size - 1) { curr, ind ->
+			if (ind < 0) return@yComb (curr == 0.s)
+			val a = rest[ind]
+			val p = smallestPowerOf10GreaterThan(a)
+
+			curr >= a && call(curr - a, ind - 1) ||
+				curr % a == 0.s && call(curr / a, ind - 1) ||
+				curr % p == a && call(curr / p, ind - 1)
 		}
 	}.sumOf { it[0] } log 1
 }
