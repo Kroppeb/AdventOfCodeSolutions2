@@ -1,6 +1,6 @@
 @file:Suppress("PackageDirectoryMismatch", "UnusedImport")
 
-package solutions.y2024.d03
+package solutions.y2024.d05
 
 
 /*
@@ -55,45 +55,61 @@ import kotlin.math.*
 
 
 private val xxxxx = Clock(6, 3)
+
 //private val xxxxy = YCombSettings.useMemoization(true)
-//private val xxxxz = LoggerSettings.logNonAnswers(false)
+private val xxxxz = LoggerSettings.logNonAnswers(false)
 
 
 private fun part1() {
-	var inp = getLines(2024, 3).joinToString(separator = "\n")
+	var (a, b) = getLines(2024, 5).splitOnEmpty()
 
-	Regex("mul\\((\\d+),(\\d+)\\)").findAll(inp).map{
-		it.groupValues[1].sint() * it.groupValues[2].sint()
-	}.sumOf { it.i } log 1
+	val orderings = a.ints()
+
+	b.ints().filter { l ->
+		l.withIdx().all { (ii, ai) ->
+			orderings.all { (a1, a2) -> ai == a1 && a2 in l.take(ii) }
+		}
+	}.sumOf { it[it.size / 2] } log 1
 }
 
 private fun part2() {
-	var inp = getLines(2024 , 3).joinToString(separator = "\n")
+	var (a, b) = getLines(2024, 5).splitOnEmpty()
 
-	var on = true
-	Regex("mul\\((\\d+),(\\d+)\\)|do\\(\\)|don't\\(\\)").findAll(inp).map{
-		it.value log 0
-		when (it.value){
-			"do()" -> {
-				on = true
-				0
+	val orderings = a.ints()
+
+	var x = 0;
+	for (i in b.ints()) {
+		var best = i.mut()
+		var chgecnge = false
+		l@ while (true) {
+			for (ii in best.indices) {
+				val ai = best[ii]
+				for ((a1, a2) in orderings) {
+					if (ai == a1) {
+						val a2id = best.take(ii).indexOf(a2)
+						if (a2id >= 0) {
+							best[a2id] = a1
+							best[ii] = a2
+							chgecnge = true
+							continue@l
+						}
+					}
+				}
 			}
-			"don't()" -> {
-				on = false
-				0
-			}
-			else -> {
-				if (on)
-					it.groupValues[1].int() * it.groupValues[2].int()
-				else 0
-			}
+			break
 		}
 
-	}.sumOf { it } log 2
+		if (chgecnge) {
+			best log 0
+			x += best[i.size / 2]
+		}
+	}
+
+	x log 2
 }
 
 fun main() {
-	println("Day 3: ")
+	println("Day 5: ")
 	part1()
 	part2()
 }

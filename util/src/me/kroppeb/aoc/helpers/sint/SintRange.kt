@@ -27,11 +27,11 @@ public class SintRange(start: Sint, endInclusive: Sint) : SintProgression(start,
 			return last + 1
 		}
 
-	fun first() = first
-	fun last() = last
+	public fun first(): Sint = first
+	public fun last(): Sint = last
 
-	override val sizeS get() = if(this.isEmpty()) Sint.ZERO	 else this.last - this.first + 1
-	override val sizeB get() = if(this.isEmpty()) BigInteger.ZERO else this.last.toBigInteger() - this.first.toBigInteger() + BigInteger.ONE
+	override val sizeS: Sint get() = if(this.isEmpty()) Sint.ZERO	 else this.last - this.first + 1
+	override val sizeB: BigInteger get() = if(this.isEmpty()) BigInteger.ZERO else this.last.toBigInteger() - this.first.toBigInteger() + BigInteger.ONE
 
 	@Suppress("ConvertTwoComparisonsToRangeCheck") // that would literally recurse
 	override fun contains(value: Sint): Boolean = first <= value && value <= last
@@ -52,7 +52,7 @@ public class SintRange(start: Sint, endInclusive: Sint) : SintProgression(start,
 
 	override fun toString(): String = "$first..$last"
 
-	companion object {
+	public companion object {
 		/** An empty range of values of type Int. */
 		public val EMPTY: SintRange = SintRange(1.s, 0.s)
 		public val MEGA: SintRange = SintRange(Sint.NEG_MEGA, Sint.POS_MEGA)
@@ -103,12 +103,12 @@ internal constructor
 	override val size: Int
 		get() = sizeS.i
 
-	open val sizeS: Sint get() = ((
+	public open val sizeS: Sint get() = ((
 		if (step > 0) maxOf(0.s, last - first + 1)
 		else maxOf(0.s, first - last + 1)
 		) / step)
 
-	open val sizeB: BigInteger get() = ((
+	public open val sizeB: BigInteger get() = ((
 		if (step > 0) maxOf(BigInteger.ZERO, last.toBigInteger() - first.toBigInteger() + BigInteger.ONE)
 		else maxOf(BigInteger.ZERO, first.toBigInteger() - last.toBigInteger() + BigInteger.ONE)
 		) / step.toBigInteger())
@@ -135,7 +135,7 @@ internal constructor
 
 	override fun toString(): String = if (step > 0) "$first..$last step $step" else "$first downTo $last step ${-step}"
 
-	companion object {
+	public companion object {
 		/**
 		 * Creates IntProgression within the specified bounds of a closed range.
 		 *
@@ -213,7 +213,7 @@ internal class SintProgressionIterator(first: Sint, last: Sint, val step: Sint) 
 
 /** An iterator over a sequence of values of type `Sint`. */
 public abstract class SintIterator : Iterator<Sint> {
-	final override fun next() = nextSint()
+	final override fun next(): Sint = nextSint()
 
 	/** Returns the next value in the sequence without boxing. */
 	public abstract fun nextSint(): Sint

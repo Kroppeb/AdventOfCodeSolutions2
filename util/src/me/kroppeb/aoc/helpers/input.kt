@@ -56,6 +56,8 @@ public fun getAlphaNum(day: Int): AlphaNum {
 
 private class Ugh;
 
+public fun getData(year: Int, day: Int): String = getData(year * 100 + day)
+
 public fun getData(day: Int): String =
 		if (day > 100) {
 			val y = day / 100

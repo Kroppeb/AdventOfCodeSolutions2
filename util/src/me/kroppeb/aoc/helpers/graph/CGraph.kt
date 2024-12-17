@@ -15,7 +15,7 @@ class CGraph<T>(val neighbours: Map<T, Map<T, Sint>>) {  // neighbours[a][b] is 
 	}
 
 	fun bfs(start: Iterable<T>, isEnd: (T) -> Boolean): BfsResult<T>? {
-		return bfslPath(start.toList(), isEnd) { neighbours[it]?.keys ?: emptyList() }
+		return bfsLPath(start.toList(), isEnd) { neighbours[it]?.keys ?: emptyList() }
 	}
 
 	fun bfs(start: T, end: T): BfsResult<T>? {
@@ -39,7 +39,7 @@ class CGraph<T>(val neighbours: Map<T, Map<T, Sint>>) {  // neighbours[a][b] is 
 	}
 
 	fun dijkstra(start: Iterable<T>, isEnd: (T) -> Boolean): DijkstraResult<T>? {
-		return dijkstral(start.toList(), isEnd) {
+		return dijkstraL(start.toList(), isEnd) {
 			neighbours[it]?.entries?.map { (k, v) -> k to v } ?: emptyList()
 		}
 	}
@@ -63,7 +63,7 @@ class CGraph<T>(val neighbours: Map<T, Map<T, Sint>>) {  // neighbours[a][b] is 
 	}
 
 	fun floodFill(start: Iterable<T>): Set<T> {
-		return floodFilll(start.toList()) { neighbours[it]?.keys ?: emptyList() }
+		return floodFillL(start.toList()) { neighbours[it]?.keys ?: emptyList() }
 	}
 
 	operator fun get(value: T): GNode<T> {

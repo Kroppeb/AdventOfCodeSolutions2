@@ -1,6 +1,6 @@
 @file:Suppress("PackageDirectoryMismatch", "UnusedImport")
 
-package solutions.y2024.d10
+package solutions.y2024.d10c1
 
 
 /*
@@ -32,9 +32,9 @@ import kotlin.math.*
 
 import log
 import me.kroppeb.aoc.helpers.*
-import me.kroppeb.aoc.helpers.collections.list.toH
+import me.kroppeb.aoc.helpers.collections.extensions.dequeOf
+import me.kroppeb.aoc.helpers.graph.floodFill
 import me.kroppeb.aoc.helpers.grid.*
-import me.kroppeb.aoc.helpers.point.*
 import me.kroppeb.aoc.helpers.sint.*
 import kotlin.*
 import kotlin.collections.*
@@ -47,14 +47,15 @@ private val xxxxx = Clock(6, 3)
 
 
 private fun part1() {
+
 	var inp = getLines(2024, 10)
 //	var inp = pre(10, 0)
 	var hob = inp.digits().grid()
 
 	hob.filter{it.v==0}.sumOf { start ->
-		val seen = mutableSetOf<BoundedGridPoint<Int>>()
+		val seen = setTT(start)
 
-		val a = ArrayDeque(listOf(start))
+		val a = dequeOf(start)
 		var c = 0
 
 		while (a.isNotEmpty()) {
@@ -86,11 +87,11 @@ private fun part2() {
 //	var inp = pre(10, 0)
 	var hob = inp.digits().grid()
 
-	hob.filter{it.v==0}.sumOf { start ->
-		val seen = mutableSetOf<BoundedGridPoint<Int>>()
-		val back = mutableMapOf(start to mutableListOf<BoundedGridPoint<Int>>())
+	hob.filter { it.v == 0 }.sumOf { start ->
+		val seen = setLike(start)
+		val back = mutableMapOf(start to listLike(start))
 
-		val a = ArrayDeque(listOf(start))
+		val a = dequeOf(start)
 
 		while (a.isNotEmpty()) {
 			val pp = a.removeFirst()
@@ -99,10 +100,10 @@ private fun part2() {
 			}
 			seen.add(pp)
 
-			for (i in pp.getQuadNeighbours()){
-				if (i.v - pp.v == 1){
+			for (i in pp.getQuadNeighbours()) {
+				if (i.v - pp.v == 1) {
 					a.add(i)
-					back.getOrPut(i) { mutableListOf()}.add(pp)
+					back.getOrPut(i) { mutableListOf() }.add(pp)
 				}
 			}
 		}
@@ -114,7 +115,7 @@ private fun part2() {
 			}
 		}
 
-		seen.filter { it.v == 9 } .sumOf { backScore[it]!! }
+		seen.filter { it.v == 9 }.sumOf { backScore[it]!! }
 	} log 2
 }
 

@@ -25,15 +25,19 @@ public infix fun Point.toP(z: Long): Point3D = Point3D(x, y, z.s)
 public fun Char.toPoint(): Point = when (this.uppercaseChar()) {
 	'E' -> Clock.right
 	'R' -> Clock.right
+	'>' -> Clock.right
 
 	'S' -> Clock.down
 	'D' -> Clock.down
+	'V' -> Clock.down
 
 	'W' -> Clock.left
 	'L' -> Clock.left
+	'<' -> Clock.left
 
 	'N' -> Clock.up
 	'U' -> Clock.up
+	'^' -> Clock.up
 
 	else -> error("Unknown direction $this")
 }

@@ -35,6 +35,12 @@ public fun interface Yielder<T> {
 }
 
 public typealias Yr<T> = Yielder<T>.(T) -> Unit
+public typealias Yier<T, R> = Yielder<R>.(T) -> Unit
+public inline fun <T, R> yieldList(block: Yier<T, R>, item: T): List<R> {
+	val lst = mutableListOf<R>()
+	block(Yielder { lst.add(it) }, item)
+	return lst
+}
 
 public inline fun <T> withFIFO(start: T, block: Yr<T>) {
 	val queue = dequeOf(start)

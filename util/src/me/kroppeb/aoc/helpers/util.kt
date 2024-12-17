@@ -6,19 +6,19 @@ import me.kroppeb.aoc.helpers.collections.list.HetN
 import me.kroppeb.aoc.helpers.sint.*
 import kotlin.math.abs
 
-inline fun loop(block: (Int) -> Unit): Nothing {
+public inline fun loop(block: (Int) -> Unit): Nothing {
 	var i = 0
 	while (true) {
 		block(i++)
 	}
 }
 
-fun block(b: () -> Unit) = b()
+public fun block(b: () -> Unit): Unit = b()
 
-fun hammingDistance(a: Collection<*>, b: Collection<*>): Int =
+public fun hammingDistance(a: Collection<*>, b: Collection<*>): Int =
 	a.zip(b) { a1, b1 -> (a1 == b1) }.count { it } + abs(a.size - b.size)
 
-fun editDistance(a: Iterable<*>, b: Iterable<*>): Int {
+public fun editDistance(a: Iterable<*>, b: Iterable<*>): Int {
 	val al = (a as? List<*>) ?: a.toList()
 	val bl = (b as? List<*>) ?: b.toList()
 	val n = al.size
@@ -46,18 +46,18 @@ fun editDistance(a: Iterable<*>, b: Iterable<*>): Int {
 	return aux(0, 0)
 }
 
-fun Boolean.toInt() = if (this) 1 else 0
+public fun Boolean.toInt(): Int = if (this) 1 else 0
 
-fun <C : Comparable<C>> min(first: C, vararg elements: C) = elements.minOrNull()?.let { if (it < first) it else first }
+public fun <C : Comparable<C>> min(first: C, vararg elements: C): C = elements.minOrNull()?.let { if (it < first) it else first }
 	?: first
 
-fun <C : Comparable<C>> max(first: C, vararg elements: C) = elements.maxOrNull()?.let { if (it > first) it else first }
+public fun <C : Comparable<C>> max(first: C, vararg elements: C): C = elements.maxOrNull()?.let { if (it > first) it else first }
 	?: first
 
-fun len(lst: Collection<*>) = lst.size
+public fun len(lst: Collection<*>): Int = lst.size
 
 // region binary search
-inline fun <T> List<T>.bsLast(lower: Int = 0, upper: Int = this.size, predicate: (T) -> Boolean): T {
+public inline fun <T> List<T>.bsLast(lower: Int = 0, upper: Int = this.size, predicate: (T) -> Boolean): T {
 	if (!predicate(this[lower]))
 		error("predicate fails on first element")
 
@@ -73,7 +73,7 @@ inline fun <T> List<T>.bsLast(lower: Int = 0, upper: Int = this.size, predicate:
 	return this[low]
 }
 
-inline fun <T> List<T>.bsFirst(lower: Int = 0, upper: Int = this.size, predicate: (T) -> Boolean): T {
+public inline fun <T> List<T>.bsFirst(lower: Int = 0, upper: Int = this.size, predicate: (T) -> Boolean): T {
 	if (!predicate(this[upper]))
 		error("predicate fails on last element")
 
@@ -89,7 +89,7 @@ inline fun <T> List<T>.bsFirst(lower: Int = 0, upper: Int = this.size, predicate
 	return this[high]
 }
 
-inline fun bsLast(lower: Int? = null, upper: Int? = null, predicate: (Int) -> Boolean): Int {
+public inline fun bsLast(lower: Int? = null, upper: Int? = null, predicate: (Int) -> Boolean): Int {
 	var low: Int = lower ?: 0
 	if (lower == null)
 		if (!predicate(0)) {
@@ -129,7 +129,7 @@ inline fun bsLast(lower: Int? = null, upper: Int? = null, predicate: (Int) -> Bo
 	return high
 }
 
-inline fun bsFirst(lower: Int? = null, upper: Int? = null, predicate: (Int) -> Boolean): Int {
+public inline fun bsFirst(lower: Int? = null, upper: Int? = null, predicate: (Int) -> Boolean): Int {
 	var low: Int = lower ?: 0
 	if (lower == null)
 		if (predicate(0)) {
@@ -169,7 +169,7 @@ inline fun bsFirst(lower: Int? = null, upper: Int? = null, predicate: (Int) -> B
 	return high
 }
 
-inline fun bsLastL(lower: Long? = null, upper: Long? = null, predicate: (Long) -> Boolean): Long {
+public inline fun bsLastL(lower: Long? = null, upper: Long? = null, predicate: (Long) -> Boolean): Long {
 	var low: Long = lower ?: 0
 	if (lower == null)
 		if (!predicate(0)) {
@@ -209,7 +209,7 @@ inline fun bsLastL(lower: Long? = null, upper: Long? = null, predicate: (Long) -
 	return low
 }
 
-inline fun bsFirstL(lower: Long? = null, upper: Long? = null, predicate: (Long) -> Boolean): Long {
+public inline fun bsFirstL(lower: Long? = null, upper: Long? = null, predicate: (Long) -> Boolean): Long {
 	var low: Long = lower ?: 0
 	if (lower == null)
 		if (predicate(0)) {
@@ -250,17 +250,17 @@ inline fun bsFirstL(lower: Long? = null, upper: Long? = null, predicate: (Long) 
 }
 // endregion
 
-operator fun Int.rem(range: IntRange) = range.first + (this - range.first mod range.last - range.first + 1)
-infix fun Int.mod(base: IntRange) = this % base
+public operator fun Int.rem(range: IntRange): Int = range.first + (this - range.first mod range.last - range.first + 1)
+public infix fun Int.mod(base: IntRange): Int = this % base
 
-operator fun Long.rem(range: LongRange) = range.first + (this - range.first mod range.last - range.first + 1)
-infix fun Long.mod(base: LongRange) = this % base
+public operator fun Long.rem(range: LongRange): Long = range.first + (this - range.first mod range.last - range.first + 1)
+public infix fun Long.mod(base: LongRange): Long = this % base
 
-operator fun Long.rem(range: IntRange): Int = range.first + (this - range.first mod range.last - range.first + 1)
-infix fun Long.mod(base: IntRange) = this % base
+public operator fun Long.rem(range: IntRange): Int = range.first + (this - range.first mod range.last - range.first + 1)
+public infix fun Long.mod(base: IntRange): Int = this % base
 
 
-inline fun <reified T> Map<Int, T>.toArray(): Array<T?> {
+public inline fun <reified T> Map<Int, T>.toArray(): Array<T?> {
 	val min = keys.min()
 	val max = keys.max()
 
@@ -268,7 +268,7 @@ inline fun <reified T> Map<Int, T>.toArray(): Array<T?> {
 	return Array(max + 1) { get(it) }
 }
 
-fun <T> Map<Int, T>.xList(): List<T?> {
+public fun <T> Map<Int, T>.xList(): List<T?> {
 	val min = keys.min()
 	val max = keys.max()
 
@@ -276,7 +276,7 @@ fun <T> Map<Int, T>.xList(): List<T?> {
 	return List(max + 1) { get(it) }
 }
 
-inline fun <reified T> Map<Int, T>.xArray(size: Int): Array<T?> {
+public inline fun <reified T> Map<Int, T>.xArray(size: Int): Array<T?> {
 	val min = keys.min()
 	val max = keys.max()
 
@@ -285,7 +285,7 @@ inline fun <reified T> Map<Int, T>.xArray(size: Int): Array<T?> {
 	return Array(size) { get(it) }
 }
 
-fun <T> Map<Int, T>.xList(size: Int): List<T?> {
+public fun <T> Map<Int, T>.xList(size: Int): List<T?> {
 	val min = keys.min()
 	val max = keys.max()
 
@@ -295,7 +295,7 @@ fun <T> Map<Int, T>.xList(size: Int): List<T?> {
 }
 
 
-inline fun <reified T> Map<Int, T>.xArray(default: T): Array<T> {
+public inline fun <reified T> Map<Int, T>.xArray(default: T): Array<T> {
 	val min = keys.min()
 	val max = keys.max()
 
@@ -303,7 +303,7 @@ inline fun <reified T> Map<Int, T>.xArray(default: T): Array<T> {
 	return Array(max + 1) { getOrDefault(it, default) }
 }
 
-fun <T> Map<Int, T>.xList(default: T): List<T> {
+public fun <T> Map<Int, T>.xList(default: T): List<T> {
 	val min = keys.min()
 	val max = keys.max()
 
@@ -311,7 +311,7 @@ fun <T> Map<Int, T>.xList(default: T): List<T> {
 	return List(max + 1) { getOrDefault(it, default) }
 }
 
-inline fun <reified T> Map<Int, T>.xArray(size: Int, default: T): Array<T> {
+public inline fun <reified T> Map<Int, T>.xArray(size: Int, default: T): Array<T> {
 	val min = keys.min()
 	val max = keys.max()
 
@@ -320,7 +320,7 @@ inline fun <reified T> Map<Int, T>.xArray(size: Int, default: T): Array<T> {
 	return Array(size) { getOrDefault(it, default) }
 }
 
-fun <T> Map<Int, T>.xList(size: Int, default: T): List<T> {
+public fun <T> Map<Int, T>.xList(size: Int, default: T): List<T> {
 	val min = keys.min()
 	val max = keys.max()
 
@@ -330,25 +330,25 @@ fun <T> Map<Int, T>.xList(size: Int, default: T): List<T> {
 }
 
 
-fun IntArray.toLongArray(): LongArray {
+public fun IntArray.toLongArray(): LongArray {
 	return LongArray(size) { this[it].toLong() }
 }
 
-fun Array<Int>.toLongArray(): LongArray {
+public fun Array<Int>.toLongArray(): LongArray {
 	return LongArray(size) { this[it].toLong() }
 }
 
-fun List<Int>.toLongArray(): LongArray {
+public fun List<Int>.toLongArray(): LongArray {
 	return LongArray(size) { this[it].toLong() }
 }
 
-fun <T> List<T>.mut() = this.toMutableList()
-fun <T> List<List<T>>.mut2() = this.map { it.mut() }.mut()
-fun <T> List<List<List<T>>>.mut3() = this.map { it.mut2() }.mut()
+public fun <T> List<T>.mut(): MList<T> = this.toMutableList()
+public fun <T> List<List<T>>.mut2(): MList<MList<T>> = this.map { it.mut() }.mut()
+public fun <T> List<List<List<T>>>.mut3(): MList<MList<MList<T>>> = this.map { it.mut2() }.mut()
 
-inline fun <T> pureStateLoop(start: T, steps: Int, f: (T) -> T): T = pureStateLoop(start, steps, 0, f)
+public inline fun <T> pureStateLoop(start: T, steps: Int, f: (T) -> T): T = pureStateLoop(start, steps, 0, f)
 
-inline fun <T> pureStateLoop(start: T, steps: Int, skipSteps: Int, f: (T) -> T): T {
+public inline fun <T> pureStateLoop(start: T, steps: Int, skipSteps: Int, f: (T) -> T): T {
 	var id = 0
 	var state = start
 	val seen = mutableMapOf<T, Int>()
@@ -374,10 +374,10 @@ inline fun <T> pureStateLoop(start: T, steps: Int, skipSteps: Int, f: (T) -> T):
 	return state
 }
 
-inline fun <T> pureStateLoopScore(start: T, steps: Sint, f: (T) -> Pair<T, Sint>): Sint =
+public inline fun <T> pureStateLoopScore(start: T, steps: Sint, f: (T) -> Pair<T, Sint>): Sint =
 	pureStateLoopScore(start, steps, 0.s, f)
 
-inline fun <T> pureStateLoopScore(start: T, steps: Sint, skipSteps: Sint, f: (T) -> Pair<T, Sint>): Sint {
+public inline fun <T> pureStateLoopScore(start: T, steps: Sint, skipSteps: Sint, f: (T) -> Pair<T, Sint>): Sint {
 	var id = 0.s
 	var state = start
 	val seen = mutableMapOf<T, Sint>()
@@ -411,7 +411,7 @@ inline fun <T> pureStateLoopScore(start: T, steps: Sint, skipSteps: Sint, f: (T)
 	return scores.last()
 }
 
-class UPair<T>(val first: T, val second: T) {
+public class UPair<T>(public val first: T, public val second: T) {
 	override fun equals(other: Any?): Boolean {
 		if (this === other) return true
 		if (other !is UPair<*>) return false
@@ -434,18 +434,18 @@ class UPair<T>(val first: T, val second: T) {
 		return "{$first, $second}"
 	}
 
-	operator fun component1() = first
-	operator fun component2() = second
+	public operator fun component1(): T = first
+	public operator fun component2(): T = second
 }
 
-infix fun <T> T.toU(other: T) = UPair(this, other)
+public infix fun <T> T.toU(other: T): UPair<T> = UPair(this, other)
 
 
-operator fun Boolean.inc() = true
-operator fun Boolean.dec() = false
+public operator fun Boolean.inc(): Boolean = true
+public operator fun Boolean.dec(): Boolean = false
 
 
-class SortKey(val key: Any?) : Comparable<SortKey> {
+public class SortKey(public val key: Any?) : Comparable<SortKey> {
 	private fun comp(a: Any?, b: Any?): Int {
 		return when {
 			a == b -> 0
@@ -484,22 +484,28 @@ class SortKey(val key: Any?) : Comparable<SortKey> {
 	}
 }
 
-fun sortKey(key: Any?) = SortKey(key)
-fun Any?.asSortKey() = SortKey(this)
+public fun sortKey(key: Any?): SortKey = SortKey(key)
+public fun Any?.asSortKey(): SortKey = SortKey(this)
 
-fun no(): Nothing = error("no")
-fun <T> no(like: T): T = error("no")
+public fun no(): Nothing = error("no")
+public fun <T> no(like: T): T = error("no")
 
-inline fun <reified T> Any?.asEx(_example: T): T = this as? T ?: error("Can't cast $this to ${T::class.java}")
+@Suppress("UNUSED_PARAMETER")
+public inline fun <reified T> Any?.asEx(_example: T): T = this as? T ?: error("Can't cast $this to ${T::class.java}")
 
-fun <T> Iterable<T>.b(): List<T> = drop(1) // Behead
-fun <T> T.g(): List<T> = listOf(this) // Group
-fun <T> Iterable<T>.h(): T = first() // Head
-fun <T> Iterable<T>.k(): List<T> = dropLast(1) // Knife
-fun <T> Iterable<T>.t(): T = last() // Tail
+@MarkedB
+public fun <T> Iterable<T>.b(): List<T> = drop(1) // Behead
+@MarkedB
+public fun <T> T.g(): List<T> = listOf(this) // Group
+@MarkedB
+public fun <T> Iterable<T>.h(): T = first() // Head
+@MarkedB
+public fun <T> Iterable<T>.k(): List<T> = dropLast(1) // Knife
+@MarkedB
+public fun <T> Iterable<T>.t(): T = last() // Tail
 
 
-fun <T> Iterable<T>.dropLast(n: Int): List<T> {
+public fun <T> Iterable<T>.dropLast(n: Int): List<T> {
 	val l = toList()
 	require(n >= 0) { "Requested element count $n is less than zero." }
 	return l.take((l.size - n).coerceAtLeast(0))

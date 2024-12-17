@@ -147,6 +147,17 @@ public data class Point(val x: Sint, val y: Sint) : PointN<Point> {
 	public fun isRightOf(other: Point): Boolean = Clock.right.dot(this) > Clock.right.dot(other)
 	public fun isAbove(other: Point): Boolean = Clock.up.dot(this) > Clock.up.dot(other)
 	public fun isBelow(other: Point): Boolean = Clock.down.dot(this) > Clock.down.dot(other)
+
+	public fun isWestOf(other: Point): Boolean = isLeftOf(other)
+	public fun isEastOf(other: Point): Boolean = isRightOf(other)
+	public fun isNorthOf(other: Point): Boolean = isAbove(other)
+	public fun isSouthOf(other: Point): Boolean = isBelow(other)
+
+	public fun isNorthEastOf(other: Point): Boolean = isNorthOf(other) && isEastOf(other)
+	public fun isNorthWestOf(other: Point): Boolean = isNorthOf(other) && isWestOf(other)
+	public fun isSouthEastOf(other: Point): Boolean = isSouthOf(other) && isEastOf(other)
+	public fun isSouthWestOf(other: Point): Boolean = isSouthOf(other) && isWestOf(other)
+
 	public fun sameLeftRight(other: Point): Boolean = Clock.left.dot(this) == Clock.left.dot(other)
 	public fun sameUpDown(other: Point): Boolean = Clock.up.dot(this) == Clock.up.dot(other)
 

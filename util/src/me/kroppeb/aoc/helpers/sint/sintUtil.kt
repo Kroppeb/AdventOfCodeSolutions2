@@ -3,121 +3,121 @@
 package me.kroppeb.aoc.helpers.sint
 
 import me.kroppeb.aoc.helpers.*
+import java.math.BigInteger
 import kotlin.experimental.ExperimentalTypeInference
 
 
-val Int.s: Sint get() = Sint(this.toLong())
-val Long.s: Sint get() = Sint(this)
-val String.s: Sint get() = this.toSint()
-fun String.toSint(): Sint = this.toLong().s
+public val Int.s: Sint get() = Sint(this.toLong())
+public val Long.s: Sint get() = Sint(this)
+public val String.s: Sint get() = this.toSint()
+public fun String.toSint(): Sint = this.toLong().s
 
 
-
-val Iterable<Int>.s: List<Sint>
+public val Iterable<Int>.s: List<Sint>
 	@JvmName("IterableIntToSint")
 	get() = this.map { it.s }
-val Iterable<Long>.s: List<Sint>
+public val Iterable<Long>.s: List<Sint>
 	@JvmName("IterableLongToSint")
 	get() = this.map { it.s }
 
-val Iterable<Iterable<Int>>.s: List<List<Sint>>
+public val Iterable<Iterable<Int>>.s: List<List<Sint>>
 	@JvmName("IterableIterableIntToSint")
 	get() = this.map { it.s }
-val Iterable<Iterable<Long>>.s: List<List<Sint>>
+public val Iterable<Iterable<Long>>.s: List<List<Sint>>
 	@JvmName("IterableIterableLongToSint")
 	get() = this.map { it.s }
 
 @Deprecated("UwU")
-val Sint.s: Sint get() = this
+public val Sint.s: Sint get() = this
 
 
-fun Sint.toBigInteger() = this.l.toBigInteger()
+public fun Sint.toBigInteger(): BigInteger = this.l.toBigInteger()
 
 
 //region overloads for Sint opp Int or Long and vice versa
-operator fun Sint.plus(other: Int) = this + other.s
-operator fun Sint.plus(other: Long) = this + other.s
-operator fun Int.plus(other: Sint) = this.s + other
-operator fun Long.plus(other: Sint) = this.s + other
+public operator fun Sint.plus(other: Int): Sint = this + other.s
+public operator fun Sint.plus(other: Long): Sint = this + other.s
+public operator fun Int.plus(other: Sint): Sint = this.s + other
+public operator fun Long.plus(other: Sint): Sint = this.s + other
 
-operator fun Sint.minus(other: Int) = this - other.s
-operator fun Sint.minus(other: Long) = this - other.s
-operator fun Int.minus(other: Sint) = this.s - other
-operator fun Long.minus(other: Sint) = this.s - other
+public operator fun Sint.minus(other: Int): Sint = this - other.s
+public operator fun Sint.minus(other: Long): Sint = this - other.s
+public operator fun Int.minus(other: Sint): Sint = this.s - other
+public operator fun Long.minus(other: Sint): Sint = this.s - other
 
-operator fun Sint.times(other: Int) = this * other.s
-operator fun Sint.times(other: Long) = this * other.s
-operator fun Int.times(other: Sint) = this.s * other
-operator fun Long.times(other: Sint) = this.s * other
+public operator fun Sint.times(other: Int): Sint = this * other.s
+public operator fun Sint.times(other: Long): Sint = this * other.s
+public operator fun Int.times(other: Sint): Sint = this.s * other
+public operator fun Long.times(other: Sint): Sint = this.s * other
 
-operator fun Sint.div(other: Int) = this / other.s
-operator fun Sint.div(other: Long) = this / other.s
-operator fun Int.div(other: Sint) = this.s / other
-operator fun Long.div(other: Sint) = this.s / other
+public operator fun Sint.div(other: Int): Sint = this / other.s
+public operator fun Sint.div(other: Long): Sint = this / other.s
+public operator fun Int.div(other: Sint): Sint = this.s / other
+public operator fun Long.div(other: Sint): Sint = this.s / other
 
-operator fun Sint.rem(other: Int) = this % other.s
-operator fun Sint.rem(other: Long) = this % other.s
-operator fun Int.rem(other: Sint) = this.s % other
-operator fun Long.rem(other: Sint) = this.s % other
+public operator fun Sint.rem(other: Int): Sint = this % other.s
+public operator fun Sint.rem(other: Long): Sint = this % other.s
+public operator fun Int.rem(other: Sint): Sint = this.s % other
+public operator fun Long.rem(other: Sint): Sint = this.s % other
 
-operator fun Sint.compareTo(other: Int) = this.compareTo(other.s)
-operator fun Sint.compareTo(other: Long) = this.compareTo(other.s)
-operator fun Int.compareTo(other: Sint) = this.s.compareTo(other)
-operator fun Long.compareTo(other: Sint) = this.s.compareTo(other)
+public operator fun Sint.compareTo(other: Int): Int = this.compareTo(other.s)
+public operator fun Sint.compareTo(other: Long): Int = this.compareTo(other.s)
+public operator fun Int.compareTo(other: Sint): Int = this.s.compareTo(other)
+public operator fun Long.compareTo(other: Sint): Int = this.s.compareTo(other)
 
-operator fun Sint.rangeTo(other: Int) = this..other.s
-operator fun Sint.rangeTo(other: Long) = this..other.s
-operator fun Int.rangeTo(other: Sint) = this.s..other
-operator fun Long.rangeTo(other: Sint) = this.s..other
+public operator fun Sint.rangeTo(other: Int): SintRange = this..other.s
+public operator fun Sint.rangeTo(other: Long): SintRange = this..other.s
+public operator fun Int.rangeTo(other: Sint): SintRange = this.s..other
+public operator fun Long.rangeTo(other: Sint): SintRange = this.s..other
 
-operator fun Sint.rangeUntil(other: Int) = this..<other.s
-operator fun Sint.rangeUntil(other: Long) = this..<other.s
-operator fun Int.rangeUntil(other: Sint) = this.s..<other
-operator fun Long.rangeUntil(other: Sint) = this.s..<other
+public operator fun Sint.rangeUntil(other: Int): SintRange = this..<other.s
+public operator fun Sint.rangeUntil(other: Long): SintRange = this..<other.s
+public operator fun Int.rangeUntil(other: Sint): SintRange = this.s..<other
+public operator fun Long.rangeUntil(other: Sint): SintRange = this.s..<other
 
-infix fun Sint.until(other: Int) = this until other.s
-infix fun Sint.until(other: Long) = this until other.s
-infix fun Int.until(other: Sint) = this.s until other
-infix fun Long.until(other: Sint) = this.s until other
+public infix fun Sint.until(other: Int): SintRange = this until other.s
+public infix fun Sint.until(other: Long): SintRange = this until other.s
+public infix fun Int.until(other: Sint): SintRange = this.s until other
+public infix fun Long.until(other: Sint): SintRange = this.s until other
 
-infix fun Sint.downTo(other: Int) = this downTo other.s
-infix fun Sint.downTo(other: Long) = this downTo other.s
-infix fun Int.downTo(other: Sint) = this.s downTo other
-infix fun Long.downTo(other: Sint) = this.s downTo other
+public infix fun Sint.downTo(other: Int): SintProgression = this downTo other.s
+public infix fun Sint.downTo(other: Long): SintProgression = this downTo other.s
+public infix fun Int.downTo(other: Sint): SintProgression = this.s downTo other
+public infix fun Long.downTo(other: Sint): SintProgression = this.s downTo other
 
-fun Sint.coerceIn(min: Int, max: Int) = this.coerceIn(min.s, max.s)
-fun Sint.coerceIn(min: Sint, max: Int) = this.coerceIn(min, max.s)
-fun Sint.coerceIn(min: Int, max: Sint) = this.coerceIn(min.s, max)
-fun Sint.coerceIn(min: Long, max: Long) = this.coerceIn(min.s, max.s)
-fun Sint.coerceIn(min: Sint, max: Long) = this.coerceIn(min, max.s)
-fun Sint.coerceIn(min: Long, max: Sint) = this.coerceIn(min.s, max)
-fun Int.coerceIn(min: Sint, max: Sint) = this.s.coerceIn(min, max)
-fun Int.coerceIn(min: Int, max: Sint) = this.s.coerceIn(min.s, max)
-fun Int.coerceIn(min: Sint, max: Int) = this.s.coerceIn(min, max.s)
-fun Long.coerceIn(min: Sint, max: Sint) = this.s.coerceIn(min, max)
-fun Long.coerceIn(min: Long, max: Sint) = this.s.coerceIn(min.s, max)
-fun Long.coerceIn(min: Sint, max: Long) = this.s.coerceIn(min, max.s)
+public fun Sint.coerceIn(min: Int, max: Int): Sint = this.coerceIn(min.s, max.s)
+public fun Sint.coerceIn(min: Sint, max: Int): Sint = this.coerceIn(min, max.s)
+public fun Sint.coerceIn(min: Int, max: Sint): Sint = this.coerceIn(min.s, max)
+public fun Sint.coerceIn(min: Long, max: Long): Sint = this.coerceIn(min.s, max.s)
+public fun Sint.coerceIn(min: Sint, max: Long): Sint = this.coerceIn(min, max.s)
+public fun Sint.coerceIn(min: Long, max: Sint): Sint = this.coerceIn(min.s, max)
+public fun Int.coerceIn(min: Sint, max: Sint): Sint = this.s.coerceIn(min, max)
+public fun Int.coerceIn(min: Int, max: Sint): Sint = this.s.coerceIn(min.s, max)
+public fun Int.coerceIn(min: Sint, max: Int): Sint = this.s.coerceIn(min, max.s)
+public fun Long.coerceIn(min: Sint, max: Sint): Sint = this.s.coerceIn(min, max)
+public fun Long.coerceIn(min: Long, max: Sint): Sint = this.s.coerceIn(min.s, max)
+public fun Long.coerceIn(min: Sint, max: Long): Sint = this.s.coerceIn(min, max.s)
 
-fun Sint.coerceAtLeast(min: Int) = this.coerceAtLeast(min.s)
-fun Sint.coerceAtLeast(min: Long) = this.coerceAtLeast(min.s)
-fun Int.coerceAtLeast(min: Sint) = this.s.coerceAtLeast(min)
-fun Long.coerceAtLeast(min: Sint) = this.s.coerceAtLeast(min)
+public fun Sint.coerceAtLeast(min: Int): Sint = this.coerceAtLeast(min.s)
+public fun Sint.coerceAtLeast(min: Long): Sint = this.coerceAtLeast(min.s)
+public fun Int.coerceAtLeast(min: Sint): Sint = this.s.coerceAtLeast(min)
+public fun Long.coerceAtLeast(min: Sint): Sint = this.s.coerceAtLeast(min)
 
-fun Sint.coerceAtMost(max: Int) = this.coerceAtMost(max.s)
-fun Sint.coerceAtMost(max: Long) = this.coerceAtMost(max.s)
-fun Int.coerceAtMost(max: Sint) = this.s.coerceAtMost(max)
-fun Long.coerceAtMost(max: Sint) = this.s.coerceAtMost(max)
+public fun Sint.coerceAtMost(max: Int): Sint = this.coerceAtMost(max.s)
+public fun Sint.coerceAtMost(max: Long): Sint = this.coerceAtMost(max.s)
+public fun Int.coerceAtMost(max: Sint): Sint = this.s.coerceAtMost(max)
+public fun Long.coerceAtMost(max: Sint): Sint = this.s.coerceAtMost(max)
 
 @JvmName("sintCollectionsContainsInt")
-operator fun Collection<Sint>.contains(other: Int) = this.contains(other.s)
+public operator fun Collection<Sint>.contains(other: Int): Boolean = this.contains(other.s)
 
 @JvmName("sintCollectionsContainsLong")
-operator fun Collection<Sint>.contains(other: Long) = this.contains(other.s)
+public operator fun Collection<Sint>.contains(other: Long): Boolean = this.contains(other.s)
 
 private var _contains_warning = false
 
 @JvmName("intCollectionsContainsSint")
-operator fun Collection<Int>.contains(other: Sint): Boolean {
+public operator fun Collection<Int>.contains(other: Sint): Boolean {
 	if (other.canBeExactInt()) return this.contains(other.i)
 	if (!_contains_warning) {
 		_contains_warning = true
@@ -127,60 +127,59 @@ operator fun Collection<Int>.contains(other: Sint): Boolean {
 }
 
 @JvmName("longCollectionsContainsSint")
-operator fun Collection<Long>.contains(other: Sint) = this.contains(other.l)
+public operator fun Collection<Long>.contains(other: Sint): Boolean = this.contains(other.l)
 
-infix fun Sint.shl(other: Int) = this shl other.s
-infix fun Sint.shl(other: Long) = this shl other.s
-infix fun Int.shl(other: Sint) = this.s shl other
-infix fun Long.shl(other: Sint) = this.s shl other
+public infix fun Sint.shl(other: Int): Sint = this shl other.s
+public infix fun Sint.shl(other: Long): Sint = this shl other.s
+public infix fun Int.shl(other: Sint): Sint = this.s shl other
+public infix fun Long.shl(other: Sint): Sint = this.s shl other
 
-infix fun Sint.shr(other: Int) = this shr other.s
-infix fun Sint.shr(other: Long) = this shr other.s
-infix fun Int.shr(other: Sint) = this.s shr other
-infix fun Long.shr(other: Sint) = this.s shr other
+public infix fun Sint.shr(other: Int): Sint = this shr other.s
+public infix fun Sint.shr(other: Long): Sint = this shr other.s
+public infix fun Int.shr(other: Sint): Sint = this.s shr other
+public infix fun Long.shr(other: Sint): Sint = this.s shr other
 
-infix fun Sint.ushr(other: Int) = this ushr other.s
-infix fun Sint.ushr(other: Long) = this ushr other.s
-infix fun Int.ushr(other: Sint) = this.s ushr other
-infix fun Long.ushr(other: Sint) = this.s ushr other
+public infix fun Sint.ushr(other: Int): Sint = this ushr other.s
+public infix fun Sint.ushr(other: Long): Sint = this ushr other.s
+public infix fun Int.ushr(other: Sint): Sint = this.s ushr other
+public infix fun Long.ushr(other: Sint): Sint = this.s ushr other
 
-infix fun Sint.and(other: Int) = this and other.s
-infix fun Sint.and(other: Long) = this and other.s
-infix fun Int.and(other: Sint) = this.s and other
-infix fun Long.and(other: Sint) = this.s and other
+public infix fun Sint.and(other: Int): Sint = this and other.s
+public infix fun Sint.and(other: Long): Sint = this and other.s
+public infix fun Int.and(other: Sint): Sint = this.s and other
+public infix fun Long.and(other: Sint): Sint = this.s and other
 
 // endregion
 
 
 // list stuff
-operator fun <T> List<T>.get(index: Sint): T = this[index.i]
-operator fun <T> List<T>.get(index: SintRange): List<T> = this.subList(index.start.i, index.endInclusive.i + 1)
-operator fun <T> List<T>.get(index: SintProgression): List<T> = index.map { this[it.i] }
-operator fun <T> MutableList<T>.set(index: Sint, item: T): T = this.set(index.i, item)
+public operator fun <T> List<T>.get(index: Sint): T = this[index.i]
+public operator fun <T> List<T>.get(index: SintRange): List<T> = this.subList(index.start.i, index.endInclusive.i + 1)
+public operator fun <T> List<T>.get(index: SintProgression): List<T> = index.map { this[it.i] }
+public operator fun <T> MutableList<T>.set(index: Sint, item: T): T = this.set(index.i, item)
 
 @JvmName("getMutable")
-operator fun <T> MutableList<T>.get(index: SintRange): List<T> = this.subList(index.start.i, index.endExclusive.i)
+public operator fun <T> MutableList<T>.get(index: SintRange): List<T> = this.subList(index.start.i, index.endExclusive.i)
 
 @JvmName("getMutable")
-operator fun <T> MutableList<T>.get(index: SintProgression): List<T> = index.map { this[it.i] }
-fun <T> MutableList<T>.add(index: Sint, item: T) = this.add(index.i, item)
-fun List<*>.idx() = 0.s..<this.size.s
-val List<*>.lastIdx: Sint get() = this.lastIndex.s
+public operator fun <T> MutableList<T>.get(index: SintProgression): List<T> = index.map { this[it.i] }
+public fun <T> MutableList<T>.add(index: Sint, item: T): Unit = this.add(index.i, item)
+public fun List<*>.idx(): SintRange = 0.s..<this.size.s
+public val List<*>.lastIdx: Sint get() = this.lastIndex.s
 
 // array stuff
-operator fun <T> Array<T>.get(index: Sint): T = this[index.i]
-operator fun <T> Array<T>.get(index: SintRange): List<T> = this.slice(index.start.i..index.endInclusive.i)
-operator fun <T> Array<T>.get(index: SintProgression): List<T> = index.map { this[it.i] }
-operator fun <T> Array<T>.set(index: Sint, item: T) = this.set(index.i, item)
-fun Array<*>.idx() = 0.s until this.size.s
+public operator fun <T> Array<T>.get(index: Sint): T = this[index.i]
+public operator fun <T> Array<T>.get(index: SintRange): List<T> = this.slice(index.start.i..index.endInclusive.i)
+public operator fun <T> Array<T>.get(index: SintProgression): List<T> = index.map { this[it.i] }
+public operator fun <T> Array<T>.set(index: Sint, item: T): Unit = this.set(index.i, item)
+public fun Array<*>.idx(): SintRange = 0.s until this.size.s
 
 
-operator fun String.get(index: Sint): Char = this[index.i]
-fun String.getOrNull(index: Sint): Char? = this.getOrNull(index.i)
+public operator fun String.get(index: Sint): Char = this[index.i]
+public fun String.getOrNull(index: Sint): Char? = this.getOrNull(index.i)
 
 
-
-inline fun repeat(times: Sint, action: (Sint) -> Unit) {
+public inline fun repeat(times: Sint, action: (Sint) -> Unit) {
 //	contract { callsInPlace(action) }
 
 	for (index in 0 until times) {
@@ -189,61 +188,62 @@ inline fun repeat(times: Sint, action: (Sint) -> Unit) {
 }
 
 
-infix fun Sint.mod(base: Sint) = this.l.mod(base.l).s
-infix fun Sint.mod(base: Int) = this mod base.s
-infix fun Sint.mod(base: Long) = this mod base.s
-infix fun Int.mod(base: Sint) = this.s mod base
-infix fun Long.mod(base: Sint) = this.s mod base
+public infix fun Sint.mod(base: Sint): Sint = this.l.mod(base.l).s
+public infix fun Sint.mod(base: Int): Sint = this mod base.s
+public infix fun Sint.mod(base: Long): Sint = this mod base.s
+public infix fun Int.mod(base: Sint): Sint = this.s mod base
+public infix fun Long.mod(base: Sint): Sint = this.s mod base
 
 
-fun Iterable<Sint>.sum(): Sint = fold(0.s) { a, b -> a + b }
+public fun Iterable<Sint>.sum(): Sint = fold(0.s) { a, b -> a + b }
 
 //@OverloadResolutionByLambdaReturnType
-fun <T> Iterable<T>.sumOf(selector: (T) -> Sint): Sint = map(selector).sum()
-fun Iterable<Sint>.cumSum(): List<Sint> = scan { a, b -> a + b }
+public fun <T> Iterable<T>.sumOf(selector: (T) -> Sint): Sint = map(selector).sum()
+public fun Iterable<Sint>.cumSum(): List<Sint> = scan { a, b -> a + b }
 
-fun <T> Iterable<T>.cumSumOf(selector: (T) -> Sint): List<Sint> = map(selector).cumSum()
+public fun <T> Iterable<T>.cumSumOf(selector: (T) -> Sint): List<Sint> = map(selector).cumSum()
 
-fun Iterable<Sint>.cumSum(initial: Sint): List<Sint> = scan(initial) { a, b -> a + b }
+public fun Iterable<Sint>.cumSum(initial: Sint): List<Sint> = scan(initial) { a, b -> a + b }
 
-fun <T> Iterable<T>.cumSumOf(initial: Sint, selector: (T) -> Sint): List<Sint> = map(selector).cumSum(initial)
+public fun <T> Iterable<T>.cumSumOf(initial: Sint, selector: (T) -> Sint): List<Sint> = map(selector).cumSum(initial)
 
-fun abs(a: Sint) = if (a.l < 0) -a else a
+public fun abs(a: Sint) = if (a.l < 0) -a else a
+
 @JvmName("absExt")
-fun Sint.abs() = abs(this)
+public fun Sint.abs() = abs(this)
 
 
-fun Sint.toDouble(): Double = this.l.toDouble()
+public fun Sint.toDouble(): Double = this.l.toDouble()
 
-val IntRange.s: SintRange get() = SintRange(this.start.s, this.endInclusive.s)
-val LongRange.s: SintRange get() = SintRange(this.start.s, this.endInclusive.s)
-val Iterable<IntRange>.s: List<SintRange>
+public val IntRange.s: SintRange get() = SintRange(this.start.s, this.endInclusive.s)
+public val LongRange.s: SintRange get() = SintRange(this.start.s, this.endInclusive.s)
+public val Iterable<IntRange>.s: List<SintRange>
 	@JvmName("IterableIntRangeToSintRange")
 	get() = this.map { it.s }
-val Iterable<LongRange>.s: List<SintRange>
+public val Iterable<LongRange>.s: List<SintRange>
 	@JvmName("IterableLongRangeToSintRange")
 	get() = this.map { it.s }
 
-val Iterable<Iterable<IntRange>>.s: List<List<SintRange>>
+public val Iterable<Iterable<IntRange>>.s: List<List<SintRange>>
 	@JvmName("IterableIterableIntRangeToSintRange")
 	get() = this.map { it.s }
-val Iterable<Iterable<LongRange>>.s: List<List<SintRange>>
+public val Iterable<Iterable<LongRange>>.s: List<List<SintRange>>
 	@JvmName("IterableIterableLongRangeToSintRange")
 	get() = this.map { it.s }
 
-operator fun Sint.rem(range: SintRange) = range.first + (this - range.first mod range.last - range.first + 1)
-operator fun Sint.rem(range: IntRange) = this % range.s
-operator fun Sint.rem(range: LongRange) = this % range.s
-operator fun Int.rem(range: SintRange) = this.s % range
-operator fun Long.rem(range: SintRange) = this.s % range
-infix fun Sint.mod(base: SintRange) = this % base
-infix fun Sint.mod(base: IntRange) = this % base
-infix fun Sint.mod(base: LongRange) = this % base
-infix fun Int.mod(base: SintRange) = this.s % base
-infix fun Long.mod(base: SintRange) = this.s % base
+public operator fun Sint.rem(range: SintRange): Sint = range.first + (this - range.first mod range.last - range.first + 1)
+public operator fun Sint.rem(range: IntRange): Sint = this % range.s
+public operator fun Sint.rem(range: LongRange): Sint = this % range.s
+public operator fun Int.rem(range: SintRange): Sint = this.s % range
+public operator fun Long.rem(range: SintRange): Sint = this.s % range
+public infix fun Sint.mod(base: SintRange): Sint = this % base
+public infix fun Sint.mod(base: IntRange): Sint = this % base
+public infix fun Sint.mod(base: LongRange): Sint = this % base
+public infix fun Int.mod(base: SintRange): Sint = this.s % base
+public infix fun Long.mod(base: SintRange): Sint = this.s % base
 
 
-fun Sint.pow(x: Sint): Sint = when {
+public fun Sint.pow(x: Sint): Sint = when {
 	x.l < 0 -> throw ArithmeticException("Negative exponent")
 	x.l == 0L -> 1.s // pow over integer can be safely considered 1
 	x.l == 1L -> this
@@ -252,12 +252,12 @@ fun Sint.pow(x: Sint): Sint = when {
 	else -> (this * this).pow(x / 2) * this
 }
 
-fun Sint.pow(x: Int) = this.pow(x.s)
-fun Sint.pow(x: Long) = this.pow(x.s)
-fun Int.pow(x: Sint) = this.s.pow(x)
-fun Long.pow(x: Sint) = this.s.pow(x)
+public fun Sint.pow(x: Int): Sint = this.pow(x.s)
+public fun Sint.pow(x: Long): Sint = this.pow(x.s)
+public fun Int.pow(x: Sint): Sint = this.s.pow(x)
+public fun Long.pow(x: Sint): Sint = this.s.pow(x)
 
-fun Sint.powMod(x: Sint, y: Sint): Sint = when {
+public fun Sint.powMod(x: Sint, y: Sint): Sint = when {
 	y.l <= 1 -> throw ArithmeticException("Bad modulus")
 	x.l < 0 -> if (this.l == 0L) throw ArithmeticException("Division by zero") else this.modInv(y).powMod(-x, y)
 	x.l == 0L -> 1.s // pow over integer can be safely considered 1
@@ -267,16 +267,23 @@ fun Sint.powMod(x: Sint, y: Sint): Sint = when {
 	else -> (this * this mod y).powMod(x / 2, y) * this mod y
 }
 
-fun Sint.floorDiv(x: Sint): Sint = l.floorDiv(x.l).s
-fun Sint.floorDiv(x: Int) = this.floorDiv(x.s)
-fun Sint.floorDiv(x: Long) = this.floorDiv(x.s)
-fun Int.floorDiv(x: Sint) = this.s.floorDiv(x)
-fun Long.floorDiv(x: Sint) = this.s.floorDiv(x)
+public fun Sint.floorDiv(x: Sint): Sint = l.floorDiv(x.l).s
+public fun Sint.floorDiv(x: Int): Sint = this.floorDiv(x.s)
+public fun Sint.floorDiv(x: Long): Sint = this.floorDiv(x.s)
+public fun Int.floorDiv(x: Sint): Sint = this.s.floorDiv(x)
+public fun Long.floorDiv(x: Sint): Sint = this.s.floorDiv(x)
 
-fun Sint.modInv(base: Sint): Sint {
+public fun Sint.modInv(base: Sint): Sint {
 	val (g, x, _) = egcd(this, base)
 	if (g != 1.s) throw IllegalArgumentException("No inverse")
 	return x mod base
 }
 
-fun Sint.isZero() = this.l == 0L
+public fun Sint.modInv(base: Sint, target: Sint): Sint {
+	val (g, x, _) = egcd(this, base)
+	if (target divBy g) return x * (target / g) mod base
+	throw java.lang.IllegalArgumentException("No inverse")
+}
+
+
+public fun Sint.isZero(): Boolean = this.l == 0L

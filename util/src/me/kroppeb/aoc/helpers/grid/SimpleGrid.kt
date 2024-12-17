@@ -8,7 +8,7 @@ import me.kroppeb.aoc.helpers.point.*
 import me.kroppeb.aoc.helpers.sint.Sint
 import me.kroppeb.aoc.helpers.sint.s
 
-public class SimpleGrid<T>(public val items: List<List<T>>) : StrictGrid<T>, Iterable<BoundedGridPoint<T>> {
+public class SimpleGrid<T>(public val items: List<List<T>>) : StrictGrid<T>, Iterable<BGP<T>> {
 	public override val bounds: Bounds
 
 	init {

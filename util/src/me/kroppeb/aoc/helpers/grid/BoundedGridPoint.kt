@@ -67,6 +67,7 @@ public data class BoundedGridPoint<T>(val p: Point, val v: T, val g: SimpleGrid<
 	public operator fun minus(other: Point): BGP<T> = g.getBp(p - other)
 	public operator fun plus(other: Point): BGP<T> = g.getBp(p + other)
 	public fun offsetOrNull(other: Point): BGP<T>? = g.getBpOrNull(p + other)
+	public fun offset(other: Point): BGP<T> = this + other
 
 	public operator fun minus(other: Char): BGP<T> = this - other.toPoint()
 	public operator fun plus(other: Char): BGP<T> = this + other.toPoint()

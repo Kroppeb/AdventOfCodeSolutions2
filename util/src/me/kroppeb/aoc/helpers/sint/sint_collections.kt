@@ -7,19 +7,19 @@ import me.kroppeb.aoc.helpers.divBy
  * Use of this source code is governed by the Apache 2.0 license that can be found in the license/LICENSE.txt file.
  */
 
-fun <T> Iterable<T>.elementAt(idx: Sint): T {
+public fun <T> Iterable<T>.elementAt(idx: Sint): T {
 	if (this is List)
 		return get(idx)
 	return elementAtOrElse(idx) { throw IndexOutOfBoundsException("Collection doesn't contain element at idx $idx.") }
 }
 
 
-fun <T> List<T>.elementAt(idx: Sint): T {
+public fun <T> List<T>.elementAt(idx: Sint): T {
 	return get(idx)
 }
 
 
-inline fun <T> Iterable<T>.elementAtOrElse(idx: Sint, defaultValue: (Sint) -> T): T {
+public inline fun <T> Iterable<T>.elementAtOrElse(idx: Sint, defaultValue: (Sint) -> T): T {
 	if (this is List)
 		return this.getOrElse(idx, defaultValue)
 	if (idx < 0)
@@ -35,12 +35,12 @@ inline fun <T> Iterable<T>.elementAtOrElse(idx: Sint, defaultValue: (Sint) -> T)
 }
 
 
-inline fun <T> List<T>.elementAtOrElse(idx: Sint, defaultValue: (Sint) -> T): T {
+public inline fun <T> List<T>.elementAtOrElse(idx: Sint, defaultValue: (Sint) -> T): T {
 	return if (idx >= 0 && idx <= lastIdx) get(idx) else defaultValue(idx)
 }
 
 
-fun <T> Iterable<T>.elementAtOrNull(idx: Sint): T? {
+public fun <T> Iterable<T>.elementAtOrNull(idx: Sint): T? {
 	if (this is List)
 		return this.getOrNull(idx)
 	if (idx < 0)
@@ -56,21 +56,21 @@ fun <T> Iterable<T>.elementAtOrNull(idx: Sint): T? {
 }
 
 
-inline fun <T> List<T>.elementAtOrNull(idx: Sint): T? {
+public fun <T> List<T>.elementAtOrNull(idx: Sint): T? {
 	return this.getOrNull(idx)
 }
 
-inline fun <T> List<T>.getOrElse(idx: Sint, defaultValue: (Sint) -> T): T {
+public inline fun <T> List<T>.getOrElse(idx: Sint, defaultValue: (Sint) -> T): T {
 	return if (idx >= 0 && idx <= lastIdx) get(idx) else defaultValue(idx)
 }
 
 
-fun <T> List<T>.getOrNull(idx: Sint): T? {
+public fun <T> List<T>.getOrNull(idx: Sint): T? {
 	return if (idx >= 0 && idx <= lastIdx) get(idx) else null
 }
 
 
-fun <T> Iterable<T>.idxOf(element: T): Sint {
+public fun <T> Iterable<T>.idxOf(element: T): Sint {
 	if (this is List) return this.idxOf(element)
 	var idx = 0.s
 	for (item in this) {
@@ -81,12 +81,12 @@ fun <T> Iterable<T>.idxOf(element: T): Sint {
 	return -1.s
 }
 
-fun <T> List<T>.idxOf(element: T): Sint {
+public fun <T> List<T>.idxOf(element: T): Sint {
 	return indexOf(element).s
 }
 
 
-inline fun <T> Iterable<T>.idxOfFirst(predicate: (T) -> Boolean): Sint {
+public inline fun <T> Iterable<T>.idxOfFirst(predicate: (T) -> Boolean): Sint {
 	var idx = 0.s
 	for (item in this) {
 		if (predicate(item))
@@ -97,7 +97,7 @@ inline fun <T> Iterable<T>.idxOfFirst(predicate: (T) -> Boolean): Sint {
 }
 
 
-inline fun <T> List<T>.idxOfFirst(predicate: (T) -> Boolean): Sint {
+public inline fun <T> List<T>.idxOfFirst(predicate: (T) -> Boolean): Sint {
 	var idx = 0.s
 	for (item in this) {
 		if (predicate(item))
@@ -108,7 +108,7 @@ inline fun <T> List<T>.idxOfFirst(predicate: (T) -> Boolean): Sint {
 }
 
 
-inline fun <T> Iterable<T>.idxOfLast(predicate: (T) -> Boolean): Sint {
+public inline fun <T> Iterable<T>.idxOfLast(predicate: (T) -> Boolean): Sint {
 	var lastIdx = -1.s
 	var idx = 0.s
 	for (item in this) {
@@ -119,10 +119,10 @@ inline fun <T> Iterable<T>.idxOfLast(predicate: (T) -> Boolean): Sint {
 	return lastIdx
 }
 
-fun <T> ListIterator<T>.nextIdx() = nextIndex().s
-fun <T> ListIterator<T>.previousIdx() = previousIndex().s
+public fun <T> ListIterator<T>.nextIdx(): Sint = nextIndex().s
+public fun <T> ListIterator<T>.previousIdx(): Sint = previousIndex().s
 
-inline fun <T> List<T>.idxOfLast(predicate: (T) -> Boolean): Sint {
+public inline fun <T> List<T>.idxOfLast(predicate: (T) -> Boolean): Sint {
 	val iterator = this.listIterator(size)
 	while (iterator.hasPrevious()) {
 		if (predicate(iterator.previous())) {
@@ -133,7 +133,7 @@ inline fun <T> List<T>.idxOfLast(predicate: (T) -> Boolean): Sint {
 }
 
 
-fun <T> Iterable<T>.lastIdxOf(element: T): Sint {
+public fun <T> Iterable<T>.lastIdxOf(element: T): Sint {
 	if (this is List) return this.lastIdxOf(element)
 	var lastIdx = -1.s
 	var idx = 0.s
@@ -146,11 +146,11 @@ fun <T> Iterable<T>.lastIdxOf(element: T): Sint {
 }
 
 
-fun <T> List<T>.lastIdxOf(element: T): Sint {
+public fun <T> List<T>.lastIdxOf(element: T): Sint {
 	return lastIndexOf(element).s
 }
 
-fun <T> Iterable<T>.drop(n: Sint): List<T> {
+public fun <T> Iterable<T>.drop(n: Sint): List<T> {
 	require(n >= 0) { "Requested element count $n is less than zero." }
 	if (n == 0.s) return toList()
 	val list: ArrayList<T>
@@ -181,23 +181,23 @@ fun <T> Iterable<T>.drop(n: Sint): List<T> {
 	return list.optimizeReadOnlyList()
 }
 
-fun String.drop(n: Sint): String = drop(n.i)
+public fun String.drop(n: Sint): String = drop(n.i)
 
 
-fun <T> List<T>.dropLast(n: Sint): List<T> {
+public fun <T> List<T>.dropLast(n: Sint): List<T> {
 	require(n >= 0) { "Requested element count $n is less than zero." }
 	return take((size - n).coerceAtLeast(0))
 }
 
-fun String.dropLast(n: Sint): String = dropLast(n.i)
+public fun String.dropLast(n: Sint): String = dropLast(n.i)
 
 
-inline fun <T> Iterable<T>.filterIdx(predicate: (idx: Sint, T) -> Boolean): List<T> {
+public inline fun <T> Iterable<T>.filterIdx(predicate: (idx: Sint, T) -> Boolean): List<T> {
 	return filterIdxTo(ArrayList<T>(), predicate)
 }
 
 
-inline fun <T, C : MutableCollection<in T>> Iterable<T>.filterIdxTo(
+public inline fun <T, C : MutableCollection<in T>> Iterable<T>.filterIdxTo(
 	destination: C,
 	predicate: (idx: Sint, T) -> Boolean
 ): C {
@@ -207,7 +207,7 @@ inline fun <T, C : MutableCollection<in T>> Iterable<T>.filterIdxTo(
 	return destination
 }
 
-fun <T> List<T>.slice(indices: SintRange): List<T> {
+public fun <T> List<T>.slice(indices: SintRange): List<T> {
 	if (indices.isEmpty()) return listOf()
 	return this[indices]
 }
@@ -218,7 +218,7 @@ internal fun <T> Iterable<T>.collectionSizeOrDefault(default: Int): Int =
 	if (this is Collection<*>) this.size else default
 
 
-fun <T> List<T>.slice(indices: Iterable<Sint>): List<T> {
+public fun <T> List<T>.slice(indices: Iterable<Sint>): List<T> {
 	val size = indices.collectionSizeOrDefault(10)
 	if (size == 0) return emptyList()
 	val list = ArrayList<T>(size)
@@ -229,7 +229,7 @@ fun <T> List<T>.slice(indices: Iterable<Sint>): List<T> {
 }
 
 
-fun <T> Iterable<T>.take(n: Sint): List<T> {
+public fun <T> Iterable<T>.take(n: Sint): List<T> {
 	require(n >= 0) { "Requested element count $n is less than zero." }
 	if (n == 0.s) return emptyList()
 	if (this is Collection<T>) {
@@ -246,10 +246,10 @@ fun <T> Iterable<T>.take(n: Sint): List<T> {
 	return list.optimizeReadOnlyList()
 }
 
-fun String.take(n: Sint): String = take(n.i)
+public fun String.take(n: Sint): String = take(n.i)
 
 
-fun <T> List<T>.takeLast(n: Sint): List<T> {
+public fun <T> List<T>.takeLast(n: Sint): List<T> {
 	require(n >= 0) { "Requested element count $n is less than zero." }
 	if (n == 0.s) return emptyList()
 	val size = size.s
@@ -266,14 +266,14 @@ fun <T> List<T>.takeLast(n: Sint): List<T> {
 	return list
 }
 
-fun String.takeLast(n: Sint): String = takeLast(n.i)
+public fun String.takeLast(n: Sint): String = takeLast(n.i)
 
 
 @OptIn(kotlin.experimental.ExperimentalTypeInference::class)
 @OverloadResolutionByLambdaReturnType
 @JvmName("flatMapIdxIterable")
 
-inline fun <T, R> Iterable<T>.flatMapIdx(transform: (idx: Sint, T) -> Iterable<R>): List<R> {
+public inline fun <T, R> Iterable<T>.flatMapIdx(transform: (idx: Sint, T) -> Iterable<R>): List<R> {
 	return flatMapIdxTo(ArrayList<R>(), transform)
 }
 
@@ -282,7 +282,7 @@ inline fun <T, R> Iterable<T>.flatMapIdx(transform: (idx: Sint, T) -> Iterable<R
 @OverloadResolutionByLambdaReturnType
 @JvmName("flatMapIdxSequence")
 
-inline fun <T, R> Iterable<T>.flatMapIdx(transform: (idx: Sint, T) -> Sequence<R>): List<R> {
+public inline fun <T, R> Iterable<T>.flatMapIdx(transform: (idx: Sint, T) -> Sequence<R>): List<R> {
 	return flatMapIdxTo(ArrayList<R>(), transform)
 }
 
@@ -291,7 +291,7 @@ inline fun <T, R> Iterable<T>.flatMapIdx(transform: (idx: Sint, T) -> Sequence<R
 @OverloadResolutionByLambdaReturnType
 @JvmName("flatMapIdxedIterableTo")
 
-inline fun <T, R, C : MutableCollection<in R>> Iterable<T>.flatMapIdxTo(
+public inline fun <T, R, C : MutableCollection<in R>> Iterable<T>.flatMapIdxTo(
 	destination: C,
 	transform: (idx: Sint, T) -> Iterable<R>
 ): C {
@@ -308,7 +308,7 @@ inline fun <T, R, C : MutableCollection<in R>> Iterable<T>.flatMapIdxTo(
 @OverloadResolutionByLambdaReturnType
 @JvmName("flatMapIdxedSequenceTo")
 
-inline fun <T, R, C : MutableCollection<in R>> Iterable<T>.flatMapIdxTo(
+public inline fun <T, R, C : MutableCollection<in R>> Iterable<T>.flatMapIdxTo(
 	destination: C,
 	transform: (idx: Sint, T) -> Sequence<R>
 ): C {
@@ -320,17 +320,17 @@ inline fun <T, R, C : MutableCollection<in R>> Iterable<T>.flatMapIdxTo(
 	return destination
 }
 
-inline fun <T, R> Iterable<T>.mapIdx(transform: (idx: Sint, T) -> R): List<R> {
+public inline fun <T, R> Iterable<T>.mapIdx(transform: (idx: Sint, T) -> R): List<R> {
 	return mapIdxTo(ArrayList<R>(collectionSizeOrDefault(10)), transform)
 }
 
 
-inline fun <T, R : Any> Iterable<T>.mapIdxNotNull(transform: (idx: Sint, T) -> R?): List<R> {
+public inline fun <T, R : Any> Iterable<T>.mapIdxNotNull(transform: (idx: Sint, T) -> R?): List<R> {
 	return mapIdxNotNullTo(ArrayList<R>(), transform)
 }
 
 
-inline fun <T, R : Any, C : MutableCollection<in R>> Iterable<T>.mapIdxNotNullTo(
+public inline fun <T, R : Any, C : MutableCollection<in R>> Iterable<T>.mapIdxNotNullTo(
 	destination: C,
 	transform: (idx: Sint, T) -> R?
 ): C {
@@ -339,7 +339,7 @@ inline fun <T, R : Any, C : MutableCollection<in R>> Iterable<T>.mapIdxNotNullTo
 }
 
 
-inline fun <T, R, C : MutableCollection<in R>> Iterable<T>.mapIdxTo(
+public inline fun <T, R, C : MutableCollection<in R>> Iterable<T>.mapIdxTo(
 	destination: C,
 	transform: (idx: Sint, T) -> R
 ): C {
@@ -349,7 +349,7 @@ inline fun <T, R, C : MutableCollection<in R>> Iterable<T>.mapIdxTo(
 	return destination
 }
 
-data class IdxValue<out T>(public val idx: Sint, public val value: T)
+public data class IdxValue<out T>(public val idx: Sint, public val value: T)
 
 
 internal class IdxIterable<out T>(private val iteratorFactory: () -> Iterator<T>) : Iterable<IdxValue<T>> {
@@ -362,12 +362,12 @@ internal class IdxIterator<out T>(private val iterator: Iterator<T>) : Iterator<
 	final override fun next(): IdxValue<T> = IdxValue(index++, iterator.next())
 }
 
-fun <T> Iterable<T>.withIdx(): Iterable<IdxValue<T>> {
+public fun <T> Iterable<T>.withIdx(): Iterable<IdxValue<T>> {
 	return IdxIterable { iterator() }
 }
 
 
-fun <T> Iterable<T>.cnt(): Sint {
+public fun <T> Iterable<T>.cnt(): Sint {
 	if (this is Collection) return size.s
 	var count = 0.s
 	for (element in this) ++count
@@ -375,12 +375,12 @@ fun <T> Iterable<T>.cnt(): Sint {
 }
 
 
-inline fun <T> Collection<T>.cnt(): Sint {
+public inline fun <T> Collection<T>.cnt(): Sint {
 	return size.s
 }
 
 
-inline fun <T> Iterable<T>.cnt(predicate: (T) -> Boolean): Sint {
+public inline fun <T> Iterable<T>.cnt(predicate: (T) -> Boolean): Sint {
 	if (this is Collection && isEmpty()) return 0.s
 	var count = 0.s
 	for (element in this) if (predicate(element)) ++count
@@ -388,14 +388,14 @@ inline fun <T> Iterable<T>.cnt(predicate: (T) -> Boolean): Sint {
 }
 
 
-inline fun <T, R> Iterable<T>.foldIdx(initial: R, operation: (idx: Sint, acc: R, T) -> R): R {
+public inline fun <T, R> Iterable<T>.foldIdx(initial: R, operation: (idx: Sint, acc: R, T) -> R): R {
 	var idx = 0.s
 	var accumulator = initial
 	for (element in this) accumulator = operation(idx++, accumulator, element)
 	return accumulator
 }
 
-inline fun <T, R> List<T>.foldRightIdx(initial: R, operation: (idx: Sint, T, acc: R) -> R): R {
+public inline fun <T, R> List<T>.foldRightIdx(initial: R, operation: (idx: Sint, T, acc: R) -> R): R {
 	var accumulator = initial
 	if (!isEmpty()) {
 		val iterator = listIterator(size)
@@ -407,18 +407,18 @@ inline fun <T, R> List<T>.foldRightIdx(initial: R, operation: (idx: Sint, T, acc
 	return accumulator
 }
 
-inline fun <T> Iterable<T>.forEachIdx(action: (idx: Sint, T) -> Unit): Unit {
+public inline fun <T> Iterable<T>.forEachIdx(action: (idx: Sint, T) -> Unit): Unit {
 	var idx = 0.s
 	for (item in this) action(idx++, item)
 }
 
 
-inline fun <T, C : Iterable<T>> C.onEachIdx(action: (idx: Sint, T) -> Unit): C {
+public inline fun <T, C : Iterable<T>> C.onEachIdx(action: (idx: Sint, T) -> Unit): C {
 	return apply { forEachIdx(action) }
 }
 
 
-inline fun <S, T : S> Iterable<T>.reduceIdx(operation: (idx: Sint, acc: S, T) -> S): S {
+public inline fun <S, T : S> Iterable<T>.reduceIdx(operation: (idx: Sint, acc: S, T) -> S): S {
 	val iterator = this.iterator()
 	if (!iterator.hasNext()) throw UnsupportedOperationException("Empty collection can't be reduced.")
 	var idx = 1.s
@@ -430,7 +430,7 @@ inline fun <S, T : S> Iterable<T>.reduceIdx(operation: (idx: Sint, acc: S, T) ->
 }
 
 
-inline fun <S, T : S> Iterable<T>.reduceIdxOrNull(operation: (idx: Sint, acc: S, T) -> S): S? {
+public inline fun <S, T : S> Iterable<T>.reduceIdxOrNull(operation: (idx: Sint, acc: S, T) -> S): S? {
 	val iterator = this.iterator()
 	if (!iterator.hasNext()) return null
 	var idx = 1.s
@@ -441,7 +441,7 @@ inline fun <S, T : S> Iterable<T>.reduceIdxOrNull(operation: (idx: Sint, acc: S,
 	return accumulator
 }
 
-inline fun <S, T : S> List<T>.reduceRightIdx(operation: (idx: Sint, T, acc: S) -> S): S {
+public inline fun <S, T : S> List<T>.reduceRightIdx(operation: (idx: Sint, T, acc: S) -> S): S {
 	val iterator = listIterator(size)
 	if (!iterator.hasPrevious())
 		throw UnsupportedOperationException("Empty list can't be reduced.")
@@ -454,7 +454,7 @@ inline fun <S, T : S> List<T>.reduceRightIdx(operation: (idx: Sint, T, acc: S) -
 }
 
 
-inline fun <S, T : S> List<T>.reduceRightIdxOrNull(operation: (idx: Sint, T, acc: S) -> S): S? {
+public inline fun <S, T : S> List<T>.reduceRightIdxOrNull(operation: (idx: Sint, T, acc: S) -> S): S? {
 	val iterator = listIterator(size)
 	if (!iterator.hasPrevious())
 		return null
@@ -467,7 +467,7 @@ inline fun <S, T : S> List<T>.reduceRightIdxOrNull(operation: (idx: Sint, T, acc
 }
 
 
-inline fun <T, R> Iterable<T>.runningFoldIdx(initial: R, operation: (idx: Sint, acc: R, T) -> R): List<R> {
+public inline fun <T, R> Iterable<T>.runningFoldIdx(initial: R, operation: (idx: Sint, acc: R, T) -> R): List<R> {
 	val estimatedSize = collectionSizeOrDefault(9)
 	if (estimatedSize == 0) return listOf(initial)
 	val result = ArrayList<R>(estimatedSize + 1).apply { add(initial) }
@@ -481,7 +481,7 @@ inline fun <T, R> Iterable<T>.runningFoldIdx(initial: R, operation: (idx: Sint, 
 }
 
 
-inline fun <S, T : S> Iterable<T>.runningReduceIdx(operation: (idx: Sint, acc: S, T) -> S): List<S> {
+public inline fun <S, T : S> Iterable<T>.runningReduceIdx(operation: (idx: Sint, acc: S, T) -> S): List<S> {
 	val iterator = this.iterator()
 	if (!iterator.hasNext()) return emptyList()
 	var accumulator: S = iterator.next()
@@ -495,7 +495,7 @@ inline fun <S, T : S> Iterable<T>.runningReduceIdx(operation: (idx: Sint, acc: S
 }
 
 
-inline fun <T, R> Iterable<T>.scanIdx(initial: R, operation: (idx: Sint, acc: R, T) -> R): List<R> {
+public inline fun <T, R> Iterable<T>.scanIdx(initial: R, operation: (idx: Sint, acc: R, T) -> R): List<R> {
 	return runningFoldIdx(initial, operation)
 }
 
@@ -746,12 +746,12 @@ internal fun orderedEquals(c: Collection<*>, other: Collection<*>): Boolean {
 	return true
 }
 
-fun <T> Iterable<T>.chunked(size: Sint): List<List<T>> {
+public fun <T> Iterable<T>.chunked(size: Sint): List<List<T>> {
 	return windowed(size, size, partialWindows = true)
 }
 
 
-fun <T, R> Iterable<T>.chunked(size: Sint, transform: (List<T>) -> R): List<R> {
+public fun <T, R> Iterable<T>.chunked(size: Sint, transform: (List<T>) -> R): List<R> {
 	return windowed(size, size, partialWindows = true, transform = transform)
 }
 
@@ -765,7 +765,7 @@ internal fun checkWindowSizeStep(size: Sint, step: Sint) {
 	}
 }
 
-fun <T> Iterable<T>.windowed(size: Sint, step: Sint = 1.s, partialWindows: Boolean = false): List<List<T>> {
+public fun <T> Iterable<T>.windowed(size: Sint, step: Sint = 1.s, partialWindows: Boolean = false): List<List<T>> {
 	checkWindowSizeStep(size, step)
 	if (this is RandomAccess && this is List) {
 		val thisSize = this.size
@@ -788,7 +788,7 @@ fun <T> Iterable<T>.windowed(size: Sint, step: Sint = 1.s, partialWindows: Boole
 }
 
 
-fun <T, R> Iterable<T>.windowed(
+public fun <T, R> Iterable<T>.windowed(
 	size: Sint,
 	step: Sint = 1.s,
 	partialWindows: Boolean = false,
@@ -818,7 +818,7 @@ fun <T, R> Iterable<T>.windowed(
 }
 
 @JvmName("averageOfSint")
-fun Iterable<Sint>.average(): Double {
+public fun Iterable<Sint>.average(): Double {
 	var sum: Double = 0.0
 	var count: Sint = 0.s
 	for (element in this) {

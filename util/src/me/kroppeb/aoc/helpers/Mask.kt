@@ -1,13 +1,13 @@
 package me.kroppeb.aoc.helpers
 
 @Suppress("ReplaceSizeZeroCheckWithIsEmpty")
-sealed class Mask<T> : Collection<T> {
-	abstract infix fun and(other: Mask<T>): Mask<T>
-	open infix fun andNot(other: Mask<T>): Mask<T> = this and other.inv()
-	abstract infix fun or(other: Mask<T>): Mask<T>
-	abstract infix fun add(other: T): Mask<T>
-	abstract infix fun remove(other: T): Mask<T>
-	abstract fun inv(): Mask<T>
+public sealed class Mask<T> : Collection<T> {
+	public abstract infix fun and(other: Mask<T>): Mask<T>
+	public open infix fun andNot(other: Mask<T>): Mask<T> = this and other.inv()
+	public abstract infix fun or(other: Mask<T>): Mask<T>
+	public abstract infix fun add(other: T): Mask<T>
+	public abstract infix fun remove(other: T): Mask<T>
+	public abstract fun inv(): Mask<T>
 
 	abstract override fun contains(element: T): Boolean
 	override fun containsAll(elements: Collection<T>): Boolean = elements.all { contains(it) }
@@ -16,20 +16,20 @@ sealed class Mask<T> : Collection<T> {
 	abstract override val size: Int
 
 
-	operator fun plus(other: Mask<T>): Mask<T> = this or other
-	operator fun minus(other: Mask<T>): Mask<T> = this andNot other
-	operator fun times(other: Mask<T>): Mask<T> = this and other
-	operator fun plus(other: T): Mask<T> = this add other
-	operator fun minus(other: T): Mask<T> = this remove other
+	public operator fun plus(other: Mask<T>): Mask<T> = this or other
+	public operator fun minus(other: Mask<T>): Mask<T> = this andNot other
+	public operator fun times(other: Mask<T>): Mask<T> = this and other
+	public operator fun plus(other: T): Mask<T> = this add other
+	public operator fun minus(other: T): Mask<T> = this remove other
 }
 
-class MaskBase<T> private constructor(val items: List<T>, val indexLookup: Map<T, Int>) {
-	val size: Int
+public class MaskBase<T> private constructor(public val items: List<T>, public val indexLookup: Map<T, Int>) {
+	public val size: Int
 		get() = items.size
 
-	companion object {
+	public companion object {
 		private val deduplicate = mutableMapOf<List<*>, MaskBase<*>>()
-		operator fun <T> invoke(i: Iterable<T>): MaskBase<T> {
+		public operator fun <T> invoke(i: Iterable<T>): MaskBase<T> {
 			val items = i.toList()
 			deduplicate[items]?.let {
 				@Suppress("UNCHECKED_CAST")
@@ -44,7 +44,7 @@ class MaskBase<T> private constructor(val items: List<T>, val indexLookup: Map<T
 	}
 }
 
-class MaskLong<T>(val base: MaskBase<T>, val mask: Long) : Mask<T>() {
+public class MaskLong<T>(public val base: MaskBase<T>, public val mask: Long) : Mask<T>() {
 	override fun and(other: Mask<T>): Mask<T> {
 		require(other is MaskLong<*> && other.base == base)
 		return MaskLong(base, mask and other.mask)
@@ -107,7 +107,7 @@ class MaskLong<T>(val base: MaskBase<T>, val mask: Long) : Mask<T>() {
 	}
 }
 
-class MaskArray<T>(val base: MaskBase<T>, val mask: LongArray) : Mask<T>() {
+public class MaskArray<T>(public val base: MaskBase<T>, public val mask: LongArray) : Mask<T>() {
 	override fun and(other: Mask<T>): Mask<T> {
 		require(other is MaskArray<*> && other.base == base)
 		val newMask = LongArray(mask.size) { i -> mask[i] and other.mask[i] }
@@ -189,7 +189,7 @@ class MaskArray<T>(val base: MaskBase<T>, val mask: LongArray) : Mask<T>() {
 	}
 }
 
-fun <T> Iterable<T>.emptyMask(): Mask<T> {
+public fun <T> Iterable<T>.emptyMask(): Mask<T> {
 	val base = MaskBase(this)
 	if (base.size <= 64) {
 		return MaskLong(base, 0)

@@ -94,7 +94,7 @@ public data class Bounds3D(
 
 	override fun containsAll(elements: Collection<Point3D>): Boolean = elements.all { it in this }
 
-	public fun exactCenter() = xs.exactCenter() toP ys.exactCenter() toP zs.exactCenter()
+	public fun exactCenter(): Point3D = xs.exactCenter() toP ys.exactCenter() toP zs.exactCenter()
 
 	public fun edges(): List<Line3D> = listOf(
 		lowerCoords toL (lowerCoords.x toP lowerCoords.y toP higherCoords.z),

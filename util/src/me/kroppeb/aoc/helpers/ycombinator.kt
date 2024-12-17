@@ -7,19 +7,19 @@ import me.kroppeb.aoc.helpers.sint.s
 import me.kroppeb.aoc.helpers.sint.sumOf
 import kotlin.experimental.ExperimentalTypeInference
 
-object YCombSettings {
+public object YCombSettings {
 	internal var useMemoization = false
 
-	fun useMemoization(use: Boolean) {
+	public fun useMemoization(use: Boolean) {
 		useMemoization = use
 	}
 }
 
-class RetException(val value: Any?, val target: Any) : Exception()
+public class RetException(public val value: Any?, public val target: Any) : Exception()
 
-abstract class YCombinatorBase<R> {
+public abstract class YCombinatorBase<R> {
 	@MarkKeyword
-	fun ret(value: R): Nothing = throw RetException(value, this)
+	public fun ret(value: R): Nothing = throw RetException(value, this)
 
 	protected inline fun handle(block: () -> R): R {
 		try {
@@ -34,14 +34,14 @@ abstract class YCombinatorBase<R> {
 	}
 
 	@MarkedC
-	fun uret(value: () -> Any?): R {
+	public fun uret(value: () -> Any?): R {
 		return handle { value() as R }
 	}
 }
 
 
-class YCombinatorX1<T1, R>(f: YCombX1<T1, R>) : YCombinatorBase<R>() {
-	val f: YCombX1<T1, R>
+public class YCombinatorX1<T1, R>(f: YCombX1<T1, R>) : YCombinatorBase<R>() {
+	public val f: YCombX1<T1, R>
 
 	init {
 		if (!YCombSettings.useMemoization) {
@@ -53,19 +53,19 @@ class YCombinatorX1<T1, R>(f: YCombX1<T1, R>) : YCombinatorBase<R>() {
 	}
 
 
-	operator fun invoke(value: T1): R {
+	public operator fun invoke(value: T1): R {
 		return handle { f(this, value) }
 	}
 
 	@MarkedC
-	fun call(value: T1): R = this(value)
+	public fun call(value: T1): R = this(value)
 
 	@MarkedC
-	fun retCall(value: T1): Nothing = ret(this(value))
+	public fun retCall(value: T1): Nothing = ret(this(value))
 }
 
-class YCombinatorX2<T1, T2, R>(f: YCombX2<T1, T2, R>) : YCombinatorBase<R>() {
-	val f: YCombX2<T1, T2, R>
+public class YCombinatorX2<T1, T2, R>(f: YCombX2<T1, T2, R>) : YCombinatorBase<R>() {
+	public val f: YCombX2<T1, T2, R>
 
 	init {
 		if (!YCombSettings.useMemoization) {
@@ -78,19 +78,19 @@ class YCombinatorX2<T1, T2, R>(f: YCombX2<T1, T2, R>) : YCombinatorBase<R>() {
 		}
 	}
 
-	operator fun invoke(value1: T1, value2: T2): R {
+	public operator fun invoke(value1: T1, value2: T2): R {
 		return handle { f(this, value1, value2) }
 	}
 
 	@MarkedC
-	fun call(value1: T1, value2: T2): R = this(value1, value2)
+	public fun call(value1: T1, value2: T2): R = this(value1, value2)
 
 	@MarkedC
-	fun retCall(value1: T1, value2: T2): Nothing = ret(this(value1, value2))
+	public fun retCall(value1: T1, value2: T2): Nothing = ret(this(value1, value2))
 }
 
-class YCombinatorX3<T1, T2, T3, R>(f: YCombX3<T1, T2, T3, R>) : YCombinatorBase<R>() {
-	val f: YCombX3<T1, T2, T3, R>
+public class YCombinatorX3<T1, T2, T3, R>(f: YCombX3<T1, T2, T3, R>) : YCombinatorBase<R>() {
+	public val f: YCombX3<T1, T2, T3, R>
 
 	init {
 		if (!YCombSettings.useMemoization) {
@@ -103,19 +103,19 @@ class YCombinatorX3<T1, T2, T3, R>(f: YCombX3<T1, T2, T3, R>) : YCombinatorBase<
 		}
 	}
 
-	operator fun invoke(value1: T1, value2: T2, value3: T3): R {
+	public operator fun invoke(value1: T1, value2: T2, value3: T3): R {
 		return handle { f(this, value1, value2, value3) }
 	}
 
 	@MarkedC
-	fun call(value1: T1, value2: T2, value3: T3): R = this(value1, value2, value3)
+	public fun call(value1: T1, value2: T2, value3: T3): R = this(value1, value2, value3)
 
 	@MarkedC
-	fun retCall(value1: T1, value2: T2, value3: T3): Nothing = ret(this(value1, value2, value3))
+	public fun retCall(value1: T1, value2: T2, value3: T3): Nothing = ret(this(value1, value2, value3))
 }
 
-class YCombinatorX4<T1, T2, T3, T4, R>(f: YCombX4<T1, T2, T3, T4, R>) : YCombinatorBase<R>() {
-	val f: YCombX4<T1, T2, T3, T4, R>
+public class YCombinatorX4<T1, T2, T3, T4, R>(f: YCombX4<T1, T2, T3, T4, R>) : YCombinatorBase<R>() {
+	public val f: YCombX4<T1, T2, T3, T4, R>
 
 	init {
 		if (!YCombSettings.useMemoization) {
@@ -128,19 +128,19 @@ class YCombinatorX4<T1, T2, T3, T4, R>(f: YCombX4<T1, T2, T3, T4, R>) : YCombina
 		}
 	}
 
-	operator fun invoke(value1: T1, value2: T2, value3: T3, value4: T4): R {
+	public operator fun invoke(value1: T1, value2: T2, value3: T3, value4: T4): R {
 		return handle { f(this, value1, value2, value3, value4) }
 	}
 
 	@MarkedC
-	fun call(value1: T1, value2: T2, value3: T3, value4: T4): R = this(value1, value2, value3, value4)
+	public fun call(value1: T1, value2: T2, value3: T3, value4: T4): R = this(value1, value2, value3, value4)
 
 	@MarkedC
-	fun retCall(value1: T1, value2: T2, value3: T3, value4: T4): Nothing = ret(this(value1, value2, value3, value4))
+	public fun retCall(value1: T1, value2: T2, value3: T3, value4: T4): Nothing = ret(this(value1, value2, value3, value4))
 }
 
-class YCombinatorX5<T1, T2, T3, T4, T5, R>(f: YCombX5<T1, T2, T3, T4, T5, R>) : YCombinatorBase<R>() {
-	val f: YCombX5<T1, T2, T3, T4, T5, R>
+public class YCombinatorX5<T1, T2, T3, T4, T5, R>(f: YCombX5<T1, T2, T3, T4, T5, R>) : YCombinatorBase<R>() {
+	public val f: YCombX5<T1, T2, T3, T4, T5, R>
 
 	init {
 		if (!YCombSettings.useMemoization) {
@@ -153,25 +153,25 @@ class YCombinatorX5<T1, T2, T3, T4, T5, R>(f: YCombX5<T1, T2, T3, T4, T5, R>) : 
 		}
 	}
 
-	operator fun invoke(value1: T1, value2: T2, value3: T3, value4: T4, value5: T5): R {
+	public operator fun invoke(value1: T1, value2: T2, value3: T3, value4: T4, value5: T5): R {
 		return handle { f(this, value1, value2, value3, value4, value5) }
 	}
 
 	@MarkedC
-	fun call(value1: T1, value2: T2, value3: T3, value4: T4, value5: T5): R =
+	public fun call(value1: T1, value2: T2, value3: T3, value4: T4, value5: T5): R =
 		this(value1, value2, value3, value4, value5)
 
 	@MarkedC
-	fun retCall(value1: T1, value2: T2, value3: T3, value4: T4, value5: T5): Nothing =
+	public fun retCall(value1: T1, value2: T2, value3: T3, value4: T4, value5: T5): Nothing =
 		ret(this(value1, value2, value3, value4, value5))
 }
 
 
-typealias YCombX1<T1, R> = YCombinatorX1<T1, R>.(T1) -> R
-typealias YCombX2<T1, T2, R> = YCombinatorX2<T1, T2, R>.(T1, T2) -> R
-typealias YCombX3<T1, T2, T3, R> = YCombinatorX3<T1, T2, T3, R>.(T1, T2, T3) -> R
-typealias YCombX4<T1, T2, T3, T4, R> = YCombinatorX4<T1, T2, T3, T4, R>.(T1, T2, T3, T4) -> R
-typealias YCombX5<T1, T2, T3, T4, T5, R> = YCombinatorX5<T1, T2, T3, T4, T5, R>.(T1, T2, T3, T4, T5) -> R
+public typealias YCombX1<T1, R> = YCombinatorX1<T1, R>.(T1) -> R
+public typealias YCombX2<T1, T2, R> = YCombinatorX2<T1, T2, R>.(T1, T2) -> R
+public typealias YCombX3<T1, T2, T3, R> = YCombinatorX3<T1, T2, T3, R>.(T1, T2, T3) -> R
+public typealias YCombX4<T1, T2, T3, T4, R> = YCombinatorX4<T1, T2, T3, T4, R>.(T1, T2, T3, T4) -> R
+public typealias YCombX5<T1, T2, T3, T4, T5, R> = YCombinatorX5<T1, T2, T3, T4, T5, R>.(T1, T2, T3, T4, T5) -> R
 
 
 public fun <T1, R> yComb(value: T1, @BuilderInference f: YCombX1<T1, R>): R = YCombinatorX1(f).call(value)
