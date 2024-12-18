@@ -11,11 +11,11 @@ class CGraph<T>(val neighbours: Map<T, Map<T, Sint>>) {  // neighbours[a][b] is 
 	val values: Set<T> get() = neighbours.keys
 
 	fun bfs(start: T, isEnd: (T) -> Boolean): BfsResult<T>? {
-		return bfsPath(start, isEnd) { neighbours[it]?.keys ?: emptyList() }
+		return bfs(start, isEnd) { neighbours[it]?.keys ?: emptyList() }
 	}
 
 	fun bfs(start: Iterable<T>, isEnd: (T) -> Boolean): BfsResult<T>? {
-		return bfsLPath(start.toList(), isEnd) { neighbours[it]?.keys ?: emptyList() }
+		return bfsL(start.toList(), isEnd) { neighbours[it]?.keys ?: emptyList() }
 	}
 
 	fun bfs(start: T, end: T): BfsResult<T>? {

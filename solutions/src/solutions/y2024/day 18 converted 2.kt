@@ -1,5 +1,7 @@
 @file:Suppress("PackageDirectoryMismatch", "UnusedImport")
 
+package solutions.y2024.d18.c02
+
 
 /*
 
@@ -28,6 +30,7 @@ import kotlin.math.*
  */
 
 
+import log
 import me.kroppeb.aoc.helpers.*
 import me.kroppeb.aoc.helpers.graph.*
 import me.kroppeb.aoc.helpers.point.*
@@ -41,8 +44,8 @@ private val xxxxx = Clock(6, 3)
 //private val xxxxz = LoggerSettings.logNonAnswers(false)
 
 
-private fun part1() {
-	var inp = getLines(18)
+private fun part2() {
+	var inp = getLines(2024, 18)
 //	var inp = pre(18, 0)
 	var hob = inp.point()
 
@@ -51,22 +54,16 @@ private fun part1() {
 
 	val bounds = (0 toP 0) toB t
 
-	bsLast(0, hob.size + 1) { i ->
-		if (i > hob.size) return@bsLast false
+	bsFirst(0, hob.size) { i ->
 		val ch = hob.take(i).toSet()
 
-		bfsOld(t, {it == 0 toP 0}){ p ->
-			p.getQuadNeighbours().filter{it in bounds}.filter{it !in ch}
-		}.log(hob[i] to i).state == null
-	} + 1 log 2
-
-
-
-
-
+		t.bfs({ it.isZero() }) { p ->
+			p.getQuadNeighbours().filter { it in bounds && it !in ch }
+		} == null
+	}.let { hob.take(it).last() } log 2
 }
 
 fun main() {
 	println("Day 18: ")
-	part1()
+	part2()
 }

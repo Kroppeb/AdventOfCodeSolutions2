@@ -91,7 +91,7 @@ public inline fun <T> List<T>.bsFirst(lower: Int = 0, upper: Int = this.size, pr
 
 public inline fun bsLast(lower: Int? = null, upper: Int? = null, predicate: (Int) -> Boolean): Int {
 	var low: Int = lower ?: 0
-	if (lower == null)
+	if (lower == null) {
 		if (!predicate(0)) {
 			low = -1
 			while (!predicate(low)) {
@@ -105,9 +105,10 @@ public inline fun bsLast(lower: Int? = null, upper: Int? = null, predicate: (Int
 			}
 		} else if (!predicate(low))
 			error("predicate fails on low")
+	}
 
 	var high: Int = upper ?: 1
-	if (upper == null)
+	if (upper == null) {
 		while (predicate(high)) {
 			high = (high shl 2)
 			// overflow
@@ -117,8 +118,11 @@ public inline fun bsLast(lower: Int? = null, upper: Int? = null, predicate: (Int
 				else
 					error("predicate is even true for max int")
 		}
-	else if (predicate(high))
+	}
+
+	if (predicate(high))
 		error("predicate succeeds on high")
+
 	while (high > low + 1) {
 		val mid = (low + high) / 2
 		if (predicate(mid))
@@ -131,7 +135,7 @@ public inline fun bsLast(lower: Int? = null, upper: Int? = null, predicate: (Int
 
 public inline fun bsFirst(lower: Int? = null, upper: Int? = null, predicate: (Int) -> Boolean): Int {
 	var low: Int = lower ?: 0
-	if (lower == null)
+	if (lower == null) {
 		if (predicate(0)) {
 			low = -1
 			while (predicate(low)) {
@@ -145,9 +149,10 @@ public inline fun bsFirst(lower: Int? = null, upper: Int? = null, predicate: (In
 			}
 		} else if (predicate(low))
 			error("predicate succeeds on low")
+	}
 
 	var high: Int = upper ?: 1
-	if (upper == null)
+	if (upper == null) {
 		while (!predicate(high)) {
 			high = (high shl 2)
 			// overflow
@@ -157,8 +162,11 @@ public inline fun bsFirst(lower: Int? = null, upper: Int? = null, predicate: (In
 				else
 					error("predicate isn't even true for max int")
 		}
-	else if (!predicate(high))
+	}
+
+	if (!predicate(high))
 		error("predicate fails on high")
+
 	while (high > low + 1) {
 		val mid = (low + high) / 2
 		if (predicate(mid))

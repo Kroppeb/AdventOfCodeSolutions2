@@ -1,3 +1,5 @@
+@file:Suppress("UnstableApiUsage")
+
 plugins {
 	alias(libs.plugins.kotlin)
 }
@@ -11,9 +13,14 @@ allprojects {
 		mavenCentral()
 	}
 
-//	dependencies {
-//		implementation(libs.annotations)
-//	}
+
+	val compilerPlugin by configurations.registering
+
+	dependencies {
+		compileOnly(rootProject.libs.aoc.plugin.annotations)
+		compilerPlugin(rootProject.libs.aoc.plugin)
+	}
+
 
 	sourceSets {
 		val main by getting {
@@ -24,13 +31,11 @@ allprojects {
 
 	kotlin {
 		jvmToolchain(21)
-	}
-
-	tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
-		kotlinOptions {
-			freeCompilerArgs += listOf(
-				"-Xcontext-receivers",
-			)
+		compilerOptions {
+			for (plugin in compilerPlugin.get()) {
+				freeCompilerArgs.add("-Xplugin=${plugin.absolutePath}")
+			}
+			freeCompilerArgs.add("-Xcontext-receivers")
 		}
 	}
 }

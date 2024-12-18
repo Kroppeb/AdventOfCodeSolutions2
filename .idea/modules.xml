@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/solutions/AOC.solutions.main.iml" filepath="$PROJECT_DIR$/.idea/modules/solutions/AOC.solutions.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/today/AOC.today.main.iml" filepath="$PROJECT_DIR$/.idea/modules/today/AOC.today.main.iml" />
     </modules>
   </component>
