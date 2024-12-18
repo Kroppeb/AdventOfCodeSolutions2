@@ -1,6 +1,6 @@
 @file:Suppress("PackageDirectoryMismatch", "UnusedImport")
 
-package solutions.y2024.d17
+package solutions.y2024.d17.nt
 
 
 /*
@@ -61,7 +61,6 @@ private val xxxxx = Clock(6, 3)
 //private val xxxxz = LoggerSettings.logNonAnswers(false)
 
 
-
 private fun part1() {
 	var inp = getLines(2024, 17)
 //	var inp = pre(17, 0)
@@ -71,7 +70,7 @@ private fun part1() {
 	val insts = ss.sints()[0].windowed(2)
 
 	fun getVal(i: Sint): Sint {
-		return when(i.i) {
+		return when (i.i) {
 
 			4 -> regs[0]
 			5 -> regs[1]
@@ -83,23 +82,25 @@ private fun part1() {
 
 	var pc = 0
 	val out = mutableListOf<Sint>()
-	while (pc < insts.size){
+	while (pc < insts.size) {
 		val (inst, opp) = insts[pc]
-		when(inst.i) {
+		when (inst.i) {
 			0 -> regs[0] = regs[0] shr getVal(opp)
 			1 -> regs[1] = regs[1] xor opp
 			2 -> regs[1] = getVal(opp) mod 8
 			3 -> {
-				if(regs[0] != 0.s) {
+				if (regs[0] != 0.s) {
 					pc = opp.i
 					continue
 				}
 			}
+
 			4 -> regs[1] = regs[1] xor regs[2]
 			5 -> {
 				getVal(opp) mod 8 log 0
 				out.add(getVal(opp) mod 8)
 			}
+
 			6 -> regs[1] = regs[0] shr getVal(opp)
 			7 -> regs[2] = regs[0] shr getVal(opp)
 		}
@@ -134,79 +135,30 @@ private fun part2() {
 	val target = ss.sints()[0].reversed()
 	var res = 0.s
 
-	a@ for (i in target){
-
-	}
-
-	ch(0.s, target)
+	ch(0.s, target) log 2
 //	res log 2
 
 }
 
-private fun ch(res: Sint, rem: List<Sint>){
-	if (rem.size == 0){
-		res log 2
-		no()
+private fun ch(res: Sint, rem: List<Sint>): Sint? {
+	if (rem.size == 0) {
+		return res
 	}
 
-	for (x in 0..7){
+	for (x in 0..7) {
 		val test = (res shl 3) + x
-		if ((test mod 8) xor (0b100.s) xor ((test shr ((test xor 0b001.s mod 8))) mod 8) == rem[0]){
-			x to rem log 0
-			ch(test, rem.drop(1))
+		if ((test mod 8) xor (0b100.s) xor ((test shr ((test xor 0b001.s mod 8))) mod 8) == rem[0]) {
+			ch(test, rem.drop(1))?.let{return it}
 		}
 	}
+	return null
 }
 
-private fun check(regs: MList<Sint>, insts: List<List<Sint>>): MutableList<Sint> {
-	fun getVal(i: Sint): Sint {
-		return when (i.i) {
-
-			4 -> regs[0]
-			5 -> regs[1]
-			6 -> regs[2]
-			7 -> no()
-			else -> i
-		}
-	}
-
-	var pc = 0
-	val out = mutableListOf<Sint>()
-	while (pc < insts.size) {
-		val (inst, opp) = insts[pc]
-		when (inst.i) {
-			0 -> regs[0] = regs[0] shr getVal(opp)
-			1 -> regs[1] = regs[1] xor opp
-			2 -> regs[1] = getVal(opp) mod 8
-			3 -> {
-				if (regs[0] != 0.s) {
-					pc = opp.i
-					continue
-				}
-			}
-
-			4 -> regs[1] = regs[1] xor regs[2]
-			5 -> {
-//				getVal(opp) mod 8 log 0
-				out.add(getVal(opp) mod 8)
-			}
-
-			6 -> regs[1] = regs[0] shr getVal(opp)
-			7 -> regs[2] = regs[0] shr getVal(opp)
-		}
-		pc += 2
-	}
-	return out
-}
 
 fun main() {
 	println("Day 17: ")
 	part1()
 	println(measureTime {
-		try {
-			part2()
-		}catch (e: Exception){
-
-		}
+		part2()
 	})
 }
