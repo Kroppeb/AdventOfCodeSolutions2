@@ -211,16 +211,16 @@ public fun <S, T> generateStateTimes(times: Sint, seed: S, next: (state: S) -> P
 	}
 	return ret
 }
-
-public inline fun <T, R> Iterable<T>.scan(start: R, transform: (R, T) -> R): List<R> {
-	var acc = start
-	val ret = mutableListOf(start)
-	for (i in this) {
-		acc = transform(acc, i)
-		ret.add(acc)
-	}
-	return ret
-}
+//
+//public inline fun <T, R> Iterable<T>.scan(start: R, transform: (R, T) -> R): List<R> {
+//	var acc = start
+//	val ret = mutableListOf(start)
+//	for (i in this) {
+//		acc = transform(acc, i)
+//		ret.add(acc)
+//	}
+//	return ret
+//}
 
 public inline fun <T, S, R> Iterable<T>.stateScan(start: S, transform: (S, T) -> Pair<S, R>): List<R> {
 	var acc = start
