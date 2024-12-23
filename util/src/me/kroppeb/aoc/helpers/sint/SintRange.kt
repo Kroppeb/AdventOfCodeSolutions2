@@ -1,5 +1,6 @@
 package me.kroppeb.aoc.helpers.sint
 
+import com.sschr15.aoc.annotations.SkipOverflowChecks
 import me.kroppeb.aoc.helpers.divBy
 import me.kroppeb.aoc.helpers.maxOf
 import java.math.BigInteger
@@ -159,12 +160,6 @@ internal fun getProgressionLastElement(start: Sint, end: Sint, step: Sint): Sint
 // (a - b) mod c
 private fun differenceModulo(a: Sint, b: Sint, c: Sint): Sint {
 	return mod(mod(a, c) - mod(b, c), c)
-}
-
-// a mod b (in arithmetical sense)
-private fun mod(a: Sint, b: Sint): Sint {
-	val mod = a % b
-	return if (mod >= 0) mod else mod + b
 }
 
 
