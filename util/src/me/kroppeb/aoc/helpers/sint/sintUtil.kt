@@ -188,7 +188,9 @@ public inline fun repeat(times: Sint, action: (Sint) -> Unit) {
 }
 
 
-public infix fun Sint.mod(base: Sint): Sint = this.l.mod(base.l).s
+public fun mod(a: Sint, b: Sint): Sint = Math.floorMod(a.l, b.l).s
+@JvmName("modInfix")
+public infix fun Sint.mod(base: Sint): Sint = mod(this, base)
 public infix fun Sint.mod(base: Int): Sint = this mod base.s
 public infix fun Sint.mod(base: Long): Sint = this mod base.s
 public infix fun Int.mod(base: Sint): Sint = this.s mod base

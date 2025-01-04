@@ -1,7 +1,6 @@
 package me.kroppeb.aoc.helpers.graph
 
 import me.kroppeb.aoc.helpers.Loggable
-import me.kroppeb.aoc.helpers.collections.default
 import me.kroppeb.aoc.helpers.collections.extensions.*
 import me.kroppeb.aoc.helpers.g
 import me.kroppeb.aoc.helpers.sint.Sint
@@ -27,10 +26,10 @@ public data class Res<State>(val state: State?, val dist: Int) : Loggable {
 	override fun getCopyString(): String = dist.toString()
 }
 
-public inline fun <State> bfs(start: State, isEnd: (State) -> Boolean, next: (State) -> Iterable<State>): Res<State> = bfsL(listOf(start), isEnd, next)
+public inline fun <State> bfsOld(start: State, isEnd: (State) -> Boolean, next: (State) -> Iterable<State>): Res<State> = bfsLOld(listOf(start), isEnd, next)
 
 
-public inline fun <State> bfsL(starts: Iterable<State>, isEnd: (State) -> Boolean, next: (State) -> Iterable<State>): Res<State> {
+public inline fun <State> bfsLOld(starts: Iterable<State>, isEnd: (State) -> Boolean, next: (State) -> Iterable<State>): Res<State> {
 	val seen = starts.toMutableSet()
 	var queue = starts.toMutableList()
 	var nextQueue = mutableListOf<State>()
@@ -57,14 +56,14 @@ public inline fun <State> bfsL(starts: Iterable<State>, isEnd: (State) -> Boolea
 }
 
 
-public inline fun <State> bfsDist(
+public inline fun <State> bfsDistOld(
 	start: State,
 	isEnd: (State, Int) -> Boolean,
 	next: (State, Int) -> Iterable<State>
-): Res<State> = bfsLDist(listOf(start), isEnd, next)
+): Res<State> = bfsLDistOld(listOf(start), isEnd, next)
 
 
-public inline fun <State> bfsLDist(
+public inline fun <State> bfsLDistOld(
 	starts: Iterable<State>,
 	isEnd: (State, Int) -> Boolean,
 	next: (State, Int) -> Iterable<State>
@@ -97,14 +96,14 @@ public inline fun <State> bfsLDist(
 }
 
 
-public inline fun <State> bfsPath(
+public inline fun <State> bfs(
 	start: State,
 	isEnd: (State) -> Boolean,
 	next: (State) -> Iterable<State>
-): BfsResult<State>? = bfsLPath(listOf(start), isEnd, next)
+): BfsResult<State>? = bfsL(listOf(start), isEnd, next)
 
 
-public inline fun <State> bfsLPath(
+public inline fun <State> bfsL(
 	starts: Iterable<State>,
 	isEnd: (State) -> Boolean,
 	next: (State) -> Iterable<State>
@@ -145,14 +144,14 @@ public inline fun <State> bfsLPath(
 	return null
 }
 
-public inline fun <State> bfsPathDist(
+public inline fun <State> bfsDist(
 	start: State,
 	isEnd: (State, Int) -> Boolean,
 	next: (State, Int) -> Iterable<State>
-): BfsResult<State>? = bfsLPathDist(listOf(start), isEnd, next)
+): BfsResult<State>? = bfsLDist(listOf(start), isEnd, next)
 
 
-public inline fun <State> bfsLPathDist(
+public inline fun <State> bfsLDist(
 	starts: Iterable<State>,
 	isEnd: (State, Int) -> Boolean,
 	next: (State, Int) -> Iterable<State>
@@ -196,11 +195,11 @@ public inline fun <State> bfsLPathDist(
 }
 
 
-public inline fun <State> dfs(start: State, isEnd: (State) -> Boolean, next: (State) -> Iterable<State>): Res<State> =
-	dfsL(listOf(start), isEnd, next)
+public inline fun <State> dfsOld(start: State, isEnd: (State) -> Boolean, next: (State) -> Iterable<State>): Res<State> =
+	dfsLOld(listOf(start), isEnd, next)
 
 
-public inline fun <State> dfsL(starts: Iterable<State>, isEnd: (State) -> Boolean, next: (State) -> Iterable<State>): Res<State> {
+public inline fun <State> dfsLOld(starts: Iterable<State>, isEnd: (State) -> Boolean, next: (State) -> Iterable<State>): Res<State> {
 	val seen = starts.toMutableSet()
 	val stack = starts.mapTo(mutableListOf()) { it to 0 }
 	var maxDist = 0
@@ -218,14 +217,14 @@ public inline fun <State> dfsL(starts: Iterable<State>, isEnd: (State) -> Boolea
 	return Res(null, maxDist)
 }
 
-public inline fun <State> dfsDist(
+public inline fun <State> dfsDistOld(
 	start: State,
 	isEnd: (State, Int) -> Boolean,
 	next: (State, Int) -> Iterable<State>
-): Res<State> = dfsLDist(listOf(start), isEnd, next)
+): Res<State> = dfsLDistOld(listOf(start), isEnd, next)
 
 
-public inline fun <State> dfsLDist(
+public inline fun <State> dfsLDistOld(
 	starts: Iterable<State>,
 	isEnd: (State, Int) -> Boolean,
 	next: (State, Int) -> Iterable<State>
@@ -248,14 +247,14 @@ public inline fun <State> dfsLDist(
 }
 
 
-public inline fun <State> dfsPath(
+public inline fun <State> dfs(
 	start: State,
 	isEnd: (State) -> Boolean,
 	next: (State) -> Iterable<State>
-): BfsResult<State>? = dfsLPath(listOf(start), isEnd, next)
+): BfsResult<State>? = dfsL(listOf(start), isEnd, next)
 
 
-public inline fun <State> dfsLPath(
+public inline fun <State> dfsL(
 	starts: Iterable<State>,
 	isEnd: (State) -> Boolean,
 	next: (State) -> Iterable<State>
@@ -288,14 +287,14 @@ public inline fun <State> dfsLPath(
 }
 
 
-public inline fun <State> dfsPathDist(
+public inline fun <State> dfsDist(
 	start: State,
 	isEnd: (State, Int) -> Boolean,
 	next: (State, Int) -> Iterable<State>
-): BfsResult<State>? = dfsLPathDist(listOf(start), isEnd, next)
+): BfsResult<State>? = dfsLDist(listOf(start), isEnd, next)
 
 
-public inline fun <State> dfsLPathDist(
+public inline fun <State> dfsLDist(
 	starts: Iterable<State>,
 	isEnd: (State, Int) -> Boolean,
 	next: (State, Int) -> Iterable<State>
@@ -764,52 +763,54 @@ public inline fun <State> floodFillYL(starts: Iterable<State>, next: Yr<State>):
 }
 
 @JvmName("bfsSuffix")
-public inline fun <State> State.bfs(isEnd: (State) -> Boolean, next: (State) -> Iterable<State>): Res<State> = bfs(this, isEnd, next)
+public inline fun <State> State.bfsOld(isEnd: (State) -> Boolean, next: (State) -> Iterable<State>): Res<State> = bfsOld(this, isEnd, next)
 
 @JvmName("bfsLSuffix")
-public inline fun <State> Iterable<State>.bfsL(isEnd: (State) -> Boolean, next: (State) -> Iterable<State>): Res<State> = bfsL(this, isEnd, next)
+public inline fun <State> Iterable<State>.bfsLOld(isEnd: (State) -> Boolean, next: (State) -> Iterable<State>): Res<State> = bfsLOld(this, isEnd, next)
 
 @JvmName("bfsDistSuffix")
-public inline fun <State> State.bfsDist(isEnd: (State, Int) -> Boolean, next: (State, Int) -> Iterable<State>): Res<State> = bfsDist(this, isEnd, next)
+public inline fun <State> State.bfsDistOld(isEnd: (State, Int) -> Boolean, next: (State, Int) -> Iterable<State>): Res<State> = bfsDistOld(this, isEnd, next)
 
 @JvmName("bfsLDistSuffix")
-public inline fun <State> Iterable<State>.bfsLDist(isEnd: (State, Int) -> Boolean, next: (State, Int) -> Iterable<State>): Res<State> = bfsLDist(this, isEnd, next)
+public inline fun <State> Iterable<State>.bfsLDistOld(isEnd: (State, Int) -> Boolean, next: (State, Int) -> Iterable<State>): Res<State> = bfsLDistOld(this, isEnd, next)
 
 @JvmName("bfsPathSuffix")
-public inline fun <State> State.bfsPath(isEnd: (State) -> Boolean, next: (State) -> Iterable<State>): BfsResult<State>? = bfsPath(this, isEnd, next)
+public inline fun <State> State.bfs(isEnd: (State) -> Boolean, next: (State) -> Iterable<State>): BfsResult<State>? =
+	bfs(this, isEnd, next)
 
 @JvmName("bfsLPathSuffix")
-public inline fun <State> Iterable<State>.bfsLPath(isEnd: (State) -> Boolean, next: (State) -> Iterable<State>): BfsResult<State>? = bfsLPath(this, isEnd, next)
+public inline fun <State> Iterable<State>.bfsL(isEnd: (State) -> Boolean, next: (State) -> Iterable<State>): BfsResult<State>? = bfsL(this, isEnd, next)
 
 @JvmName("bfsPathDistSuffix")
-public inline fun <State> State.bfsPathDist(isEnd: (State, Int) -> Boolean, next: (State, Int) -> Iterable<State>): BfsResult<State>? = bfsPathDist(this, isEnd, next)
+public inline fun <State> State.bfsDist(isEnd: (State, Int) -> Boolean, next: (State, Int) -> Iterable<State>): BfsResult<State>? = bfsDist(this, isEnd, next)
 
 @JvmName("bfsLPathDistSuffix")
-public inline fun <State> Iterable<State>.bfsLPathDist(isEnd: (State, Int) -> Boolean, next: (State, Int) -> Iterable<State>): BfsResult<State>? = bfsLPathDist(this, isEnd, next)
+public inline fun <State> Iterable<State>.bfsLDist(isEnd: (State, Int) -> Boolean, next: (State, Int) -> Iterable<State>): BfsResult<State>? = bfsLDist(this, isEnd, next)
 
 @JvmName("dfsSuffix")
-public inline fun <State> State.dfs(isEnd: (State) -> Boolean, next: (State) -> Iterable<State>): Res<State> = dfs(this, isEnd, next)
+public inline fun <State> State.dfsOld(isEnd: (State) -> Boolean, next: (State) -> Iterable<State>): Res<State> = dfsOld(this, isEnd, next)
 
 @JvmName("dfsLSuffix")
-public inline fun <State> Iterable<State>.dfsL(isEnd: (State) -> Boolean, next: (State) -> Iterable<State>): Res<State> = dfsL(this, isEnd, next)
+public inline fun <State> Iterable<State>.dfsLOld(isEnd: (State) -> Boolean, next: (State) -> Iterable<State>): Res<State> = dfsLOld(this, isEnd, next)
 
 @JvmName("dfsDistSuffix")
-public inline fun <State> State.dfsDist(isEnd: (State, Int) -> Boolean, next: (State, Int) -> Iterable<State>): Res<State> = dfsDist(this, isEnd, next)
+public inline fun <State> State.dfsDistOld(isEnd: (State, Int) -> Boolean, next: (State, Int) -> Iterable<State>): Res<State> = dfsDistOld(this, isEnd, next)
 
 @JvmName("dfsLDistSuffix")
-public inline fun <State> Iterable<State>.dfsLDist(isEnd: (State, Int) -> Boolean, next: (State, Int) -> Iterable<State>): Res<State> = dfsLDist(this, isEnd, next)
+public inline fun <State> Iterable<State>.dfsLDistOld(isEnd: (State, Int) -> Boolean, next: (State, Int) -> Iterable<State>): Res<State> = dfsLDistOld(this, isEnd, next)
 
 @JvmName("dfsPathSuffix")
-public inline fun <State> State.dfsPath(isEnd: (State) -> Boolean, next: (State) -> Iterable<State>): BfsResult<State>? = dfsPath(this, isEnd, next)
+public inline fun <State> State.dfs(isEnd: (State) -> Boolean, next: (State) -> Iterable<State>): BfsResult<State>? =
+	dfs(this, isEnd, next)
 
 @JvmName("dfsLPathSuffix")
-public inline fun <State> Iterable<State>.dfsLPath(isEnd: (State) -> Boolean, next: (State) -> Iterable<State>): BfsResult<State>? = dfsLPath(this, isEnd, next)
+public inline fun <State> Iterable<State>.dfsL(isEnd: (State) -> Boolean, next: (State) -> Iterable<State>): BfsResult<State>? = dfsL(this, isEnd, next)
 
 @JvmName("dfsPathDistSuffix")
-public inline fun <State> State.dfsPathDist(isEnd: (State, Int) -> Boolean, next: (State, Int) -> Iterable<State>): BfsResult<State>? = dfsPathDist(this, isEnd, next)
+public inline fun <State> State.dfsDist(isEnd: (State, Int) -> Boolean, next: (State, Int) -> Iterable<State>): BfsResult<State>? = dfsDist(this, isEnd, next)
 
 @JvmName("dfsLPathDistSuffix")
-public inline fun <State> Iterable<State>.dfsLPathDist(isEnd: (State, Int) -> Boolean, next: (State, Int) -> Iterable<State>): BfsResult<State>? = dfsLPathDist(this, isEnd, next)
+public inline fun <State> Iterable<State>.dfsLDist(isEnd: (State, Int) -> Boolean, next: (State, Int) -> Iterable<State>): BfsResult<State>? = dfsLDist(this, isEnd, next)
 
 @JvmName("dijkstraSuffix")
 public inline fun <State> State.dijkstra(isEnd: (State) -> Boolean, next: (State) -> Iterable<Pair<State, Sint>>): DijkstraResult<State>? = dijkstra(this, isEnd, next)
@@ -860,8 +861,8 @@ public infix fun <State> State.pathTo(isEnd: (State)->Boolean): PathingIdea<Stat
 public infix fun <State> Iterable<State>.pathTo(isEnd: (State)->Boolean): PathingIdea<State> = PathingIdea(this, isEnd)
 
 
-public inline infix fun <State> PathingIdea<State>.bfs(next: (State) -> Iterable<State>): BfsResult<State>? = bfsLPath(starts, endCheck, next)
-public inline infix fun <State> PathingIdea<State>.dfs(next: (State) -> Iterable<State>): BfsResult<State>? = dfsLPath(starts, endCheck, next)
+public inline infix fun <State> PathingIdea<State>.bfs(next: (State) -> Iterable<State>): BfsResult<State>? = bfsL(starts, endCheck, next)
+public inline infix fun <State> PathingIdea<State>.dfs(next: (State) -> Iterable<State>): BfsResult<State>? = dfsL(starts, endCheck, next)
 public inline infix fun <State> PathingIdea<State>.dijkstra(next: (State) -> Iterable<Pair<State, Sint>>): DijkstraResult<State>? = dijkstraL(starts, endCheck, next)
 public inline infix fun <State> PathingIdea<State>.dijkstraY(next: Yier<State, Pair<State, Sint>>): DijkstraResult<State>? = dijkstraYL(starts, endCheck, next)
 public inline infix fun <State> PathingIdea<State>.dijkstraD(next: (State) -> Iterable<Pair<State, Double>>): DijkstraResultD<State>? = dijkstraLD(starts, endCheck, next)

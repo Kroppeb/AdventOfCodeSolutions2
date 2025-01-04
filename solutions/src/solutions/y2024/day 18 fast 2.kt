@@ -1,5 +1,7 @@
 @file:Suppress("PackageDirectoryMismatch", "UnusedImport")
 
+package solutions.y2024.d18.f02
+
 
 /*
 
@@ -28,12 +30,15 @@ import kotlin.math.*
  */
 
 
+import log
 import me.kroppeb.aoc.helpers.*
 import me.kroppeb.aoc.helpers.graph.*
 import me.kroppeb.aoc.helpers.point.*
+import java.util.*
 import kotlin.*
 import kotlin.collections.*
 import kotlin.io.*
+import kotlin.time.measureTime
 
 
 private val xxxxx = Clock(6, 3)
@@ -41,32 +46,49 @@ private val xxxxx = Clock(6, 3)
 //private val xxxxz = LoggerSettings.logNonAnswers(false)
 
 
-private fun part1() {
-	var inp = getLines(18)
+private fun part2() {
+	var inp = getLines(2024, 18)
 //	var inp = pre(18, 0)
 	var hob = inp.point()
+	val ff = hob.withIndex().associate { (i, v) -> v to i }
 
 	val t = 70 toP 70
 //	val t= 6 toP 6
 
 	val bounds = (0 toP 0) toB t
 
-	bsLast(0, hob.size + 1) { i ->
-		if (i > hob.size) return@bsLast false
-		val ch = hob.take(i).toSet()
+	var seen = mutableSetOf(0 toP 0)
 
-		bfsOld(t, {it == 0 toP 0}){ p ->
-			p.getQuadNeighbours().filter{it in bounds}.filter{it !in ch}
-		}.log(hob[i] to i).state == null
-	} + 1 log 2
+	val pq = PriorityQueue<Pair<Point, Int>>(compareBy { -it.second })
+	pq.add(0 toP 0 to 1_000_000)
 
+	while (pq.isNotEmpty()) {
+		val (c, mx) = pq.remove()
 
+		for (n in c.getQuadNeighbours()) {
+			if (n !in bounds) continue
+			if (n in seen) continue
+			val rs = min(mx, ff[n] ?: 1_000_000)
 
+			if (n == t) {
+//				hob[rs] log 2
+				return
+			}
 
-
+			pq.add(n to rs)
+			seen.add(n)
+		}
+	}
 }
 
 fun main() {
 	println("Day 18: ")
-	part1()
+	repeat(20) {
+		part2()
+	}
+	println(measureTime {
+		repeat(100) {
+			part2()
+		}
+	} / 100)
 }

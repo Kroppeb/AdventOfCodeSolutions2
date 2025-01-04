@@ -8,7 +8,7 @@ import me.kroppeb.aoc.helpers.sint.*
 import kotlin.math.atan2
 import kotlin.math.sqrt
 
-public data class Point(val x: Sint, val y: Sint) : PointN<Point> {
+public data class Point(val x: Sint, val y: Sint) : PointN<Point>, Loggable {
 	// TODO: evaluate whether having these as lazy actually helps or hurts
 	val right: Point by lazy { this + Clock.right }
 	val down: Point by lazy { this + Clock.down }
@@ -188,4 +188,6 @@ public data class Point(val x: Sint, val y: Sint) : PointN<Point> {
 		public val ZERO: Point = 0 toP 0
 		public val DIRS: List<Point> get() = ZERO.getQuadNeighbours() // has to be lazy cause directions can change
 	}
+
+	override fun getCopyString(): String = "$x,$y"
 }

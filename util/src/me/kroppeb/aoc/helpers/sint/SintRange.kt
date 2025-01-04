@@ -1,5 +1,6 @@
 package me.kroppeb.aoc.helpers.sint
 
+import com.sschr15.aoc.annotations.SkipOverflowChecks
 import me.kroppeb.aoc.helpers.divBy
 import me.kroppeb.aoc.helpers.maxOf
 import java.math.BigInteger
@@ -161,12 +162,6 @@ private fun differenceModulo(a: Sint, b: Sint, c: Sint): Sint {
 	return mod(mod(a, c) - mod(b, c), c)
 }
 
-// a mod b (in arithmetical sense)
-private fun mod(a: Sint, b: Sint): Sint {
-	val mod = a % b
-	return if (mod >= 0) mod else mod + b
-}
-
 
 private var hasWarnedAboutToBigIterator = false
 
@@ -181,9 +176,14 @@ internal class SintProgressionIterator(first: Sint, last: Sint, val step: Sint) 
 
 
 	init {
+		extractedInit(first, last)
+	}
+
+	@SkipOverflowChecks
+	private fun extractedInit(first: Sint, last: Sint) {
 		if (!hasWarnedAboutToBigIterator) {
-			var f = first / step
-			var l = last / step
+			var f = (first.l / step.l).s  // To avoid sschr15's warnings
+			var l = (last.l / step.l).s
 			if (f < Int.MIN_VALUE && l > Int.MAX_VALUE) {
 				System.err.println("Warning: You are using a SintProgressionIterator with a massive range")
 				error("a")

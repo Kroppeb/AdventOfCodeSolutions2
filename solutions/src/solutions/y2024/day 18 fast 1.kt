@@ -1,5 +1,7 @@
 @file:Suppress("PackageDirectoryMismatch", "UnusedImport")
 
+package solutions.y2024.d18.c02
+
 
 /*
 
@@ -28,12 +30,14 @@ import kotlin.math.*
  */
 
 
+import log
 import me.kroppeb.aoc.helpers.*
 import me.kroppeb.aoc.helpers.graph.*
 import me.kroppeb.aoc.helpers.point.*
 import kotlin.*
 import kotlin.collections.*
 import kotlin.io.*
+import kotlin.time.measureTime
 
 
 private val xxxxx = Clock(6, 3)
@@ -41,32 +45,32 @@ private val xxxxx = Clock(6, 3)
 //private val xxxxz = LoggerSettings.logNonAnswers(false)
 
 
-private fun part1() {
-	var inp = getLines(18)
+private fun part2() {
+	var inp = getLines(2024, 18)
 //	var inp = pre(18, 0)
 	var hob = inp.point()
+	val ff = hob.withIndex().associate { (i, v) -> v to i }
 
 	val t = 70 toP 70
 //	val t= 6 toP 6
 
 	val bounds = (0 toP 0) toB t
 
-	bsLast(0, hob.size + 1) { i ->
-		if (i > hob.size) return@bsLast false
-		val ch = hob.take(i).toSet()
-
-		bfsOld(t, {it == 0 toP 0}){ p ->
-			p.getQuadNeighbours().filter{it in bounds}.filter{it !in ch}
-		}.log(hob[i] to i).state == null
-	} + 1 log 2
-
-
-
-
-
+	bsFirst(0, hob.size) { i ->
+		t.bfs({ it.isZero() }) { p ->
+			p.getQuadNeighbours().filter { it in bounds && i < (ff[it]?:10000) }
+		} == null
+	}.let { hob[it] } log 2
 }
 
 fun main() {
 	println("Day 18: ")
-	part1()
+	repeat(20) {
+		part2()
+	}
+	println(measureTime {
+		repeat(100) {
+			part2()
+		}
+	} / 100)
 }

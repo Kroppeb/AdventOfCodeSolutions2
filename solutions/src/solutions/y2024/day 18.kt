@@ -1,5 +1,7 @@
 @file:Suppress("PackageDirectoryMismatch", "UnusedImport")
 
+package solutions.y2024.d18
+
 
 /*
 
@@ -28,6 +30,7 @@ import kotlin.math.*
  */
 
 
+import log
 import me.kroppeb.aoc.helpers.*
 import me.kroppeb.aoc.helpers.graph.*
 import me.kroppeb.aoc.helpers.point.*
