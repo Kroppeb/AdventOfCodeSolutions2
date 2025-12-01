@@ -14,11 +14,11 @@ object LoggerSettings {
 
 private var _logIndex = 0
 fun <T> T.log(meta: String = ""): T {
-	if (!LoggerSettings.logNonAnswers && !(meta == "1" || meta == "2"))
+	if (!LoggerSettings.logNonAnswers && !(meta == "1" || meta == "2" || meta == "3"))
 		_logIndex++
 	else
 		println("%03d %03d:\t$meta\t%s".format(_logIndex / 1000, _logIndex++ % 1000, this))
-	if (meta == "1" || meta == "2") {
+	if (meta == "1" || meta == "2" || meta == "3") {
 		setClipboard(this)
 	}
 	return this
