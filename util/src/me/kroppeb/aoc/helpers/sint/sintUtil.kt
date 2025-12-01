@@ -11,6 +11,7 @@ public val Int.s: Sint get() = Sint(this.toLong())
 public val Long.s: Sint get() = Sint(this)
 public val String.s: Sint get() = this.toSint()
 public fun String.toSint(): Sint = this.toLong().s
+public fun Char.toSint(): Sint = this.toString().s
 
 
 public val Iterable<Int>.s: List<Sint>

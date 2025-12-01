@@ -1,4 +1,4 @@
-@file:Suppress("MemberVisibilityCanBePrivate")
+@file:Suppress("MemberVisibilityCanBePrivate") @file:OptIn(ExperimentalTypeInference::class)
 
 package me.kroppeb.aoc.helpers.grid
 
@@ -7,6 +7,7 @@ import me.kroppeb.aoc.helpers.graph.CGraph
 import me.kroppeb.aoc.helpers.point.*
 import me.kroppeb.aoc.helpers.sint.Sint
 import me.kroppeb.aoc.helpers.sint.s
+import kotlin.experimental.ExperimentalTypeInference
 
 public class SimpleGrid<T>(public val items: List<List<T>>) : StrictGrid<T>, Iterable<BGP<T>> {
 	public override val bounds: Bounds
@@ -35,12 +36,12 @@ public class SimpleGrid<T>(public val items: List<List<T>>) : StrictGrid<T>, Ite
 	public fun cols(): List<List<T>> = items.transpose()
 	public fun rowsCols(): List<List<T>> = items + items.transpose()
 	public fun diag1(): List<T> {
-		assert(bounds.isSquare)
+		require(bounds.isSquare)
 		return items.mapIndexed { i, row -> row[i] }
 	}
 
 	public fun diag2(): List<T> {
-		assert(bounds.isSquare)
+		require(bounds.isSquare)
 		return items.mapIndexed { i, row -> row[items.size - 1 - i] }
 	}
 
@@ -109,3 +110,17 @@ public fun <T> List<List<T>>.grid(): SimpleGrid<T> {
 public fun List<String>.grid(): SimpleGrid<Char> = e().grid()
 
 public fun <T> Iterable<List<List<T>>>.grids(): List<SimpleGrid<T>> = map { it.grid() }
+
+@OverloadResolutionByLambdaReturnType
+public inline fun <T>SimpleGrid<T>.print(transform: (BGP<T>) -> Char) {
+	bounds.print { "" + transform(this.getBp(it)) }
+}
+@OverloadResolutionByLambdaReturnType
+@JvmName("printString")
+public inline fun <T>SimpleGrid<T>.print(transform: (BGP<T>) -> String) {
+	bounds.print { "" + transform(this.getBp(it)) }
+}
+
+public inline fun <T, R>SimpleGrid<T>.mapGrid(transform: (BGP<T>) -> R): SimpleGrid<R> {
+	return this.bounds.rows().map2{transform(this.getBp(it))}.grid()
+}

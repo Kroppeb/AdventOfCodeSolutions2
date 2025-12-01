@@ -77,8 +77,8 @@ public value class Sint(private val inner: Long) : Comparable<Sint> {
 		public val MIN_VALUE: Sint = Sint(Long.MIN_VALUE)
 
 		// can be used as "infinities" but with a lower chance of overflowing
-		// max and min are about 9.2 times larger than mega
-		public val NEG_MEGA: Sint = Sint(-1_000_000_000_000_000_000L)
-		public val POS_MEGA: Sint = Sint(1_000_000_000_000_000_000L)
+		// max and min are about 92 times larger than mega
+		public val NEG_MEGA: Sint = Sint(-100_000_000_000_000_000L)
+		public val POS_MEGA: Sint = Sint(100_000_000_000_000_000L)
 	}
 }

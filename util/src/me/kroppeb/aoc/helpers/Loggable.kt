@@ -1,5 +1,5 @@
 package me.kroppeb.aoc.helpers
 
-interface Loggable {
-	fun getCopyString(): String
+public interface Loggable {
+	public fun getCopyString(): String
 }

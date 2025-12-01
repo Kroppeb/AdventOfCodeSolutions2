@@ -351,3 +351,19 @@ public fun simplifyCrt(values: List<Pair<Sint, Sint>>): List<Pair<Sint, Sint>>? 
 
 	return res.filter { it.second != 1.s }.map { (a, b) -> a % b to b }
 }
+
+/**
+ * The biggest integer r such that `r * r <= value`
+ */
+public fun Sint.rootFloor(): Sint {
+	require(this >= 0)
+	return bsLast(lower = 0.s) { it * it <= this }
+}
+
+/**
+ * The smallest integer r such that `r * r >= value`
+ */
+public fun Sint.rootCeil(): Sint {
+	require(this >= 0)
+	return bsFirst(lower = 0.s) { it * it >= this }
+}

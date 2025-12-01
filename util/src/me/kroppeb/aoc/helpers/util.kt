@@ -1,7 +1,5 @@
 package me.kroppeb.aoc.helpers
 
-import me.kroppeb.aoc.helpers.collections.list.Het1
-import me.kroppeb.aoc.helpers.collections.list.Het2
 import me.kroppeb.aoc.helpers.collections.list.HetN
 import me.kroppeb.aoc.helpers.sint.*
 import kotlin.math.abs
@@ -89,7 +87,7 @@ public inline fun <T> List<T>.bsFirst(lower: Int = 0, upper: Int = this.size, pr
 	return this[high]
 }
 
-public inline fun bsLast(lower: Int? = null, upper: Int? = null, predicate: (Int) -> Boolean): Int {
+public inline fun bsLastI(lower: Int? = null, upper: Int? = null, predicate: (Int) -> Boolean): Int {
 	var low: Int = lower ?: 0
 	if (lower == null) {
 		if (!predicate(0)) {
@@ -123,17 +121,18 @@ public inline fun bsLast(lower: Int? = null, upper: Int? = null, predicate: (Int
 	if (predicate(high))
 		error("predicate succeeds on high")
 
+	// invariant: predicate(low) is true, predicate(high) is false
 	while (high > low + 1) {
 		val mid = (low + high) / 2
 		if (predicate(mid))
-			high = mid
-		else
 			low = mid
+		else
+			high = mid
 	}
-	return high
+	return low
 }
 
-public inline fun bsFirst(lower: Int? = null, upper: Int? = null, predicate: (Int) -> Boolean): Int {
+public inline fun bsFirstI(lower: Int? = null, upper: Int? = null, predicate: (Int) -> Boolean): Int {
 	var low: Int = lower ?: 0
 	if (lower == null) {
 		if (predicate(0)) {
@@ -167,6 +166,7 @@ public inline fun bsFirst(lower: Int? = null, upper: Int? = null, predicate: (In
 	if (!predicate(high))
 		error("predicate fails on high")
 
+	// invariant: predicate(low) is false, predicate(high) is true
 	while (high > low + 1) {
 		val mid = (low + high) / 2
 		if (predicate(mid))
@@ -207,6 +207,8 @@ public inline fun bsLastL(lower: Long? = null, upper: Long? = null, predicate: (
 		}
 	else if (predicate(high))
 		error("predicate succeeds on high")
+
+	// invariant: predicate(low) is true, predicate(high) is false
 	while (high > low + 1) {
 		val mid = (low + high) / 2
 		if (predicate(mid))
@@ -247,6 +249,100 @@ public inline fun bsFirstL(lower: Long? = null, upper: Long? = null, predicate: 
 		}
 	else if (!predicate(high))
 		error("predicate fails on high")
+
+	// invariant: predicate(low) is false, predicate(high) is true
+	while (high > low + 1) {
+		val mid = (low + high) / 2
+		if (predicate(mid))
+			high = mid
+		else
+			low = mid
+	}
+	return high
+}
+
+
+public fun bsLast(lower: Sint? = null, upper: Sint? = null, predicate: (Sint) -> Boolean): Sint {
+	var low: Sint = lower ?: 0.s
+	if (lower == null) {
+		if (!predicate(0.s)) {
+			low = -1.s
+			while (!predicate(low)) {
+				low = (low shl 2)
+				// overflow
+				if (low == 0.s)
+					if (predicate(Sint.MIN_VALUE))
+						low = Sint.MIN_VALUE
+					else
+						error("predicate isn't true for min int")
+			}
+		} else if (!predicate(low))
+			error("predicate fails on low")
+	}
+
+	var high: Sint = upper ?: 1.s
+	if (upper == null) {
+		while (predicate(high)) {
+			high = (high shl 2)
+			// overflow
+			if (high == 0.s)
+				if (!predicate(Sint.MAX_VALUE))
+					high = Sint.MAX_VALUE
+				else
+					error("predicate is even true for max int")
+		}
+	}
+
+	if (predicate(high))
+		error("predicate succeeds on high")
+
+	// invariant: predicate(low) is true, predicate(high) is false
+	while (high > low + 1) {
+		val mid = (low + high) / 2
+		if (predicate(mid))
+			low = mid
+		else
+			high = mid
+	}
+	return low
+}
+
+public inline fun bsFirst(lower: Sint? = null, upper: Sint? = null, predicate: (Sint) -> Boolean): Sint {
+	var low: Sint = lower ?: 0.s
+	if (lower == null) {
+		if (predicate(0.s)) {
+			low = -1.s
+			while (predicate(low)) {
+				low = (low shl 2)
+				// overflow
+				if (low == 0.s)
+					if (!predicate(Sint.MIN_VALUE))
+						low = Sint.MIN_VALUE
+					else
+						error("predicate is even true for min int")
+			}
+		} else if (predicate(low))
+			error("predicate succeeds on low")
+	}
+
+	var high: Sint = upper ?: 1.s
+	if (upper == null) {
+		while (!predicate(high)) {
+			high = (high shl 2)
+			// overflow
+			if (high == 0.s)
+				if (predicate(Sint.MAX_VALUE))
+					high = Sint.MAX_VALUE
+				else
+					error("predicate isn't even true for max int")
+		}
+	}
+
+	if (!predicate(high))
+		error("predicate fails on high")
+
+
+	// invariant: predicate(low) is false, predicate(high) is true
 	while (high > low + 1) {
 		val mid = (low + high) / 2
 		if (predicate(mid))
@@ -531,3 +627,37 @@ public inline fun <T> Iterable<T>.dropLastWhile(predicate: (T) -> Boolean): List
 	}
 	return emptyList()
 }
+
+public enum class Colors(val colorCode: String) {
+	BLACK("\u001B[0;30m"),
+	RED("\u001B[0;31m"),
+	GREEN("\u001B[0;32m"),
+	YELLOW("\u001B[0;33m"),
+	BLUE("\u001B[0;34m"),
+	PURPLE("\u001B[0;35m"),
+	CYAN("\u001B[0;36m"),
+	WHITE("\u001B[0;37m"),
+
+	BRIGHT_BLACK("\u001B[0;90m"),
+	BRIGHT_RED("\u001B[0;91m"),
+	BRIGHT_GREEN("\u001B[0;92m"),
+	BRIGHT_YELLOW("\u001B[0;93m"),
+	BRIGHT_BLUE("\u001B[0;94m"),
+	BRIGHT_PURPLE("\u001B[0;95m"),
+	BRIGHT_CYAN("\u001B[0;96m"),
+	BRIGHT_WHITE("\u001B[0;97m"),
+	;
+
+	public companion object {
+		public val colors: Map<String, Colors> = entries.associateBy { it.name }
+	}
+
+}
+
+public fun String.color(color: Colors): String {
+	return "${color.colorCode}$this\u001B[0m"
+}
+
+public fun String.color(color: String): String = color(Colors.colors[color.uppercase()] ?: throw IllegalArgumentException("Unknown color: $color"))
+public fun Char.color(color: Colors): String = ("" + this).color(color)
+public fun Char.color(color: String): String = ("" + this).color(color)

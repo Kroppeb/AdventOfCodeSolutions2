@@ -6,6 +6,7 @@ import me.kroppeb.aoc.helpers.grid.grid
 import me.kroppeb.aoc.helpers.point.*
 import me.kroppeb.aoc.helpers.sint.Sint
 import me.kroppeb.aoc.helpers.sint.s
+import java.io.FileNotFoundException
 
 private val regexSusInt = Regex("""-?\d+-\d+""")
 private val regexInt = Regex("""-?\d+""")
@@ -71,6 +72,31 @@ public fun getData(day: Int): String =
 					.readText()
 		}
 
+
+public fun getData(type: String?, year: Int?, day: Int, part: Int?): String {
+	val ts = type?:""
+	val ys = year?.toString()?:""
+	val ps = if(part == null) "" else "-$part"
+
+	val paths = buildList {
+		add("/$ts/$ys/$day$ps")
+		add("/$ts/$ys/$day$ps.txt")
+		if (day < 10) {
+			add("/$ts/$ys/0$day$ps")
+			add("/$ts/$ys/0$day$ps.txt")
+		}
+	}
+
+	val resources = paths.mapNotNull { Ugh::class.java.getResource(it) }
+	if (resources.isEmpty()) {
+		throw FileNotFoundException("Could not find input file for `$ts:$ys:$day:${part?:""}`")
+	} else if (resources.size > 1) {
+		throw FileNotFoundException("Multiple possible input files for `$ts:$ys:$day:${part?:""}`")
+	} else {
+		return resources.single().readText()
+	}
+}
+
 private var hasWarnedAboutSusInt = false
 public fun getInts(day: Int): Ints {
 	val input = getData(day)
@@ -122,6 +148,13 @@ public fun getLines(day: Int): List<String> {
 
 public fun getLines(year: Int, day: Int): List<String> {
 	val lines = getData(year * 100 + day).lines()
+	if(lines.last().isEmpty())
+		return lines.subList(0,lines.lastIndex)
+	return lines
+}
+
+public fun getLines(type: String, year: Int, day: Int, part:Int? = null): List<String> {
+	val lines = getData(type, year, day, part).lines()
 	if(lines.last().isEmpty())
 		return lines.subList(0,lines.lastIndex)
 	return lines
