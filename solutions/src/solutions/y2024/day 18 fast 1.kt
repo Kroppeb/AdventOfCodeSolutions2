@@ -56,7 +56,7 @@ private fun part2() {
 
 	val bounds = (0 toP 0) toB t
 
-	bsFirst(0, hob.size) { i ->
+	bsFirstI(0, hob.size) { i ->
 		t.bfs({ it.isZero() }) { p ->
 			p.getQuadNeighbours().filter { it in bounds && i < (ff[it]?:10000) }
 		} == null

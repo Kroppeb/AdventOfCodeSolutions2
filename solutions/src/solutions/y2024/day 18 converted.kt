@@ -54,7 +54,7 @@ private fun part2() {
 
 	val bounds = (0 toP 0) toB t
 
-	bsFirst(0, hob.lastIndex) { i ->
+	bsFirstI(0, hob.lastIndex) { i ->
 		val ch = hob.take(i + 1).toSet()
 
 		bfs(t, {it == 0 toP 0}){ p ->

@@ -54,8 +54,8 @@ private fun part1() {
 
 	val bounds = (0 toP 0) toB t
 
-	bsLast(0, hob.size + 1) { i ->
-		if (i > hob.size) return@bsLast false
+	bsLastI(0, hob.size + 1) { i ->
+		if (i > hob.size) return@bsLastI false
 		val ch = hob.take(i).toSet()
 
 		bfsOld(t, {it == 0 toP 0}){ p ->
