@@ -170,6 +170,7 @@ public infix fun Point3D.toB(other: Point3D): Bounds3D = Bounds3D(
 
 public operator fun Point3D.rangeTo(other: Point3D): Bounds3D = this toB other
 public operator fun Point3D.rem(bounds: Bounds3D): Point3D = x % bounds.xs toP y % bounds.ys toP z % bounds.zs
+public infix fun Point3D.mod(bounds: Bounds3D): Point3D = this % bounds
 
 public fun Iterable<Point3D>.bounds(): Bounds3D =
 	Bounds3D(minMaxRangeOf { it.x }, minMaxRangeOf { it.y }, minMaxRangeOf { it.z })

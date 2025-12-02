@@ -232,6 +232,7 @@ public infix fun Point.toB(other: Point): Bounds =
 
 public operator fun Point.rangeTo(other: Point): Bounds = this toB other
 public operator fun Point.rem(bounds: Bounds): Point = x % bounds.xs toP y % bounds.ys
+public infix fun Point.mod(bounds: Bounds): Point = this % bounds
 
 public fun Iterable<Point>.bounds(): Bounds = Bounds(minMaxRangeOf { it.x }, minMaxRangeOf { it.y })
 

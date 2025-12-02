@@ -37,13 +37,13 @@ public inline fun <T, R> Iterable<Iterable<T>>.map2(convert: (T) -> R): List<Lis
 @JvmName("rleDecodeInt")
 @OptIn(kotlin.experimental.ExperimentalTypeInference::class)
 @OverloadResolutionByLambdaReturnType
-public inline fun <T, R> Iterable<T>.rleDecode(value: (T) -> R, length: (T) -> Int): List<R> =
+public inline fun <T, R> Iterable<T>.rleDecodeI(value: (T) -> R, length: (T) -> Int): List<R> =
 	flatMap { listOf(value(it)).repeat(length(it)) }
 
 
 @OptIn(kotlin.experimental.ExperimentalTypeInference::class)
 @OverloadResolutionByLambdaReturnType
-public inline fun <T, R> Iterable<T>.rleDecodes(value: (T) -> R, length: (T) -> Sint): List<R> =
+public inline fun <T, R> Iterable<T>.rleDecode(value: (T) -> R, length: (T) -> Sint): List<R> =
 	flatMap { listOf(value(it)).repeat(length(it)) }
 
 

@@ -273,11 +273,11 @@ public fun Long.modInv(base: Long, target: Long): Long {
 	throw IllegalArgumentException("No inverse")
 }
 
-public infix fun Int.divBy(other: Int): Boolean = this % other == 0
+public infix fun Int.divBy(other: Int): Boolean = this mod other == 0
 public infix fun Int.divBy(other: Long): Boolean = this.toLong() divBy other
 public infix fun Int.divBy(other: Sint): Boolean = this.s divBy other
 public infix fun Long.divBy(other: Int): Boolean = this divBy other.toLong()
-public infix fun Long.divBy(other: Long): Boolean = this % other == 0L
+public infix fun Long.divBy(other: Long): Boolean = this mod other == 0L
 public infix fun Long.divBy(other: Sint): Boolean = this.s divBy other
 public infix fun Sint.divBy(other: Int): Boolean = this divBy other.s
 public infix fun Sint.divBy(other: Long): Boolean = this divBy other.s
