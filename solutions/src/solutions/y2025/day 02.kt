@@ -65,7 +65,7 @@ private val xxxxx = Clock(6, 3)
 //@SkipOverflowChecks
 //@SkipDestructuringChecks
 private fun part1() {
-	var inp = getLines(2)
+	var inp = getLines(2025, 2)
 	var hob = inp.single().posSints().chunked(2)
 
 	hob.flatMap { (s,e) -> (s..e).filter{
