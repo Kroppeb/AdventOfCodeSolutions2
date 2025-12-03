@@ -9,9 +9,17 @@ import kotlin.experimental.ExperimentalTypeInference
 
 public val Int.s: Sint get() = Sint(this.toLong())
 public val Long.s: Sint get() = Sint(this)
+public val UInt.s: Sint get() = Sint(this.toLong())
 public val String.s: Sint get() = this.toSint()
 public fun String.toSint(): Sint = this.toLong().s
 public fun Char.toSint(): Sint = this.toString().s
+
+public val ULong.s: Sint get() {
+	require(this.toLong() >= 0){
+		throw ArithmeticException("Can't convert ULong $this that is bigger than Long.MAX_VALUE to a Sint")
+	}
+	return this.toLong().s
+}
 
 
 public val Iterable<Int>.s: List<Sint>
@@ -149,6 +157,11 @@ public infix fun Sint.and(other: Int): Sint = this and other.s
 public infix fun Sint.and(other: Long): Sint = this and other.s
 public infix fun Int.and(other: Sint): Sint = this.s and other
 public infix fun Long.and(other: Sint): Sint = this.s and other
+
+public infix fun Sint.or(other: Int): Sint = this or other.s
+public infix fun Sint.or(other: Long): Sint = this or other.s
+public infix fun Int.or(other: Sint): Sint = this.s or other
+public infix fun Long.or(other: Sint): Sint = this.s or other
 
 // endregion
 

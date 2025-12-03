@@ -55,7 +55,7 @@ public fun <C : Comparable<C>> max(first: C, vararg elements: C): C = elements.m
 public fun len(lst: Collection<*>): Int = lst.size
 
 // region binary search
-public inline fun <T> List<T>.bsLast(lower: Int = 0, upper: Int = this.size, predicate: (T) -> Boolean): T {
+public inline fun <T> List<T>.bsLast(lower: Int = 0, upper: Int = this.lastIndex, predicate: (T) -> Boolean): T {
 	if (!predicate(this[lower]))
 		error("predicate fails on first element")
 
@@ -71,7 +71,7 @@ public inline fun <T> List<T>.bsLast(lower: Int = 0, upper: Int = this.size, pre
 	return this[low]
 }
 
-public inline fun <T> List<T>.bsFirst(lower: Int = 0, upper: Int = this.size, predicate: (T) -> Boolean): T {
+public inline fun <T> List<T>.bsFirst(lower: Int = 0, upper: Int = this.lastIndex, predicate: (T) -> Boolean): T {
 	if (!predicate(this[upper]))
 		error("predicate fails on last element")
 
@@ -116,10 +116,14 @@ public inline fun bsLastI(lower: Int? = null, upper: Int? = null, predicate: (In
 				else
 					error("predicate is even true for max int")
 		}
+	} else if (!predicate(high)) {
+		// When upper bound is provided and predicate is false at upper, return upper-1 or fail
+		if (predicate(high - 1)) return high - 1
+		error("predicate doesn't hold anywhere in range")
 	}
 
 	if (predicate(high))
-		error("predicate succeeds on high")
+		return high
 
 	// invariant: predicate(low) is true, predicate(high) is false
 	while (high > low + 1) {
@@ -148,6 +152,8 @@ public inline fun bsFirstI(lower: Int? = null, upper: Int? = null, predicate: (I
 			}
 		} else if (predicate(low))
 			error("predicate succeeds on low")
+	} else if (predicate(low)) {
+		return low
 	}
 
 	var high: Int = upper ?: 1
@@ -205,8 +211,13 @@ public inline fun bsLastL(lower: Long? = null, upper: Long? = null, predicate: (
 				else
 					error("predicate is even true for max long")
 		}
-	else if (predicate(high))
-		error("predicate succeeds on high")
+	else if (!predicate(high)) {
+		if (predicate(high - 1)) return high - 1
+		error("predicate doesn't hold anywhere in range")
+	}
+
+	if (predicate(high))
+		return high
 
 	// invariant: predicate(low) is true, predicate(high) is false
 	while (high > low + 1) {
@@ -235,6 +246,8 @@ public inline fun bsFirstL(lower: Long? = null, upper: Long? = null, predicate: 
 			}
 		} else if (predicate(low))
 			error("predicate succeeds on low")
+	else if (predicate(low))
+		return low
 
 	var high: Long = upper ?: 1
 	if (upper == null)
@@ -291,10 +304,13 @@ public fun bsLast(lower: Sint? = null, upper: Sint? = null, predicate: (Sint) ->
 				else
 					error("predicate is even true for max int")
 		}
+	} else if (!predicate(high)) {
+		if (predicate(high - 1.s)) return high - 1.s
+		error("predicate doesn't hold anywhere in range")
 	}
 
 	if (predicate(high))
-		error("predicate succeeds on high")
+		return high
 
 	// invariant: predicate(low) is true, predicate(high) is false
 	while (high > low + 1) {
@@ -323,6 +339,9 @@ public inline fun bsFirst(lower: Sint? = null, upper: Sint? = null, predicate: (
 			}
 		} else if (predicate(low))
 			error("predicate succeeds on low")
+	} else if (predicate(low)) {
+		// When lower bound is provided and predicate is true at lower, return lower
+		return low
 	}
 
 	var high: Sint = upper ?: 1.s

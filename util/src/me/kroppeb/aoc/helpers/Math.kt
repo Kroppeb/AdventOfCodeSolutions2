@@ -7,9 +7,9 @@ import kotlin.math.ceil
 import kotlin.math.sqrt
 
 
-public fun gcd(a: Int, b: Int): Int = if (a == 0) b else gcd(b % a, a)
-public fun gcd(a: Long, b: Long): Long = if (a == 0L) b else gcd(b % a, a)
-public fun gcd(a: Sint, b: Sint): Sint = if (a.isZero()) b else gcd(b % a, a)
+public fun gcd(a: Int, b: Int): Int = gcd(a.s, b.s).i
+public fun gcd(a: Long, b: Long): Long = gcd(a.s, b.s).l
+public fun gcd(a: Sint, b: Sint): Sint = if (a.isZero()) b.abs() else gcd(b mod a, a)
 
 public fun egcd(a: Int, b: Int): Triple<Int, Int, Int> {
 	if (a == 0) return Triple(b, 0, 1)

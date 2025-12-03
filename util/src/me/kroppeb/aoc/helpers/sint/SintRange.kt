@@ -3,6 +3,7 @@ package me.kroppeb.aoc.helpers.sint
 import com.sschr15.aoc.annotations.SkipOverflowChecks
 import me.kroppeb.aoc.helpers.divBy
 import me.kroppeb.aoc.helpers.maxOf
+import me.kroppeb.aoc.helpers.minOf
 import java.math.BigInteger
 
 private var _hasWarnedAboutToBigRange = false
@@ -104,14 +105,15 @@ internal constructor
 	override val size: Int
 		get() = sizeS.i
 
+	// FIXME: this can trigger overflow when it does still fit :[
 	public open val sizeS: Sint get() = ((
-		if (step > 0) maxOf(0.s, last - first + 1)
-		else maxOf(0.s, first - last + 1)
+		if (step > 0) maxOf(0.s, last - first + step)
+		else minOf(0.s, last - first + step)
 		) / step)
 
 	public open val sizeB: BigInteger get() = ((
-		if (step > 0) maxOf(BigInteger.ZERO, last.toBigInteger() - first.toBigInteger() + BigInteger.ONE)
-		else maxOf(BigInteger.ZERO, first.toBigInteger() - last.toBigInteger() + BigInteger.ONE)
+		if (step > 0) maxOf(BigInteger.ZERO, last.toBigInteger() - first.toBigInteger() + step.toBigInteger())
+		else minOf(BigInteger.ZERO, last.toBigInteger() - first.toBigInteger() + step.toBigInteger())
 		) / step.toBigInteger())
 
 	override fun containsAll(elements: Collection<Sint>): Boolean = elements.all { it in this }
