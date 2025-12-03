@@ -19,70 +19,92 @@ public inline fun <R, T> wrap(cache: MMap<T, Pair<Boolean, Any?>>, t: T, f: () -
 }
 
 
-public inline fun <T, R> memoize(crossinline f: (T) -> R): (T) -> R {
+public inline fun <T, R> memoize(crossinline f: ((T) -> R).(T) -> R): (T) -> R {
 	val cache = mutableMapOf<T, Pair<Boolean, Any?>>()
-	return { t: T -> wrap(cache, t) { f(t) } }
+	var s : ((T) -> R)? = null
+	s = { t ->
+		wrap(cache, t) { s!!.f(t) }
+	}
+	return s
 }
 
-public inline fun <T1, T2, R> memoize(crossinline f: (T1, T2) -> R): (T1, T2) -> R {
+public inline fun <T1, T2, R> memoize(crossinline f: ((T1, T2) -> R).(T1, T2) -> R): (T1, T2) -> R {
 	val cache = mutableMapOf<Het2<T1, T2>, Pair<Boolean, Any?>>()
-	return { t1: T1, t2: T2 ->
-		wrap(cache, t1 toH t2) { f(t1, t2) }
+	var s : ((T1, T2) -> R)? = null
+	s = { t1: T1, t2: T2 ->
+		wrap(cache, t1 toH t2) { s!!.f(t1, t2) }
 	}
+	return s
 }
 
-public inline fun <T1, T2, T3, R> memoize(crossinline f: (T1, T2, T3) -> R): (T1, T2, T3) -> R {
+public inline fun <T1, T2, T3, R> memoize(crossinline f: ((T1, T2, T3) -> R).(T1, T2, T3) -> R): (T1, T2, T3) -> R {
 	val cache = mutableMapOf<Het3<T1, T2, T3>, Pair<Boolean, Any?>>()
-	return { t1: T1, t2: T2, t3: T3 ->
-		wrap(cache, t1 toH t2 toH t3) { f(t1, t2, t3) }
+	var s: ((T1, T2, T3) -> R)? = null
+	s = { t1: T1, t2: T2, t3: T3 ->
+		wrap(cache, t1 toH t2 toH t3) { s!!.f(t1, t2, t3) }
 	}
+	return s
 }
 
-public inline fun <T1, T2, T3, T4, R> memoize(crossinline f: (T1, T2, T3, T4) -> R): (T1, T2, T3, T4) -> R {
+public inline fun <T1, T2, T3, T4, R> memoize(crossinline f: ((T1, T2, T3, T4) -> R).(T1, T2, T3, T4) -> R): (T1, T2, T3, T4) -> R {
 	val cache = mutableMapOf<Het4<T1, T2, T3, T4>, Pair<Boolean, Any?>>()
-	return { t1: T1, t2: T2, t3: T3, t4: T4 ->
-		wrap(cache, t1 toH t2 toH t3 toH t4) { f(t1, t2, t3, t4) }
+	var s: ((T1, T2, T3, T4) -> R)? = null
+	s = { t1: T1, t2: T2, t3: T3, t4: T4 ->
+		wrap(cache, t1 toH t2 toH t3 toH t4) { s!!.f(t1, t2, t3, t4) }
 	}
+	return s
 }
 
-public inline fun <T1, T2, T3, T4, T5, R> memoize(crossinline f: (T1, T2, T3, T4, T5) -> R): (T1, T2, T3, T4, T5) -> R {
+public inline fun <T1, T2, T3, T4, T5, R> memoize(crossinline f: ((T1, T2, T3, T4, T5) -> R).(T1, T2, T3, T4, T5) -> R): (T1, T2, T3, T4, T5) -> R {
 	val cache = mutableMapOf<Het5<T1, T2, T3, T4, T5>, Pair<Boolean, Any?>>()
-	return { t1: T1, t2: T2, t3: T3, t4: T4, t5: T5 ->
-		wrap(cache, t1 toH t2 toH t3 toH t4 toH t5) { f(t1, t2, t3, t4, t5) }
+	var s: ((T1, T2, T3, T4, T5) -> R)? = null
+	s = { t1: T1, t2: T2, t3: T3, t4: T4, t5: T5 ->
+		wrap(cache, t1 toH t2 toH t3 toH t4 toH t5) { s!!.f(t1, t2, t3, t4, t5) }
 	}
+	return s
 }
 
-public inline fun <T1, T2, T3, T4, T5, T6, R> memoize(crossinline f: (T1, T2, T3, T4, T5, T6) -> R): (T1, T2, T3, T4, T5, T6) -> R {
+public inline fun <T1, T2, T3, T4, T5, T6, R> memoize(crossinline f: ((T1, T2, T3, T4, T5, T6) -> R).(T1, T2, T3, T4, T5, T6) -> R): (T1, T2, T3, T4, T5, T6) -> R {
 	val cache = mutableMapOf<Het6<T1, T2, T3, T4, T5, T6>, Pair<Boolean, Any?>>()
-	return { t1: T1, t2: T2, t3: T3, t4: T4, t5: T5, t6: T6 ->
-		wrap(cache, t1 toH t2 toH t3 toH t4 toH t5 toH t6) { f(t1, t2, t3, t4, t5, t6) }
+	var s: ((T1, T2, T3, T4, T5, T6) -> R)? = null
+	s =  { t1: T1, t2: T2, t3: T3, t4: T4, t5: T5, t6: T6 ->
+		wrap(cache, t1 toH t2 toH t3 toH t4 toH t5 toH t6) { s!!.f(t1, t2, t3, t4, t5, t6) }
 	}
+	return s
 }
 
-public inline fun <T1, T2, T3, T4, T5, T6, T7, R> memoize(crossinline f: (T1, T2, T3, T4, T5, T6, T7) -> R): (T1, T2, T3, T4, T5, T6, T7) -> R {
+public inline fun <T1, T2, T3, T4, T5, T6, T7, R> memoize(crossinline f: ((T1, T2, T3, T4, T5, T6, T7) -> R).(T1, T2, T3, T4, T5, T6, T7) -> R): (T1, T2, T3, T4, T5, T6, T7) -> R {
 	val cache = mutableMapOf<Het7<T1, T2, T3, T4, T5, T6, T7>, Pair<Boolean, Any?>>()
-	return { t1: T1, t2: T2, t3: T3, t4: T4, t5: T5, t6: T6, t7: T7 ->
-		wrap(cache, t1 toH t2 toH t3 toH t4 toH t5 toH t6 toH t7) { f(t1, t2, t3, t4, t5, t6, t7) }
+	var s: ((T1, T2, T3, T4, T5, T6, T7) -> R)? = null
+	s = { t1: T1, t2: T2, t3: T3, t4: T4, t5: T5, t6: T6, t7: T7 ->
+		wrap(cache, t1 toH t2 toH t3 toH t4 toH t5 toH t6 toH t7) { s!!.f(t1, t2, t3, t4, t5, t6, t7) }
 	}
+	return s
 }
 
-public inline fun <T1, T2, T3, T4, T5, T6, T7, T8, R> memoize(crossinline f: (T1, T2, T3, T4, T5, T6, T7, T8) -> R): (T1, T2, T3, T4, T5, T6, T7, T8) -> R {
+public inline fun <T1, T2, T3, T4, T5, T6, T7, T8, R> memoize(crossinline f: ((T1, T2, T3, T4, T5, T6, T7, T8) -> R).(T1, T2, T3, T4, T5, T6, T7, T8) -> R): (T1, T2, T3, T4, T5, T6, T7, T8) -> R {
 	val cache = mutableMapOf<Het8<T1, T2, T3, T4, T5, T6, T7, T8>, Pair<Boolean, Any?>>()
-	return { t1: T1, t2: T2, t3: T3, t4: T4, t5: T5, t6: T6, t7: T7, t8: T8 ->
-		wrap(cache, t1 toH t2 toH t3 toH t4 toH t5 toH t6 toH t7 toH t8) { f(t1, t2, t3, t4, t5, t6, t7, t8) }
+	var s: ((T1, T2, T3, T4, T5, T6, T7, T8) -> R)? = null
+	s =  { t1: T1, t2: T2, t3: T3, t4: T4, t5: T5, t6: T6, t7: T7, t8: T8 ->
+		wrap(cache, t1 toH t2 toH t3 toH t4 toH t5 toH t6 toH t7 toH t8) { s!!.f(t1, t2, t3, t4, t5, t6, t7, t8) }
 	}
+	return s
 }
 
-public inline fun <T1, T2, T3, T4, T5, T6, T7, T8, T9, R> memoize(crossinline f: (T1, T2, T3, T4, T5, T6, T7, T8, T9) -> R): (T1, T2, T3, T4, T5, T6, T7, T8, T9) -> R {
+public inline fun <T1, T2, T3, T4, T5, T6, T7, T8, T9, R> memoize(crossinline f: ((T1, T2, T3, T4, T5, T6, T7, T8, T9) -> R).(T1, T2, T3, T4, T5, T6, T7, T8, T9) -> R): (T1, T2, T3, T4, T5, T6, T7, T8, T9) -> R {
 	val cache = mutableMapOf<Het9<T1, T2, T3, T4, T5, T6, T7, T8, T9>, Pair<Boolean, Any?>>()
-	return { t1: T1, t2: T2, t3: T3, t4: T4, t5: T5, t6: T6, t7: T7, t8: T8, t9: T9 ->
-		wrap(cache, t1 toH t2 toH t3 toH t4 toH t5 toH t6 toH t7 toH t8 toH t9) { f(t1, t2, t3, t4, t5, t6, t7, t8, t9) }
+	var s: ((T1, T2, T3, T4, T5, T6, T7, T8, T9) -> R)? = null
+	s =  { t1: T1, t2: T2, t3: T3, t4: T4, t5: T5, t6: T6, t7: T7, t8: T8, t9: T9 ->
+		wrap(cache, t1 toH t2 toH t3 toH t4 toH t5 toH t6 toH t7 toH t8 toH t9) { s!!.f(t1, t2, t3, t4, t5, t6, t7, t8, t9) }
 	}
+	return s
 }
 
-public inline fun <T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, R> memoize(crossinline f: (T1, T2, T3, T4, T5, T6, T7, T8, T9, T10) -> R): (T1, T2, T3, T4, T5, T6, T7, T8, T9, T10) -> R {
+public inline fun <T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, R> memoize(crossinline f: ((T1, T2, T3, T4, T5, T6, T7, T8, T9, T10) -> R).(T1, T2, T3, T4, T5, T6, T7, T8, T9, T10) -> R): (T1, T2, T3, T4, T5, T6, T7, T8, T9, T10) -> R {
 	val cache = mutableMapOf<Het10<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>, Pair<Boolean, Any?>>()
-	return { t1: T1, t2: T2, t3: T3, t4: T4, t5: T5, t6: T6, t7: T7, t8: T8, t9: T9, t10: T10 ->
-		wrap(cache, t1 toH t2 toH t3 toH t4 toH t5 toH t6 toH t7 toH t8 toH t9 toH t10) { f(t1, t2, t3, t4, t5, t6, t7, t8, t9, t10) }
+	var s: ((T1, T2, T3, T4, T5, T6, T7, T8, T9, T10) -> R)? = null
+	s = { t1: T1, t2: T2, t3: T3, t4: T4, t5: T5, t6: T6, t7: T7, t8: T8, t9: T9, t10: T10 ->
+		wrap(cache, t1 toH t2 toH t3 toH t4 toH t5 toH t6 toH t7 toH t8 toH t9 toH t10) { s!!.f(t1, t2, t3, t4, t5, t6, t7, t8, t9, t10) }
 	}
+	return s
 }
