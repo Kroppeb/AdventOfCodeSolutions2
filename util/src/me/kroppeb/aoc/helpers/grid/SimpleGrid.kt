@@ -50,9 +50,6 @@ public class SimpleGrid<T>(public val items: List<List<T>>) : StrictGrid<T>, Ite
 
 	public fun allItems(): List<T> = items.flatten()
 
-	override fun toString(): String {
-		return items.joinToString("\n") { it.joinToString(" ") }
-	}
 
 	override fun iterator(): Iterator<BoundedGridPoint<T>> = bounds.map { this.getBp(it) }.iterator()
 
@@ -94,6 +91,13 @@ public class SimpleGrid<T>(public val items: List<List<T>>) : StrictGrid<T>, Ite
 		m[point] = item
 		return m.immutable()
 	}
+
+	override fun toString(): String {
+		return items.joinToString("\n") { it.joinToString(" ") }
+	}
+	
+	override fun equals(other: Any?): Boolean = other is SimpleGrid<*> && this.items == other.items
+	override fun hashCode(): Int = this.items.hashCode()
 }
 
 

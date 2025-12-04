@@ -5,7 +5,7 @@ package me.kroppeb.aoc.helpers.grid
 import me.kroppeb.aoc.helpers.*
 import me.kroppeb.aoc.helpers.point.*
 
-public class MutableSimpleGrid<T>(public val items: MutableList<MutableList<T>>) : StrictGrid<T>, MutableGrid<T> {
+public class MutableSimpleGrid<T>(public val items: MutableList<MutableList<T>>) : StrictGrid<T>, MutableGrid<T>, Iterable<MutableBoundedGridPoint<T>> {
 	override val bounds: Bounds
 
 
@@ -45,9 +45,9 @@ public class MutableSimpleGrid<T>(public val items: MutableList<MutableList<T>>)
 		}
 	}
 
-	public fun rows(): Iterable<List<T>> = items
-	public fun cols(): Iterable<List<T>> = items.transpose()
-	public fun rowsCols(): Iterable<List<T>> = items + items.transpose()
+	public fun rows(): List<List<T>> = items
+	public fun cols(): List<List<T>> = items.transpose()
+	public fun rowsCols(): List<List<T>> = items + items.transpose()
 	public fun diag1(): List<T> {
 		assert(bounds.isSquare)
 		return items.mapIndexed { i, row -> row[i] }
@@ -58,10 +58,19 @@ public class MutableSimpleGrid<T>(public val items: MutableList<MutableList<T>>)
 		return items.mapIndexed { i, row -> row[items.size - 1 - i] }
 	}
 
-	public fun diagonals(): Iterable<List<T>> = listOf(diag1(), diag2())
+	public fun diagonals(): List<List<T>> = listOf(diag1(), diag2())
 	public fun rowsColsDiagonals(): Iterable<List<T>> = rowsCols() + diagonals()
 
-	public fun allItems(): Iterable<T> = items.flatten()
+	public fun allItems(): List<T> = items.flatten()
+
+	override fun iterator(): Iterator<MutableBoundedGridPoint<T>> = bounds.map { this.getBp(it) }.iterator()
+
+	public fun getBpOrNull(point: Point): MutableBoundedGridPoint<T>? =
+		if (point in bounds) MutableBoundedGridPoint(point, this) else null
+
+	public fun getBp(point: Point): MutableBoundedGridPoint<T> =
+		getBpOrNull(point) ?: throw IndexOutOfBoundsException(point.toString())
+
 
 	override fun toString(): String {
 		return items.joinToString("\n") { it.joinToString(" ") }
