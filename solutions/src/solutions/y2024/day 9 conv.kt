@@ -48,7 +48,7 @@ private val xxxxx = Clock(6, 3)
 private fun part1() {
 	var inp = getLines(2024, 9)
 //	var inp = pre(9, 0)
-	var hob = inp.digits()[0]
+	var hob = inp.digitsI()[0]
 
 	var file = hob.flatMapIndexed { i, d -> listOf(if (i divBy 2) i / 2.s else null).repeat(d) }.mut()
 
@@ -77,7 +77,7 @@ private fun part1() {
 private fun part2() {
 	var inp = getLines(2024, 9)
 //	var inp = pre(9, 0)
-	var hob = inp.digits()[0]
+	var hob = inp.digitsI()[0]
 
 	var file = hob.mapIndexed { i, d -> (if (i divBy 2) i / 2.s else null) to d }.mut()
 

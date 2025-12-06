@@ -33,7 +33,6 @@ import kotlin.math.*
 import log
 import me.kroppeb.aoc.helpers.*
 import me.kroppeb.aoc.helpers.collections.extensions.dequeOf
-import me.kroppeb.aoc.helpers.graph.floodFill
 import me.kroppeb.aoc.helpers.grid.*
 import me.kroppeb.aoc.helpers.sint.*
 import kotlin.*
@@ -50,7 +49,7 @@ private fun part1() {
 
 	var inp = getLines(2024, 10)
 //	var inp = pre(10, 0)
-	var hob = inp.digits().grid()
+	var hob = inp.digitsI().grid()
 
 	hob.filter{it.v==0}.sumOf { start ->
 		val seen = setTT(start)
@@ -85,7 +84,7 @@ private fun part1() {
 private fun part2() {
 	var inp = getLines(2024, 10)
 //	var inp = pre(10, 0)
-	var hob = inp.digits().grid()
+	var hob = inp.digitsI().grid()
 
 	hob.filter { it.v == 0 }.sumOf { start ->
 		val seen = setLike(start)

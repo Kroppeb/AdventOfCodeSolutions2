@@ -32,9 +32,7 @@ import kotlin.math.*
 
 import log
 import me.kroppeb.aoc.helpers.*
-import me.kroppeb.aoc.helpers.collections.list.toH
 import me.kroppeb.aoc.helpers.grid.*
-import me.kroppeb.aoc.helpers.point.*
 import me.kroppeb.aoc.helpers.sint.*
 import kotlin.*
 import kotlin.collections.*
@@ -49,7 +47,7 @@ private val xxxxx = Clock(6, 3)
 private fun part1() {
 	var inp = getLines(2024, 10)
 //	var inp = pre(10, 0)
-	var hob = inp.digits().grid()
+	var hob = inp.digitsI().grid()
 
 	hob.filter{it.v==0}.sumOf { start ->
 		val seen = mutableSetOf<BoundedGridPoint<Int>>()
@@ -84,7 +82,7 @@ private fun part1() {
 private fun part2() {
 	var inp = getLines(2024, 10)
 //	var inp = pre(10, 0)
-	var hob = inp.digits().grid()
+	var hob = inp.digitsI().grid()
 
 	hob.filter{it.v==0}.sumOf { start ->
 		val seen = mutableSetOf<BoundedGridPoint<Int>>()

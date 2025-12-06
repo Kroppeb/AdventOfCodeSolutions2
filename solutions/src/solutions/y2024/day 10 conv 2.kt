@@ -32,10 +32,8 @@ import kotlin.math.*
 
 import log
 import me.kroppeb.aoc.helpers.*
-import me.kroppeb.aoc.helpers.collections.extensions.dequeOf
 import me.kroppeb.aoc.helpers.graph.floodFill
 import me.kroppeb.aoc.helpers.grid.*
-import me.kroppeb.aoc.helpers.sint.*
 import kotlin.*
 import kotlin.collections.*
 import kotlin.io.*
@@ -49,7 +47,7 @@ private val xxxxx = Clock(6, 3)
 private fun part1() {
 	var inp = getLines(2024, 10)
 //	var inp = pre(10, 0)
-	var hob = inp.digits().grid()
+	var hob = inp.digitsI().grid()
 
 	hob.filter { it.v == 0 }.sumOf { start ->
 		floodFill(start) { p -> p.getQuadNeighbours().filter { it.v == p.v + 1 } }.count { it.v == 9 }
@@ -59,7 +57,7 @@ private fun part1() {
 private fun part2() {
 	var inp = getLines(2024, 10)
 //	var inp = pre(10, 0)
-	var hob = inp.digits().grid()
+	var hob = inp.digitsI().grid()
 
 	hob.filter { it.v == 0 }.sumOf { start ->
 		floodFill(listOf(start)) { p -> p.last().getQuadNeighbours().filter { it.v == p.last().v + 1 }.map{p + listOf(it)} }.count { it.last().v == 9 }

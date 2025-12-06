@@ -32,14 +32,10 @@ import kotlin.math.*
 
 import log
 import me.kroppeb.aoc.helpers.*
-import me.kroppeb.aoc.helpers.collections.list.toH
-import me.kroppeb.aoc.helpers.grid.*
-import me.kroppeb.aoc.helpers.point.*
 import me.kroppeb.aoc.helpers.sint.*
 import kotlin.*
 import kotlin.collections.*
 import kotlin.io.*
-import kotlin.system.measureTimeMillis
 
 
 private val xxxxx = Clock(6, 3)
@@ -51,7 +47,7 @@ private val xxxxx = Clock(6, 3)
 private fun part1() {
 	var inp = getLines(2024, 9)
 //	var inp = pre(9, 0)
-	var hob = inp.digits()[0]
+	var hob = inp.digitsI()[0]
 
 	var file = mutableListOf<Sint>()
 
@@ -95,7 +91,7 @@ private fun part1() {
 private fun part2() {
 	var inp = getLines(2024, 9)
 //	var inp = pre(9, 0)
-	var hob = inp.digits()[0]
+	var hob = inp.digitsI()[0]
 
 	var file = mutableListOf<Triple<Sint, Sint, Sint>>()
 

@@ -3,24 +3,13 @@
 package solutions.y2024
 
 import me.kroppeb.aoc.helpers.*
-import me.kroppeb.aoc.helpers.collections.*
-import me.kroppeb.aoc.helpers.collections.list.*
-import me.kroppeb.aoc.helpers.collections.extensions.*
 import me.kroppeb.aoc.helpers.graph.*
 import me.kroppeb.aoc.helpers.grid.*
 import me.kroppeb.aoc.helpers.point.*
 import me.kroppeb.aoc.helpers.sint.*
-import itertools.*
 import log
-import java.util.Comparator
-import java.util.ArrayDeque
-import java.util.PriorityQueue
 import kotlin.*
-import kotlin.annotation.*
 import kotlin.collections.*
-import kotlin.comparisons.*
-import kotlin.io.*
-import kotlin.ranges.*
 import kotlin.sequences.*
 import kotlin.text.*
 import kotlin.math.*
@@ -38,8 +27,8 @@ private fun oneliners() {
 	getLines(2024, 8).grid().groupBy { it.v }.filterKeys { it != '.' }.values.flatMap { v -> v.pairWise().flatMap { (a, b) -> listOfNotNull(a.offsetOrNull(a - b), b.offsetOrNull(b - a)) } }.toSet().size log 8_001
 	getLines(2024, 8).grid().groupBy { it.v }.filterKeys { it != '.' }.values.flatMap { v -> v.pairWise().flatMap { (a, b) -> a.sequenceInc(a - b) + a.sequenceInc(b - a) } }.toSet().size log 8_002
 
-	getLines(2024, 10).digits().grid().filter { it.v == 0 }.sumOf { start -> floodFill(start) { p -> p.getQuadNeighbours().filter { it.v == p.v + 1 } }.count { it.v == 9 } } log 10_001
-	getLines(2024, 10).digits().grid().filter { it.v == 0 }.sumOf { start -> floodFill(listOf(start)) { p -> p.last().getQuadNeighbours().filter { it.v == p.last().v + 1 }.map { p + listOf(it) } }.count { it.last().v == 9 } } log 10_002
+	getLines(2024, 10).digitsI().grid().filter { it.v == 0 }.sumOf { start -> floodFill(start) { p -> p.getQuadNeighbours().filter { it.v == p.v + 1 } }.count { it.v == 9 } } log 10_001
+	getLines(2024, 10).digitsI().grid().filter { it.v == 0 }.sumOf { start -> floodFill(listOf(start)) { p -> p.last().getQuadNeighbours().filter { it.v == p.last().v + 1 }.map { p + listOf(it) } }.count { it.last().v == 9 } } log 10_002
 
 
 	getLines(2024, 12).grid().map { floodFill(it) { it.getQuadNeighbours().filter { a -> a.v == it.v } } }.toSet().map2 { it.p }.sumOf { it.size.s * it.sumOf { a -> a.getQuadNeighbours().count { b -> b !in it } } } log 12_001

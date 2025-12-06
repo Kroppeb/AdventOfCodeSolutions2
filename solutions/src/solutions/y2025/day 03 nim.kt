@@ -56,7 +56,7 @@ private fun part2() {
 	var inp = getLines(2025, 3)
 
 	// inspired by nim-ka
-	var hob = inp.map{it.digits().map{it.s}}.sumOf { l->
+	var hob = inp.map{it.digits()}.sumOf { l->
 		var curr = 0.s
 		var idx = 0
 		repeat(12) {
