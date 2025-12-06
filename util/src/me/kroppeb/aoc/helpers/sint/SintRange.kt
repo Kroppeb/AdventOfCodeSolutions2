@@ -1,10 +1,10 @@
 package me.kroppeb.aoc.helpers.sint
 
 import com.sschr15.aoc.annotations.SkipOverflowChecks
-import me.kroppeb.aoc.helpers.divBy
-import me.kroppeb.aoc.helpers.maxOf
-import me.kroppeb.aoc.helpers.minOf
+import me.kroppeb.aoc.helpers.*
 import java.math.BigInteger
+import java.util.*
+import kotlin.NoSuchElementException
 
 private var _hasWarnedAboutToBigRange = false
 
@@ -32,11 +32,18 @@ public class SintRange(start: Sint, endInclusive: Sint) : SintProgression(start,
 	public fun first(): Sint = first
 	public fun last(): Sint = last
 
-	override val sizeS: Sint get() = if(this.isEmpty()) Sint.ZERO	 else this.last - this.first + 1
-	override val sizeB: BigInteger get() = if(this.isEmpty()) BigInteger.ZERO else this.last.toBigInteger() - this.first.toBigInteger() + BigInteger.ONE
+	override val sizeS: Sint get() = if (this.isEmpty()) Sint.ZERO else this.last - this.first + 1
+	override val sizeB: BigInteger get() = if (this.isEmpty()) BigInteger.ZERO else this.last.toBigInteger() - this.first.toBigInteger() + BigInteger.ONE
 
 	@Suppress("ConvertTwoComparisonsToRangeCheck") // that would literally recurse
 	override fun contains(value: Sint): Boolean = first <= value && value <= last
+
+	public fun containsAll(elements: SintProgression): Boolean = elements.first in this && elements.last in this
+
+	override fun containsAll(elements: Collection<Sint>): Boolean = when (elements) {
+		is SintProgression -> this.containsAll(elements) // faster
+		else -> elements.all { it in this }
+	}
 
 	/**
 	 * Checks whether the range is empty.
@@ -72,7 +79,7 @@ internal constructor
 	start: Sint,
 	endInclusive: Sint,
 	step: Sint
-) : Collection<Sint> {
+) : Set<Sint> {
 	init {
 		if (step == 0.s) throw kotlin.IllegalArgumentException("Step must be non-zero.")
 	}
@@ -101,22 +108,27 @@ internal constructor
 	 * Progression with a negative step is empty if its first element is less than the last element.
 	 */
 	override public open fun isEmpty(): Boolean = if (step > 0) first > last else first < last
+
 	@Deprecated("", ReplaceWith("sizeS"))
 	override val size: Int
 		get() = sizeS.i
 
 	// FIXME: this can trigger overflow when it does still fit :[
-	public open val sizeS: Sint get() = ((
-		if (step > 0) maxOf(0.s, last - first + step)
-		else minOf(0.s, last - first + step)
-		) / step)
+	public open val sizeS: Sint
+		get() = ((
+			if (step > 0) maxOf(0.s, last - first + step)
+			else minOf(0.s, last - first + step)
+			) / step)
 
-	public open val sizeB: BigInteger get() = ((
-		if (step > 0) maxOf(BigInteger.ZERO, last.toBigInteger() - first.toBigInteger() + step.toBigInteger())
-		else minOf(BigInteger.ZERO, last.toBigInteger() - first.toBigInteger() + step.toBigInteger())
-		) / step.toBigInteger())
+	public open val sizeB: BigInteger
+		get() = ((
+			if (step > 0) maxOf(BigInteger.ZERO, last.toBigInteger() - first.toBigInteger() + step.toBigInteger())
+			else minOf(BigInteger.ZERO, last.toBigInteger() - first.toBigInteger() + step.toBigInteger())
+			) / step.toBigInteger())
 
-	override fun containsAll(elements: Collection<Sint>): Boolean = elements.all { it in this }
+	override fun containsAll(elements: Collection<Sint>): Boolean {
+		return elements.all { it in this }
+	}
 
 	override fun contains(element: Sint): Boolean {
 		if (step > 0) {
@@ -171,7 +183,7 @@ private var hasWarnedAboutToBigIterator = false
  * An iterator over a progression of values of type `Int`.
  * @property step the number by which the value is incremented on each step.
  */
-internal class SintProgressionIterator(first: Sint, last: Sint, val step: Sint) : SintIterator() {
+internal class SintProgressionIterator(first: Sint, last: Sint, val step: Sint) : SintIterator {
 	private val finalElement: Sint = last
 	private var hasNext: Boolean = if (step > 0) first <= last else first >= last
 	private var next: Sint = if (hasNext) first else finalElement
@@ -214,11 +226,11 @@ internal class SintProgressionIterator(first: Sint, last: Sint, val step: Sint) 
 
 
 /** An iterator over a sequence of values of type `Sint`. */
-public abstract class SintIterator : Iterator<Sint> {
-	final override fun next(): Sint = nextSint()
+public interface SintIterator : Iterator<Sint> {
+	override fun next(): Sint = nextSint()
 
 	/** Returns the next value in the sequence without boxing. */
-	public abstract fun nextSint(): Sint
+	public fun nextSint(): Sint
 }
 
 public infix fun SintProgression.step(step: Sint): SintProgression {
@@ -231,4 +243,81 @@ public infix fun SintProgression.step(step: Long): SintProgression = step(step.s
 
 internal fun checkStepIsPositive(isPositive: Boolean, step: Number) {
 	if (!isPositive) throw IllegalArgumentException("Step must be positive, was: $step.")
+}
+
+public class SintRangeSet private constructor(
+	public val ranges: TreeMap<Sint, SintRange>
+) : Set<Sint> {
+	public val sizeS: Sint
+		get() = ranges.values.sumOf { it.sizeS }
+	public val sizeB: BigInteger
+		get() = ranges.values.map { it.sizeB }.reduceOrNull(BigInteger::plus) ?: BigInteger.ZERO
+
+	override val size: Int get() = sizeS.i
+
+	override fun isEmpty(): Boolean = ranges.isEmpty()
+
+	override fun iterator(): Iterator<Sint> = object : SintIterator {
+		val treeIterator: Iterator<SintRange> = ranges.values.iterator()
+		var rangeIterator: Iterator<Sint>? = null
+
+		override fun hasNext(): Boolean {
+			// ranges are never empty
+			return (rangeIterator?.hasNext() ?: false) || treeIterator.hasNext()
+		}
+
+		override fun nextSint(): Sint {
+			rangeIterator?.takeIf { it.hasNext() }?.next()?.let { return it }
+			if (!treeIterator.hasNext()) {
+				throw NoSuchElementException("Ran out")
+			}
+			val newIter = treeIterator.next().iterator()
+			rangeIterator = newIter
+			require(newIter.hasNext()) { throw IllegalStateException("SintRangeSet in illegal state") }
+			return newIter.nextSint()
+		}
+	}
+
+	public fun containsAll(elements: SintProgression): Boolean {
+		val (_, range) = ranges.floorEntry(elements.first) ?: return false
+		return range.containsAll(elements)
+	}
+
+	public fun containsAll(elements: SintRangeSet): Boolean {
+		// this is o n log n, it could be o n, but I can't be arsed
+		return elements.ranges.values.all { this.containsAll(it) }
+	}
+
+	override fun containsAll(elements: Collection<Sint>): Boolean = when (elements) {
+		is SintProgression -> containsAll(elements) // faster implementation
+		is SintRangeSet -> containsAll(elements) // faster implementation
+		else -> elements.all { it in this }
+	}
+
+	override fun contains(element: Sint): Boolean {
+		val (_, range) = ranges.floorEntry(element) ?: return false
+		return element in range
+	}
+
+
+	public companion object {
+		public operator fun invoke(ranges: Iterable<SintRange>) {
+			val tree = TreeMap<Sint, SintRange>()
+
+			for (range in ranges) {
+				if (range.isEmpty()) continue
+				// will have the same start as range
+				var checkRange = tree.floorEntry(range.first)?.value?.tryUnion(range) ?: range
+
+				while (true) {
+					val (k, v) = tree.higherEntry(checkRange.first) ?: break
+					if (k > checkRange.last) break
+					tree.remove(k)
+					checkRange = checkRange.tryUnion(v)!!
+				}
+				tree[checkRange.first] = checkRange
+			}
+		}
+	}
+
 }

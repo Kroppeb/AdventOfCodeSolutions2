@@ -105,7 +105,6 @@ public data class Bounds(
 	val ySizeB: BigInteger get() = ys.sizeB
 	val sizesB: Pair<BigInteger, BigInteger> get() = xSizeB to ySizeB
 
-	// Will overflow for MEGA
 	val areaB: BigInteger get() = xSizeB * ySizeB
 
 	@Deprecated("use area", ReplaceWith("area"))

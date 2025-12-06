@@ -1,11 +1,11 @@
 package me.kroppeb.aoc.helpers
 
 import me.kroppeb.aoc.helpers.grid.SimpleGrid
-import me.kroppeb.aoc.helpers.grid.StrictGrid
 import me.kroppeb.aoc.helpers.grid.grid
 import me.kroppeb.aoc.helpers.point.*
 import me.kroppeb.aoc.helpers.sint.Sint
 import me.kroppeb.aoc.helpers.sint.s
+import me.kroppeb.aoc.helpers.sint.toSint
 import java.io.FileNotFoundException
 
 private val regexSusInt = Regex("""-?\d+-\d+""")
@@ -18,25 +18,41 @@ private val regexWord = Regex("""[a-zA-Z]+""")
 private val regexAlphaNum = Regex("""[a-zA-Z0-9]+""")
 
 
+@Deprecated("use getSint() instead", ReplaceWith("getSint()"))
 public fun getInt(day: Int): Int {
 	return regexInt.find(getData(day))!!.value.toInt()
 }
 
+@Deprecated("use getPosSint() instead", ReplaceWith("getPosSint()"))
 public fun getPosInt(day: Int): PosInt {
 	return regexPosInt.find(getData(day))!!.value.toInt()
 }
 
+@Deprecated("use getSint() instead", ReplaceWith("getSint()"))
 public fun getLong(day: Int): Long {
 	return regexInt.find(getData(day))!!.value.toLong()
 }
 
+@Deprecated("use getPosSint() instead", ReplaceWith("getPosSint()"))
 public fun getPosLong(day: Int): PosLong {
 	return regexPosInt.find(getData(day))!!.value.toLong()
 }
 
+public fun getSint(day: Int): Sint {
+	return regexInt.find(getData(day))!!.value.toSint()
+}
 
-public fun getDigit(day: Int): Digit {
+public fun getPosSint(day: Int): Sint {
+	return regexPosInt.find(getData(day))!!.value.toSint()
+}
+
+@Deprecated("use getDigit() instead", ReplaceWith("getDigit()"))
+public fun getDigitI(day: Int): Digit {
 	return regexDigit.find(getData(day))!!.value.toInt()
+}
+
+public fun getDigit(day: Int): Sint {
+	return regexDigit.find(getData(day))!!.value.toSint()
 }
 
 public fun getDouble(day: Int): Double {
@@ -98,6 +114,8 @@ public fun getData(type: String?, year: Int?, day: Int, part: Int?): String {
 }
 
 private var hasWarnedAboutSusInt = false
+
+@Deprecated("use getSints() instead", ReplaceWith("getSints()"))
 public fun getInts(day: Int): Ints {
 	val input = getData(day)
 	if (!hasWarnedAboutSusInt && regexSusInt.containsMatchIn(input)){
@@ -107,19 +125,41 @@ public fun getInts(day: Int): Ints {
 	return regexInt.findAll(getData(day)).map { it.value.toInt() }.toList()
 }
 
+@Deprecated("use getPosSints() instead", ReplaceWith("getPosSints()"))
 public fun getPosInts(day: Int): PosInts {
 	return regexPosInt.findAll(getData(day)).map { it.value.toInt() }.toList()
 }
 
+@Deprecated("use getSints() instead", ReplaceWith("getSints()"))
 public fun getLongs(day: Int): Longs {
+	val input = getData(day)
+	if (!hasWarnedAboutSusInt && regexSusInt.containsMatchIn(input)){
+		System.err.println("Warning: detected sus int separation pattern. Maybe you need PosLongs instead?")
+		hasWarnedAboutSusInt = true
+	}
 	return regexInt.findAll(getData(day)).map { it.value.toLong() }.toList()
 }
 
+@Deprecated("use getPosSints() instead", ReplaceWith("getPosSints()"))
 public fun getPosLongs(day: Int): PosLongs {
 	return regexPosInt.findAll(getData(day)).map { it.value.toLong() }.toList()
 }
 
-public fun getDigits(day: Int): Digits {
+
+public fun getSints(day: Int): Longs {
+	val input = getData(day)
+	if (!hasWarnedAboutSusInt && regexSusInt.containsMatchIn(input)){
+		System.err.println("Warning: detected sus int separation pattern. Maybe you need PosSints instead?")
+		hasWarnedAboutSusInt = true
+	}
+	return regexInt.findAll(getData(day)).map { it.value.toLong() }.toList()
+}
+
+public fun getPosSints(day: Int): PosLongs {
+	return regexPosInt.findAll(getData(day)).map { it.value.toLong() }.toList()
+}
+
+public fun getDigitsI(day: Int): Digits {
 	return regexDigit.findAll(getData(day)).map { it.value.toInt() }.toList()
 }
 
@@ -232,14 +272,19 @@ public fun Iterable<Long>.point() = this.getPoint()!!
 public fun Iterable<Long>.point3D() = this.getPoint3D()!!
 
 
-
+@Deprecated("use getSint() instead", ReplaceWith("getSint()"))
 public fun String.getInt(): Int? = regexInt.find(this)?.value?.toInt()
+@Deprecated("use getPosSint() instead", ReplaceWith("getPosSint()"))
 public fun String.getPosInt(): PosInt? = regexPosInt.find(this)?.value?.toInt()
 public fun String.getSint(): Sint? = regexInt.find(this)?.value?.toLong()?.s
 public fun String.getPosSint(): PosSint? = regexPosInt.find(this)?.value?.toLong()?.s
+@Deprecated("use getSint() instead", ReplaceWith("getSint()"))
 public fun String.getLong(): Long? = regexInt.find(this)?.value?.toLong()
+@Deprecated("use getPosSint() instead", ReplaceWith("getPosSint()"))
 public fun String.getPosLong(): PosLong? = regexPosInt.find(this)?.value?.toLong()
-public fun String.getDigit(): Digit? = regexDigit.find(this)?.value?.toInt()
+@Deprecated("use getDigit() instead", ReplaceWith("getDigit()"))
+public fun String.getDigitI(): Digit? = regexDigit.find(this)?.value?.toInt()
+public fun String.getDigit(): Sint? = regexDigit.find(this)?.value?.toSint()
 public fun String.getDouble(): Double? = regexFloat.find(this)?.value?.toDouble()
 public fun String.getPosDouble(): PosDouble? = regexPosFloat.find(this)?.value?.toDouble()
 public fun String.getWord(): Word? = regexWord.find(this)?.value
@@ -247,7 +292,7 @@ public fun String.getAlphaNum(): AlphaNum? = regexAlphaNum.find(this)?.value
 public fun String.getPoint(): Point? = getSints().getPoint()
 public fun String.getPoint3D(): Point3D? = getSints().getPoint3D()
 
-@Deprecated("use getSints() instead")
+@Deprecated("use getSints() instead", ReplaceWith("getSints()"))
 public fun String.getInts(): List<Int> {
 	if (!hasWarnedAboutSusInt && regexSusInt.containsMatchIn(this)){
 		System.err.println("Warning: detected sus int separation pattern. Maybe you need PosInts instead?")
@@ -255,6 +300,7 @@ public fun String.getInts(): List<Int> {
 	}
 	return regexInt.findAll(this).map { it.value.toInt() }.toList()
 }
+@Deprecated("use getPosSints() instead", ReplaceWith("getPosSints()"))
 public fun String.getPosInts() = regexPosInt.findAll(this).map { it.value.toInt() }.toList()
 
 public fun String.getSints(): List<Sint> {
@@ -265,6 +311,7 @@ public fun String.getSints(): List<Sint> {
 	return regexInt.findAll(this).map { it.value.toLong().s }.toList()
 }
 public fun String.getPosSints() = regexPosInt.findAll(this).map { it.value.toLong().s }.toList()
+@Deprecated("use getSints() instead", ReplaceWith("getSints()"))
 public fun String.getLongs(): List<Long> {
 	if (!hasWarnedAboutSusInt && regexSusInt.containsMatchIn(this)){
 		System.err.println("Warning: detected sus int separation pattern. Maybe you need PosInts instead?")
@@ -272,8 +319,11 @@ public fun String.getLongs(): List<Long> {
 	}
 	return regexInt.findAll(this).map { it.value.toLong() }.toList()
 }
+@Deprecated("use getPosSints() instead", ReplaceWith("getPosSints()"))
 public fun String.getPosLongs(): Longs = regexPosInt.findAll(this).map { it.value.toLong() }.toList()
-public fun String.getDigits(): Digits = regexDigit.findAll(this).map { it.value.toInt() }.toList()
+@Deprecated("use getDigits() instead", ReplaceWith("getDigits()"))
+public fun String.getDigitsI(): Digits = regexDigit.findAll(this).map { it.value.toInt() }.toList()
+public fun String.getDigits(): Sints = regexDigit.findAll(this).map { it.value.toSint() }.toList()
 public fun String.getDoubles(): Doubles = regexFloat.findAll(this).map { it.value.toDouble() }.toList()
 public fun String.getPosDoubles(): PosDoubles = regexPosFloat.findAll(this).map { it.value.toDouble() }.toList()
 public fun String.getWords(): Words = regexWord.findAll(this).map { it.value }.toList()
@@ -281,13 +331,19 @@ public fun String.getAlphaNums(): AlphaNums = regexAlphaNum.findAll(this).map { 
 public fun String.getPoints(): Points = getSints().chunked(2).filter{it.size == 2}.map{it.point()}
 public fun String.getPoints3D(): Points3D = getSints().chunked(3).filter{it.size == 3}.map{it.point3D()}
 
+@Deprecated("use sint() instead", ReplaceWith("sint()"))
 public fun String.int(): Int = getInt()!!
+@Deprecated("use posInt() instead", ReplaceWith("posSint()"))
 public fun String.posInt(): Int = getPosInt()!!
 public fun String.sint(): Sint = getSint()!!
 public fun String.posSint(): Sint = getPosSint()!!
+@Deprecated("use sint() instead", ReplaceWith("sint()"))
 public fun String.long(): Long = getLong()!!
+@Deprecated("use posInt() instead", ReplaceWith("posSint()"))
 public fun String.posLong(): Long = getPosLong()!!
-public fun String.digit(): Int = getDigit()!!
+@Deprecated("use digit() instead", ReplaceWith("digit()"))
+public fun String.digitI(): Int = getDigitI()!!
+public fun String.digit(): Sint = getDigit()!!
 public fun String.double(): Double = getDouble()!!
 public fun String.posDouble(): Double = getPosDouble()!!
 public fun String.word(): String = getWord()!!
@@ -295,14 +351,19 @@ public fun String.alphaNum(): String = getAlphaNum()!!
 public fun String.point(): Point = getPoint()!!
 public fun String.point3D(): Point3D = getPoint3D()!!
 
-@Deprecated("use sints() instead", ReplaceWith("getSints()"))
+@Deprecated("use sints() instead", ReplaceWith("sints()"))
 public fun String.ints(): List<Int> = getInts()
+@Deprecated("use sints() instead", ReplaceWith("posSints()"))
 public fun String.posInts(): List<Int> = getPosInts()
 public fun String.sints(): List<Sint> = getSints()
 public fun String.posSints(): List<Sint> = getPosSints()
+@Deprecated("use sints() instead", ReplaceWith("sints()"))
 public fun String.longs(): List<Long> = getLongs()
+@Deprecated("use sints() instead", ReplaceWith("posSints()"))
 public fun String.posLongs(): List<Long> = getPosLongs()
-public fun String.digits(): List<Int> = getDigits()
+@Deprecated("use digits() instead", ReplaceWith("digits()"))
+public fun String.digitsI(): List<Int> = getDigitsI()
+public fun String.digits(): List<Sint> = getDigits()
 public fun String.doubles(): List<Double> = getDoubles()
 public fun String.posDoubles(): List<Double> = getPosDoubles()
 public fun String.words(): List<String> = getWords()
@@ -317,7 +378,7 @@ public inline fun <T>String.sints(transform: (List<Sint>) -> T): T = getSints().
 public inline fun <T>String.posSints(transform: (List<Sint>) -> T): T = getPosSints().let(transform)
 public inline fun <T>String.longs(transform: (List<Long>) -> T): T = getLongs().let(transform)
 public inline fun <T>String.posLongs(transform: (List<Long>) -> T): T = getPosLongs().let(transform)
-public inline fun <T>String.digits(transform: (List<Int>) -> T): T = getDigits().let(transform)
+public inline fun <T>String.digitsI(transform: (List<Int>) -> T): T = getDigitsI().let(transform)
 public inline fun <T>String.doubles(transform: (List<Double>) -> T): T = getDoubles().let(transform)
 public inline fun <T>String.posDoubles(transform: (List<Double>) -> T): T = getPosDoubles().let(transform)
 public inline fun <T>String.words(transform: (List<String>) -> T): T = getWords().let(transform)
@@ -332,7 +393,7 @@ public fun Iterable<String>.sint():List<Sint> = map{it.sint()}
 public fun Iterable<String>.posSint():List<Sint> = map{it.posSint()}
 public fun Iterable<String>.long():List<Long> = map{it.long()}
 public fun Iterable<String>.posLong():List<Long> = map{it.posLong()}
-public fun Iterable<String>.digit():List<Int> = map{it.digit()}
+public fun Iterable<String>.digitI():List<Int> = map{it.digitI()}
 public fun Iterable<String>.double():List<Double> = map{it.double()}
 public fun Iterable<String>.posDouble():List<Double> = map{it.posDouble()}
 public fun Iterable<String>.word():List<String> = map{it.word()}
@@ -346,7 +407,7 @@ public fun Iterable<String>.sints(): List<List<Sint>> = map{it.sints()}
 public fun Iterable<String>.posSints(): List<List<Sint>> = map{it.posSints()}
 public fun Iterable<String>.longs(): List<List<Long>> = map{it.longs()}
 public fun Iterable<String>.posLongs(): List<List<Long>> = map{it.posLongs()}
-public fun Iterable<String>.digits(): List<List<Int>> = map{it.digits()}
+public fun Iterable<String>.digitsI(): List<List<Int>> = map{it.digitsI()}
 public fun Iterable<String>.doubles(): List<List<Double>> = map{it.doubles()}
 public fun Iterable<String>.posDoubles(): List<List<Double>> = map{it.posDoubles()}
 public fun Iterable<String>.words(): List<List<String>> = map{it.words()}
@@ -361,7 +422,7 @@ public inline fun <T>Iterable<String>.sints(transform: (List<Sint>) -> T): List<
 public inline fun <T>Iterable<String>.posSints(transform: (List<Sint>) -> T): List<T> = map{it.posSints(transform)}
 public inline fun <T>Iterable<String>.longs(transform: (List<Long>) -> T): List<T> = map{it.longs(transform)}
 public inline fun <T>Iterable<String>.posLongs(transform: (List<Long>) -> T): List<T> = map{it.posLongs(transform)}
-public inline fun <T>Iterable<String>.digits(transform: (List<Int>) -> T): List<T> = map{it.digits(transform)}
+public inline fun <T>Iterable<String>.digitsI(transform: (List<Int>) -> T): List<T> = map{it.digitsI(transform)}
 public inline fun <T>Iterable<String>.doubles(transform: (List<Double>) -> T): List<T> = map{it.doubles(transform)}
 public inline fun <T>Iterable<String>.posDoubles(transform: (List<Double>) -> T): List<T> = map{it.posDoubles(transform)}
 public inline fun <T>Iterable<String>.words(transform: (List<String>) -> T): List<T> = map{it.words(transform)}
@@ -377,7 +438,7 @@ public inline fun <T>Iterable<String>.points3D(transform: (List<Point3D>) -> T):
 @JvmName("posSint2") public fun Iterable<Iterable<String>>.posSint():List<List<Sint>> = map{it.posSint()}
 @JvmName("long2") public fun Iterable<Iterable<String>>.long():List<List<Long>> = map{it.long()}
 @JvmName("posLong2") public fun Iterable<Iterable<String>>.posLong():List<List<Long>> = map{it.posLong()}
-@JvmName("digit2") public fun Iterable<Iterable<String>>.digit():List<List<Int>> = map{it.digit()}
+@JvmName("digit2") public fun Iterable<Iterable<String>>.digitI():List<List<Int>> = map{it.digitI()}
 @JvmName("double2") public fun Iterable<Iterable<String>>.double():List<List<Double>> = map{it.double()}
 @JvmName("posDouble2") public fun Iterable<Iterable<String>>.posDouble():List<List<Double>> = map{it.posDouble()}
 @JvmName("word2") public fun Iterable<Iterable<String>>.word():List<List<String>> = map{it.word()}
@@ -392,7 +453,7 @@ public inline fun <T>Iterable<String>.points3D(transform: (List<Point3D>) -> T):
 @JvmName("posSints2") public fun Iterable<Iterable<String>>.posSints():List<List<List<Sint>>> = map{it.posSints()}
 @JvmName("longs2") public fun Iterable<Iterable<String>>.longs():List<List<List<Long>>> = map{it.longs()}
 @JvmName("posLongs2") public fun Iterable<Iterable<String>>.posLongs():List<List<List<Long>>> = map{it.posLongs()}
-@JvmName("digits2") public fun Iterable<Iterable<String>>.digits():List<List<List<Int>>> = map{it.digits()}
+@JvmName("digits2") public fun Iterable<Iterable<String>>.digitsI():List<List<List<Int>>> = map{it.digitsI()}
 @JvmName("doubles2") public fun Iterable<Iterable<String>>.doubles():List<List<List<Double>>> = map{it.doubles()}
 @JvmName("posDoubles2") public fun Iterable<Iterable<String>>.posDoubles():List<List<List<Double>>> = map{it.posDoubles()}
 @JvmName("words2") public fun Iterable<Iterable<String>>.words():List<List<List<String>>> = map{it.words()}
@@ -407,7 +468,7 @@ public inline fun <T>Iterable<String>.points3D(transform: (List<Point3D>) -> T):
 @JvmName("posSints2") public inline fun <T>Iterable<Iterable<String>>.posSints(transform:(List<Sint>) -> T):List<List<T>> = map{it.posSints(transform)}
 @JvmName("longs2") public inline fun <T>Iterable<Iterable<String>>.longs(transform:(List<Long>) -> T):List<List<T>> = map{it.longs(transform)}
 @JvmName("posLongs2") public inline fun <T>Iterable<Iterable<String>>.posLongs(transform:(List<Long>) -> T):List<List<T>> = map{it.posLongs(transform)}
-@JvmName("digits2") public inline fun <T>Iterable<Iterable<String>>.digits(transform:(List<Int>) -> T):List<List<T>> = map{it.digits(transform)}
+@JvmName("digits2") public inline fun <T>Iterable<Iterable<String>>.digitsI(transform:(List<Int>) -> T):List<List<T>> = map{it.digitsI(transform)}
 @JvmName("doubles2") public inline fun <T>Iterable<Iterable<String>>.doubles(transform:(List<Double>) -> T):List<List<T>> = map{it.doubles(transform)}
 @JvmName("posDoubles2") public inline fun <T>Iterable<Iterable<String>>.posDoubles(transform:(List<Double>) -> T):List<List<T>> = map{it.posDoubles(transform)}
 @JvmName("words2") public inline fun <T>Iterable<Iterable<String>>.words(transform:(List<String>) -> T):List<List<T>> = map{it.words(transform)}
@@ -419,7 +480,7 @@ public fun getIntLines(day:Int): IntLines = getLines(day).map{it.getInts()}
 public fun getPosIntLines(day:Int): PosIntLines = getLines(day).map{it.getPosInts()}
 public fun getLongLines(day:Int): LongLines = getLines(day).map{it.getLongs()}
 public fun getPosLongLines(day:Int): PosLongLines = getLines(day).map{it.getPosLongs()}
-public fun getDigitLines(day:Int): DigitLines = getLines(day).map{it.getDigits()}
+public fun getDigitLines(day:Int): DigitLines = getLines(day).map{it.getDigitsI()}
 public fun getDoubleLines(day:Int): DoubleLines = getLines(day).map{it.getDoubles()}
 public fun getPosDoubleLines(day:Int): PosDoubleLines = getLines(day).map{it.getPosDoubles()}
 public fun getWordLines(day:Int): WordLines = getLines(day).map{it.getWords()}

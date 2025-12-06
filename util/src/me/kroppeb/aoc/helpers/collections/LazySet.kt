@@ -4,7 +4,11 @@ enum class Mode {
 	UNION, INTERSECTION, DIFFERENCE
 }
 
-class LazySet<T>(val a: Collection<T>, val b: Collection<T>, val mode: Mode) : Set<T> {
+public class LazySet<T>(
+	private val a: Collection<T>,
+	private val b: Collection<T>,
+	private val mode: Mode
+) : Set<T> {
 	private val cachedSet = mutableSetOf<T>()
 	private val itemSet = mutableListOf<T>() // for iterators
 	private val iteratorA = a.iterator()

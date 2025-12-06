@@ -755,8 +755,45 @@ public fun String.splitIn2(): Pair<String, String> = splitIn(2).let { (a, b) -> 
 public infix fun <T, R> Collection<T>.splitIn2(transform: (List<T>) -> R): Pair<R, R> =
 	splitIn(2, transform).let { (a, b) -> a to b }
 
-public fun <T> Iterable<Iterable<T>>.union(): Set<T> = this.reduce(Iterable<T>::union).toSet()
-public fun <T> Iterable<Iterable<T>>.intersect(): Set<T> = this.reduce(Iterable<T>::intersect).toSet()
+
+public fun <T> Iterable<Iterable<T>>.union(): Set<T> = this.reduce(Iterable<T>::union).asSet()
+public fun <T> Iterable<Iterable<T>>.intersect(): Set<T> = this.reduce(Iterable<T>::intersect).asSet()
+
+public fun <T> Iterable<Collection<T>>.unionLazy(): Collection<T> {
+	val p = this.toList()
+	return when(p.size) {
+		0 -> emptySet()
+		1 -> p.first()
+		else -> p.reduce(LazySet.Companion::union)
+	}
+}
+
+public fun <T> Iterable<Collection<T>>.intersectLazy(): Collection<T> {
+	val p = this.toList()
+	return when(p.size) {
+		0 -> emptySet()
+		1 -> p.first()
+		else -> p.reduce(LazySet.Companion::union)
+	}
+}
+
+public fun <T> Iterable<Set<T>>.unionLazy(): Set<T> {
+	val p = this.toList()
+	return when(p.size) {
+		0 -> emptySet()
+		1 -> p.first()
+		else -> p.reduce(LazySet.Companion::union)
+	}
+}
+
+public fun <T> Iterable<Set<T>>.intersectLazy(): Set<T> {
+	val p = this.toList()
+	return when(p.size) {
+		0 -> emptySet()
+		1 -> p.first()
+		else -> p.reduce(LazySet.Companion::union)
+	}
+}
 
 
 public fun <T> Pair<Iterable<T>, Iterable<T>>.union(): Set<T> = first or second
