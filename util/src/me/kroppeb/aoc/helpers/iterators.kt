@@ -582,6 +582,9 @@ public fun <T> Iterable<Iterable<T>>.transposeOrNulls(): List<List<T?>> {
 	return ret
 }
 
+@JvmName("stringTranspose")
+public fun Iterable<String>.transpose(): List<String> = this.e().transpose().map{it.join()}
+
 
 public inline fun <T, R> Iterable<T>.repeatMap(count: Int, mapping: (Int, T) -> R): List<R> =
 	(0 until count).flatMap { i -> map { mapping(i, it) } }
