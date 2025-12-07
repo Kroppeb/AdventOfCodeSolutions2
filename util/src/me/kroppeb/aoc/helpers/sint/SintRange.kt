@@ -299,9 +299,52 @@ public class SintRangeSet private constructor(
 		return element in range
 	}
 
+	public fun union(other: SintRangeSet): SintRangeSet {
+		val ourRanges = this.ranges.values.iterator()
+		val othRanges = other.ranges.values.iterator()
+
+		var ourNext: SintRange? = null
+		var othNext: SintRange? = null
+
+		var curRange: SintRange? = null
+		val outRanges = TreeMap<Sint, SintRange>()
+
+		while (true) {
+
+			if (ourNext == null && ourRanges.hasNext())
+				ourNext = ourRanges.next()
+
+			if (othNext == null && othRanges.hasNext())
+				othNext = othRanges.next()
+
+
+			val lowest = when {
+				ourNext == null -> othNext?.also { othNext = null } ?: break
+				othNext == null -> ourNext.also { ourNext = null }
+				othNext!!.first < ourNext!!.first -> othNext.also { othNext = null }!!
+				else -> ourNext.also { ourNext = null }!!
+			}
+
+
+			when(val merged = curRange?.tryUnion(lowest)) {
+				null -> {
+					if (curRange != null) {
+						outRanges[curRange.first] = curRange
+					}
+					curRange = lowest
+				}
+				else -> curRange = merged
+			}
+		}
+		if (curRange != null){
+			outRanges[curRange.first] = curRange
+		}
+		return SintRangeSet(outRanges)
+	}
+
 
 	public companion object {
-		public operator fun invoke(ranges: Iterable<SintRange>) {
+		public operator fun invoke(ranges: Iterable<SintRange>): SintRangeSet {
 			val tree = TreeMap<Sint, SintRange>()
 
 			for (range in ranges) {
@@ -317,6 +360,8 @@ public class SintRangeSet private constructor(
 				}
 				tree[checkRange.first] = checkRange
 			}
+
+			return SintRangeSet(tree)
 		}
 	}
 

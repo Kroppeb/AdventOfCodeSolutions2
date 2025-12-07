@@ -36,7 +36,9 @@ public fun SintRange.tryUnion(other: IntRange): SintRange? = this.tryUnion(other
 
 public fun Iterable<SintRange>.intersect(): SintRange = reduce { a, b -> a.intersect(b) }
 public fun Iterable<SintRange>.merge(): SintRange = reduce { a, b -> a.merge(b) }
-public fun Iterable<SintRange>.unions(): List<SintRange> {
+public fun Iterable<SintRange>.union(): SintRangeSet = SintRangeSet(this)
+public fun Iterable<SintRange>.unions(): List<SintRange> = union().ranges.values.toList()
+public fun Iterable<SintRange>.unionsOld(): List<SintRange> {
 	val x = sortedBy { it.first }
 	val y = mutableListOf(x.first())
 	for (i in x.drop(1)) {
@@ -49,7 +51,6 @@ public fun Iterable<SintRange>.unions(): List<SintRange> {
 	}
 	return y
 }
-
 
 public fun SintRange.fracture(other: SintRange): List<SintRange> = fractureOrNull(other).filterNotNull()
 public fun SintRange.fractureOrEmpty(other: SintRange): List<SintRange> = fractureOrNull(other).map { it ?: SintRange.EMPTY }
