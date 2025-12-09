@@ -23,7 +23,7 @@ class UnionFind (){
 	fun join(a: Any, b: Any): Boolean {
 		val pa = getRoot(a)
 		val pb = getRoot(b)
-		if (pa === pb) return true
+		if (pa === pb) return false
 		when {
 			pa.rank < pb.rank -> pa.parent = pb
 			pa.rank > pb.rank -> pb.parent = pa
@@ -32,7 +32,7 @@ class UnionFind (){
 				pb.rank += 1
 			}
 		}
-		return false
+		return true
 	}
 
 	fun getAllRoots() = this.parents.entries.filter{it.value.parent == null}.map{it.key}
