@@ -55,6 +55,7 @@ import kotlin.text.*
 import com.sschr15.aoc.annotations.SkipOverflowChecks
 import com.sschr15.aoc.annotations.Memoize
 import com.sschr15.aoc.annotations.SkipDestructuringChecks
+import log
 
 
 private val xxxxx = Clock(6, 3)
@@ -67,11 +68,19 @@ private val xxxxx = Clock(6, 3)
 //@SkipOverflowChecks
 //@SkipDestructuringChecks
 private fun part1() {
-	var inp = getLines(9)
+	var inp = getLines(2025, 9)
+	var hob = inp.point()
+
+	hob.pairWise().map{it.toList().bounds()}.maxOf { it.area } log 1
+}
+//@SkipOverflowChecks
+//@SkipDestructuringChecks
+private fun part2() {
+	var inp = getLines(2025, 9)
 	var hob = inp.point()
 
 	val l = (hob.windowed(2)+ listOf(hob.last(), hob.first()).g())
-		l.sumOf{(a,b) -> a.x * b.y - b.x * a.y } log 0
+	l.sumOf{(a,b) -> a.x * b.y - b.x * a.y } log 0
 	val ll = l.map{(a,b) -> a toL b}.also{it.map{it.step} log 0}
 
 	hob.pairWise().map{it.toList().bounds()}
