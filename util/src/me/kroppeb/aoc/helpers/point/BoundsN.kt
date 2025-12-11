@@ -3,7 +3,7 @@ package me.kroppeb.aoc.helpers.point
 import me.kroppeb.aoc.helpers.sint.Sint
 import java.math.BigInteger
 
-public interface BoundsN<B : BoundsN<B, P>, P : PointN<P>> : Collection<P> {
+public interface BoundsN<B : BoundsN<B, P>, P : PointN<P>> : Set<P> {
 	public val lowerCoords: P
 	public val higherCoords: P
 	public fun intersect(other: B): B
@@ -19,6 +19,12 @@ public interface BoundsN<B : BoundsN<B, P>, P : PointN<P>> : Collection<P> {
 
 	public operator fun contains(other: B): Boolean {
 		return other.isEmpty() || intersect(other) == other
+	}
+
+	public fun containsAll(elements: LineN<P>): Boolean = elements.start in this && elements.end in this
+	override fun containsAll(elements: Collection<P>): Boolean = when (elements) {
+		is LineN -> containsAll(elements)
+		else -> elements.all { it in this }
 	}
 
 	/**

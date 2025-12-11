@@ -1,6 +1,6 @@
 @file:Suppress("PackageDirectoryMismatch", "UnusedImport")
 
-package solutions.y2025.d09
+package solutions.y2025.d09c1
 
 
 /*
@@ -79,25 +79,13 @@ private fun part2() {
 	var inp = getLines(2025, 9)
 	var hob = inp.point()
 
-	val l = (hob.windowed(2)+ listOf(hob.last(), hob.first()).g())
-	l.sumOf{(a,b) -> a.x * b.y - b.x * a.y } log 0
-	val ll = l.map{(a,b) -> a toL b}.also{it.map{it.step} log 0}
+	val l = (hob + hob.h().g()).windowed(2).map{it.bounds()}
 
 	hob.pairWise().map{it.toList().bounds()}
-		.filter{b ->
+		.filter { b ->
 			val r = b.retract(1)
-			hob.none { it in r } && ll.none { it.start + it.step in r }&& ll.none { it.end - it.step in r }
-		}.sortedByDescending { it.area }
-		.first { b ->
-			val mb = minOf(b.xs.sizeS, b.ys.sizeS)
-			val r = b.retract(1)
-
-			ll.map{ l1->
-				generateSequence(l1.start){
-					it + l1.step * mb
-				}.takeWhile { it in l1 }.none { it in r }
-			}.all{it}
-		}.let{it log 0}
+			l.none() { it.doesIntersect(r) }
+		}.maxBy { it.area }.let{it log 0}
 		.let { it.area } log 1
 }
 

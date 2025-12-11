@@ -1,6 +1,6 @@
 @file:Suppress("PackageDirectoryMismatch", "UnusedImport")
 
-package solutions.y2025.d09
+package solutions.y2025.d11
 
 
 /*
@@ -64,46 +64,35 @@ private val xxxxx = Clock(6, 3)
 
 
 
-
 //@SkipOverflowChecks
 //@SkipDestructuringChecks
 private fun part1() {
-	var inp = getLines(2025, 9)
-	var hob = inp.point()
+	var inp = getLines(2025,11)
+	var hob = inp.alphaNums().associate { it.first() to it.drop(1) }
 
-	hob.pairWise().map{it.toList().bounds()}.maxOf { it.area } log 1
+	dijkstraAll("svr", {it == "out"}){c ->
+		hob[c]?.map{it to 0.s} ?: listOf()
+	} log 1
+
 }
+
 //@SkipOverflowChecks
 //@SkipDestructuringChecks
 private fun part2() {
-	var inp = getLines(2025, 9)
-	var hob = inp.point()
+	var inp = getLines(2025, 11)
+	var hob = inp.alphaNums().associate { it.first() to it.drop(1) }
 
-	val l = (hob.windowed(2)+ listOf(hob.last(), hob.first()).g())
-	l.sumOf{(a,b) -> a.x * b.y - b.x * a.y } log 0
-	val ll = l.map{(a,b) -> a toL b}.also{it.map{it.step} log 0}
+	dijkstraAll("svr" to (false to false), {it.first == "out" && it.second.first && it.second.second}){(c, s) ->
+		hob[c]?.map{
+			(it to ((s.first || it == "dac") to (s.second || it == "fft"))) to 0.s
+		} ?: listOf()
+	} log 1
 
-	hob.pairWise().map{it.toList().bounds()}
-		.filter{b ->
-			val r = b.retract(1)
-			hob.none { it in r } && ll.none { it.start + it.step in r }&& ll.none { it.end - it.step in r }
-		}.sortedByDescending { it.area }
-		.first { b ->
-			val mb = minOf(b.xs.sizeS, b.ys.sizeS)
-			val r = b.retract(1)
-
-			ll.map{ l1->
-				generateSequence(l1.start){
-					it + l1.step * mb
-				}.takeWhile { it in l1 }.none { it in r }
-			}.all{it}
-		}.let{it log 0}
-		.let { it.area } log 1
 }
 
 
 fun main() {
-	println("Day  9: ")
+	println("Day 12: ")
 	part1()
 	part2()
 }

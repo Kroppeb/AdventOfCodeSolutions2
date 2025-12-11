@@ -1,6 +1,6 @@
 @file:Suppress("PackageDirectoryMismatch", "UnusedImport")
 
-package solutions.y2025.d09
+package solutions.y2025.d10
 
 
 /*
@@ -62,48 +62,30 @@ private val xxxxx = Clock(6, 3)
 //private val xxxxy = YCombSettings.useMemoization(true)
 //private val xxxxz = LoggerSettings.logNonAnswers(false)
 
-
-
-
 //@SkipOverflowChecks
 //@SkipDestructuringChecks
 private fun part1() {
-	var inp = getLines(2025, 9)
-	var hob = inp.point()
+	var inp = getLines(2025, 10)
+	var hob = inp.map{it.split(" ")}.sumOf{ line ->
+		val m = line.first().e().b().k() .map{it == '#'}
 
-	hob.pairWise().map{it.toList().bounds()}.maxOf { it.area } log 1
+		val p = line.drop(1).dropLast(1).sints()
+		(0..(line.size- 2)).map{p.subSetsWithLength(it)}.flatten().first(){
+			val c =			it.flatten().countEach()
+			m.mapIndexed(){i,b ->
+				((c[i.s]?:0.s) divBy 2) != b
+			}.all { it }
+		}.size.s
+	} log 1
+
 }
-//@SkipOverflowChecks
-//@SkipDestructuringChecks
-private fun part2() {
-	var inp = getLines(2025, 9)
-	var hob = inp.point()
 
-	val l = (hob.windowed(2)+ listOf(hob.last(), hob.first()).g())
-	l.sumOf{(a,b) -> a.x * b.y - b.x * a.y } log 0
-	val ll = l.map{(a,b) -> a toL b}.also{it.map{it.step} log 0}
+//part 2 in python
 
-	hob.pairWise().map{it.toList().bounds()}
-		.filter{b ->
-			val r = b.retract(1)
-			hob.none { it in r } && ll.none { it.start + it.step in r }&& ll.none { it.end - it.step in r }
-		}.sortedByDescending { it.area }
-		.first { b ->
-			val mb = minOf(b.xs.sizeS, b.ys.sizeS)
-			val r = b.retract(1)
 
-			ll.map{ l1->
-				generateSequence(l1.start){
-					it + l1.step * mb
-				}.takeWhile { it in l1 }.none { it in r }
-			}.all{it}
-		}.let{it log 0}
-		.let { it.area } log 1
-}
 
 
 fun main() {
-	println("Day  9: ")
+	println("Day 10: ")
 	part1()
-	part2()
 }

@@ -113,8 +113,6 @@ public data class Bounds(
 
 	override fun isEmpty(): Boolean = xs.isEmpty() || ys.isEmpty()
 
-	override fun containsAll(elements: Collection<Point>): Boolean = elements.all { it in this }
-
 	public fun exactCenter(): Point = xs.exactCenter() toP ys.exactCenter()
 
 	public fun leftEdge(): Line = this.upperLeft toL this.lowerLeft
