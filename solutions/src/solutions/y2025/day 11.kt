@@ -70,7 +70,7 @@ private fun part1() {
 	var inp = getLines(2025,11)
 	var hob = inp.alphaNums().associate { it.first() to it.drop(1) }
 
-	dijkstraAll("svr", {it == "out"}){c ->
+	dijkstraAll("you", {it == "out"}){c ->
 		hob[c]?.map{it to 0.s} ?: listOf()
 	} log 1
 
@@ -92,7 +92,7 @@ private fun part2() {
 
 
 fun main() {
-	println("Day 12: ")
+	println("Day 11: ")
 	part1()
 	part2()
 }
