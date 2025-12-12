@@ -849,7 +849,6 @@ public inline fun <State> State.floodFill(next: (State) -> Iterable<State>): Set
 public inline fun <State> Iterable<State>.floodFillL(next: (State) -> Iterable<State>): Set<State> = floodFillL(this, next)
 
 
-
 public data class PathingIdea<State>(
 	public val starts: Iterable<State>,
 	public val endCheck: (State) -> Boolean,
@@ -857,8 +856,8 @@ public data class PathingIdea<State>(
 
 public infix fun <State> State.pathTo(end: State): PathingIdea<State> = PathingIdea(listOf(this)) { it == end }
 public infix fun <State> Iterable<State>.pathTo(end: State): PathingIdea<State> = PathingIdea(this) { it == end }
-public infix fun <State> State.pathTo(isEnd: (State)->Boolean): PathingIdea<State> = PathingIdea(listOf(this), isEnd)
-public infix fun <State> Iterable<State>.pathTo(isEnd: (State)->Boolean): PathingIdea<State> = PathingIdea(this, isEnd)
+public infix fun <State> State.pathTo(isEnd: (State) -> Boolean): PathingIdea<State> = PathingIdea(listOf(this), isEnd)
+public infix fun <State> Iterable<State>.pathTo(isEnd: (State) -> Boolean): PathingIdea<State> = PathingIdea(this, isEnd)
 
 
 public inline infix fun <State> PathingIdea<State>.bfs(next: (State) -> Iterable<State>): BfsResult<State>? = bfsL(starts, endCheck, next)

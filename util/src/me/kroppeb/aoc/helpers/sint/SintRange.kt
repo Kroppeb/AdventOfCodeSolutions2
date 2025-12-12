@@ -140,6 +140,8 @@ internal constructor
 		}
 		return (element - first) divBy step
 	}
+	public operator fun contains(element: Int): Boolean = element.s in this
+	public operator fun contains(element: Long): Boolean = element.s in this
 
 	override fun equals(other: Any?): Boolean =
 		other is SintProgression && (isEmpty() && other.isEmpty() ||

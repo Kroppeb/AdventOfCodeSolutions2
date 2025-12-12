@@ -7,6 +7,7 @@ private const val SAFE_INT_MAX = (1L shl 52) - 1
 private const val SAFE_INT_MIN = -SAFE_INT_MAX
 private var has_warned_negative_division_round = false
 private var has_warned_negative_rem = false
+private var has_warned_weird_shift = false
 
 @JvmInline
 public value class Sint(private val inner: Long) : Comparable<Sint> {
@@ -61,9 +62,27 @@ public value class Sint(private val inner: Long) : Comparable<Sint> {
 	public infix fun until(other: Sint): SintRange = SintRange(this, other - 1.s)
 	public infix fun downTo(other: Sint): SintProgression = SintProgression(this, other, -1.s)
 
-	public infix fun shl(other: Sint): Sint = Sint(inner shl other.inner.toInt())
-	public infix fun shr(other: Sint): Sint = Sint(inner shr other.inner.toInt())
-	public infix fun ushr(other: Sint): Sint = Sint(inner ushr other.inner.toInt())
+	public infix fun shl(other: Sint): Sint {
+		if (!has_warned_weird_shift && other !in 0..63){
+			System.err.println("Warning: weird shift: $other is not in 0..63")
+			has_warned_weird_shift = true
+		}
+		return Sint(inner shl other.inner.toInt())
+	}
+	public infix fun shr(other: Sint): Sint {
+		if (!has_warned_weird_shift && other !in 0..63){
+			System.err.println("Warning: weird shift: $other is not in 0..63")
+			has_warned_weird_shift = true
+		}
+		return Sint(inner shr other.inner.toInt())
+	}
+	public infix fun ushr(other: Sint): Sint {
+		if (!has_warned_weird_shift && other !in 0..63){
+			System.err.println("Warning: weird shift: $other is not in 0..63")
+			has_warned_weird_shift = true
+		}
+		return Sint(inner ushr other.inner.toInt())
+	}
 	public infix fun and(other: Sint): Sint = Sint(inner and other.inner)
 	public infix fun or(other: Sint): Sint = Sint(inner or other.inner)
 	public infix fun xor(other: Sint): Sint = Sint(inner xor other.inner)

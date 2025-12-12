@@ -303,3 +303,7 @@ public fun Sint.modInv(base: Sint, target: Sint): Sint {
 
 
 public fun Sint.isZero(): Boolean = this.l == 0L
+
+
+public operator fun IntRange.contains(element: Sint): Boolean = element in this.s
+public operator fun LongRange.contains(element: Sint): Boolean = element in this.s
