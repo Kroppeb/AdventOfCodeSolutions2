@@ -1,6 +1,6 @@
 @file:Suppress("PackageDirectoryMismatch", "UnusedImport")
 
-package solutions.y2025.d11
+package solutions.y2025.d11c2
 
 
 /*
@@ -30,32 +30,14 @@ import kotlin.math.*
  */
 
 
-import itertools.*
 import me.kroppeb.aoc.helpers.*
-import me.kroppeb.aoc.helpers.collections.*
-import me.kroppeb.aoc.helpers.collections.list.*
-import me.kroppeb.aoc.helpers.collections.extensions.*
 import me.kroppeb.aoc.helpers.graph.*
-import me.kroppeb.aoc.helpers.grid.*
-import me.kroppeb.aoc.helpers.point.*
 import me.kroppeb.aoc.helpers.sint.*
-import java.util.Comparator
-import java.util.ArrayDeque
-import java.util.PriorityQueue
 import kotlin.*
-import kotlin.annotation.*
 import kotlin.collections.*
-import kotlin.comparisons.*
 import kotlin.io.*
-import kotlin.math.*
-import kotlin.ranges.*
-import kotlin.sequences.*
-import kotlin.system.exitProcess
-import kotlin.text.*
-import com.sschr15.aoc.annotations.SkipOverflowChecks
-import com.sschr15.aoc.annotations.Memoize
-import com.sschr15.aoc.annotations.SkipDestructuringChecks
 import log
+import me.kroppeb.aoc.helpers.collections.list.toH
 
 
 private val xxxxx = Clock(6, 3)
@@ -70,7 +52,7 @@ private fun part1() {
 	var inp = getLines(2025,11)
 	var hob = inp.alphaNums().associate { it.first() to it.drop(1) }
 
-	dijkstraAll("you", {it == "out"}){c ->
+	"you" pathTo "out" dijkstraAll {c ->
 		hob[c]?.map{it to 0.s} ?: listOf()
 	} log 1
 
@@ -82,9 +64,9 @@ private fun part2() {
 	var inp = getLines(2025, 11)
 	var hob = inp.alphaNums().associate { it.first() to it.drop(1) }
 
-	dijkstraAll("svr" to (false to false), {it.first == "out" && it.second.first && it.second.second}){(c, s) ->
+	"svr" toH false toH false pathTo ("out" toH true toH true) dijkstraAll {(c, a, b) ->
 		hob[c]?.map{
-			(it to ((s.first || it == "dac") to (s.second || it == "fft"))) to 0.s
+			(it toH (a || it == "dac") toH (b || it == "fft")) to 0.s
 		} ?: listOf()
 	} log 2
 
@@ -93,6 +75,6 @@ private fun part2() {
 
 fun main() {
 	println("Day 11: ")
-//	part1()
+	part1()
 	part2()
 }
